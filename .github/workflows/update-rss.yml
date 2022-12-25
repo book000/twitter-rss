@@ -41,6 +41,9 @@ jobs:
       - name: Update RSS
         id: update-rss
         run: yarn build
+        env:
+          TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
 
       - name: Error handling
         if: failure()
