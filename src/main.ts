@@ -149,7 +149,8 @@ async function generateList() {
 
       const feed = parser.parse(fs.readFileSync('output/' + file, 'utf8'))
       const title = feed.rss.channel.title
-      return "<li><a href='" + file + "'>" + title + '</a></li>'
+      const description = feed.rss.channel.description
+      return `<li><a href='${file}'>${title}</a>: <code>${description}</code></li>`
     })
     .filter((s) => s !== null)
   fs.writeFileSync(
