@@ -55,6 +55,10 @@ interface StatusEntities {
   media?: Media[]
 }
 
+interface ExtendedEntities {
+  media: Media[]
+}
+
 interface Urls {
   urls: Url[]
 }
@@ -151,6 +155,11 @@ export interface Tweet {
    * ツイートのエンティティ
    */
   entities: StatusEntities
+
+  /**
+   * ツイートの拡張エンティティ
+   */
+  extended_entities?: ExtendedEntities
 
   /**
    * ツイートの投稿元情報 (aタグ)

@@ -25,6 +25,7 @@ async function searchTweet(searchWord: string) {
       result_type: 'recent',
       count: 100,
       tweet_mode: 'extended',
+      include_entities: true,
     }
   )
   return response.statuses
@@ -42,8 +43,8 @@ function getContent(tweet: Tweet) {
     throw new Error('tweet.full_text is empty')
   }
   const mediaUrls = []
-  if (tweet.entities.media) {
-    for (const media of tweet.entities.media) {
+  if (tweet.extended_entities && tweet.extended_entities.media) {
+    for (const media of tweet.extended_entities.media) {
       tweetText = tweetText.replace(media.url, '')
       mediaUrls.push(media.media_url_https)
     }
