@@ -1,5 +1,5 @@
 {
-  "一途ビッチちゃん": "一途ビッチちゃん from:iro_ironon filter:images",
-  "#赤松健の国会にっき": "#赤松健の国会にっき from:KenAkamatsu filter:images",
-  "まいにちめんだこ": "from:daily_mendako filter:images"
+  "一途ビッチちゃん": "一途ビッチちゃん from:iro_ironon filter:images exclude:retweet",
+  "#赤松健の国会にっき": "#赤松健の国会にっき from:KenAkamatsu filter:images exclude:retweet",
+  "まいにちめんだこ": "from:daily_mendako filter:images exclude:retweet"
 }
