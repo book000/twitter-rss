@@ -32,7 +32,7 @@
     "eslint-plugin-n": "15.6.1",
     "eslint-plugin-promise": "6.1.1",
     "fast-xml-parser": "4.1.1",
-    "prettier": "2.8.3",
+    "prettier": "2.8.4",
     "ts-node": "10.9.1",
     "ts-node-dev": "2.0.0",
     "twitter-api-v2": "^1.13.0",
