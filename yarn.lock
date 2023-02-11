@@ -2135,11 +2135,6 @@ tsutils@^3.21.0:
   dependencies:
     tslib "^1.8.1"
 
-twitter-api-v2@^1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/twitter-api-v2/-/twitter-api-v2-1.13.0.tgz#55147d1376c97dfcb6a796b78c9899be01fcfa05"
-  integrity sha512-vtR4lwHbaG5Ep91wj9N+ZOYpJMIj+J6N2ESmyYtoBIZC+T2lQjrHAkwLRqKgEt01N+Ro/zHxpQp++QpWeCfn2A==
-
 twitter-d@0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/twitter-d/-/twitter-d-0.6.0.tgz#5fa331c7f2ca2882a26aa112fa37669bb21d9eee"
