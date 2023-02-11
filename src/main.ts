@@ -18,7 +18,6 @@ function isFullUser(user: User): user is FullUser {
   return 'screen_name' in user
 }
 
-
 function getContent(tweet: Status) {
   let tweetText = tweet.full_text
   if (!tweetText) {
@@ -41,7 +40,11 @@ function getContent(tweet: Status) {
 async function generateRSS() {
   console.log('Generating RSS...')
 
-  if (!process.env.TWAPI_BASE_URL || !process.env.TWAPI_USERNAME || !process.env.TWAPI_PASSWORD) {
+  if (
+    !process.env.TWAPI_BASE_URL ||
+    !process.env.TWAPI_USERNAME ||
+    !process.env.TWAPI_PASSWORD
+  ) {
     throw new Error('TWAPI_BASE_URL, TWAPI_USERNAME, TWAPI_PASSWORD is not set')
   }
 
