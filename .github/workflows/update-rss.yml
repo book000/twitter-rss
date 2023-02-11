@@ -42,8 +42,9 @@ jobs:
         id: update-rss
         run: yarn build
         env:
-          TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
-          TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          TWAPI_BASE_URL: ${{ secrets.TWAPI_BASE_URL }}
+          TWAPI_USERNAME: ${{ secrets.TWAPI_USERNAME }}
+          TWAPI_PASSWORD: ${{ secrets.TWAPI_PASSWORD }}
 
       - name: Error handling
         if: failure()

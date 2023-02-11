@@ -1,34 +1,11 @@
 import { XMLBuilder, XMLParser } from 'fast-xml-parser'
 import fs from 'fs'
-import { TwitterApi } from 'twitter-api-v2'
-import { SearchTweetsResponse, Tweet } from './model/search-tweets-response'
+import { FullUser, Status, User } from 'twitter-d'
 import { Item } from './model/collect-result'
+import { TwApi } from './twapi'
 
 interface SearchesModel {
   [key: string]: string
-}
-
-async function searchTweet(searchWord: string) {
-  const consumerKey = process.env.TWITTER_CONSUMER_KEY
-  const consumerSecret = process.env.TWITTER_CONSUMER_SECRET
-  if (!consumerKey || !consumerSecret) {
-    throw new Error('Twitter API key is not set')
-  }
-  const api = new TwitterApi({
-    appKey: consumerKey,
-    appSecret: consumerSecret,
-  })
-  const response = await api.v1.get<SearchTweetsResponse>(
-    'search/tweets.json',
-    {
-      q: searchWord,
-      result_type: 'recent',
-      count: 100,
-      tweet_mode: 'extended',
-      include_entities: true,
-    }
-  )
-  return response.statuses
 }
 
 function sanitizeFileName(fileName: string) {
@@ -37,7 +14,11 @@ function sanitizeFileName(fileName: string) {
   return fileName.replace(/[\\/:*?"<>| ]/g, '').trim()
 }
 
-function getContent(tweet: Tweet) {
+function isFullUser(user: User): user is FullUser {
+  return 'screen_name' in user
+}
+
+function getContent(tweet: Status) {
   let tweetText = tweet.full_text
   if (!tweetText) {
     throw new Error('tweet.full_text is empty')
@@ -58,6 +39,21 @@ function getContent(tweet: Tweet) {
 
 async function generateRSS() {
   console.log('Generating RSS...')
+
+  if (
+    !process.env.TWAPI_BASE_URL ||
+    !process.env.TWAPI_USERNAME ||
+    !process.env.TWAPI_PASSWORD
+  ) {
+    throw new Error('TWAPI_BASE_URL, TWAPI_USERNAME, TWAPI_PASSWORD is not set')
+  }
+
+  const twApi = new TwApi({
+    baseUrl: process.env.TWAPI_BASE_URL,
+    username: process.env.TWAPI_USERNAME,
+    password: process.env.TWAPI_PASSWORD,
+  })
+
   const searchWords: SearchesModel = JSON.parse(
     fs.readFileSync('data/searches.json', 'utf8')
   )
@@ -70,12 +66,14 @@ async function generateRSS() {
       format: true,
     })
 
-    const statuses = await searchTweet(searchWord)
+    const statuses = await twApi.search(searchWord, 100)
     const items: Item[] = statuses
-      .map((status): Item | null => {
-        if (!status.full_text) {
-          return null
+      .filter((status) => isFullUser(status.user))
+      .map((status) => {
+        if (!isFullUser(status.user)) {
+          throw new Error('status.user is not FullUser')
         }
+
         // タイトルは投稿日にする
         // 微妙だけど、とりあえず9時間足す
         const title = new Date(
