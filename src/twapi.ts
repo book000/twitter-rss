@@ -21,7 +21,7 @@ export class TwApi {
   }
 
   async search(query: string, limit: number): Promise<Status[]> {
-    const response = await this.twApiAxios.get(`/search/${query}`, {
+    const response = await this.twApiAxios.get(`/search/${encodeURIComponent(query)}`, {
       params: {
         limit,
       },
