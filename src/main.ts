@@ -2,7 +2,9 @@ import { XMLBuilder, XMLParser } from 'fast-xml-parser'
 import fs from 'fs'
 import { FullUser, Status, User } from 'twitter-d'
 import { Item } from './model/collect-result'
-import { TwApi } from './twapi'
+import { RSSBrowser } from './utils/browser'
+import { Logger } from './utils/logger'
+import { Twitter } from './utils/twitter'
 
 interface SearchesModel {
   [key: string]: string
@@ -38,35 +40,33 @@ function getContent(tweet: Status) {
 }
 
 async function generateRSS() {
-  console.log('Generating RSS...')
+  const logger = Logger.configure('generateRSS')
+  logger.info('🚀 Generating RSS...')
 
-  if (
-    !process.env.TWAPI_BASE_URL ||
-    !process.env.TWAPI_USERNAME ||
-    !process.env.TWAPI_PASSWORD
-  ) {
-    throw new Error('TWAPI_BASE_URL, TWAPI_USERNAME, TWAPI_PASSWORD is not set')
+  if (!process.env.TWITTER_USERNAME || !process.env.TWITTER_PASSWORD) {
+    throw new Error('TWAPI_USERNAME, TWAPI_PASSWORD is not set')
   }
 
-  const twApi = new TwApi({
-    baseUrl: process.env.TWAPI_BASE_URL,
-    username: process.env.TWAPI_USERNAME,
-    password: process.env.TWAPI_PASSWORD,
+  const browser = await RSSBrowser.init({
+    username: process.env.TWITTER_USERNAME,
+    password: process.env.TWITTER_PASSWORD,
+    authCodeSecret: process.env.TWITTER_AUTH_CODE_SECRET,
   })
+  const twitter = new Twitter(browser)
 
   const searchWords: SearchesModel = JSON.parse(
     fs.readFileSync('data/searches.json', 'utf8')
   )
   for (const key in searchWords) {
     const searchWord = searchWords[key]
-    console.time(searchWord)
-    console.info('searching: ' + searchWord)
+    const startAt = new Date()
+    logger.info(`🔎 Searching: ${searchWord}`)
     const builder = new XMLBuilder({
       ignoreAttributes: false,
       format: true,
     })
 
-    const statuses = await twApi.search(searchWord, 100)
+    const statuses = await twitter.searchTweets(searchWord, 100)
     const items: Item[] = statuses
       .filter((status) => isFullUser(status.user))
       .map((status) => {
@@ -129,12 +129,16 @@ async function generateRSS() {
 
     const filename = sanitizeFileName(key)
     fs.writeFileSync('output/' + filename + '.xml', feed.toString())
-    console.timeEnd(searchWord)
+    const endAt = new Date()
+    logger.info(
+      `📝 Generated: ${filename}.xml (${endAt.getTime() - startAt.getTime()}ms)`
+    )
   }
 }
 
 async function generateList() {
-  console.log('Generating list...')
+  const logger = Logger.configure('generateList')
+  logger.info('🚀 Generating list...')
   const files = fs.readdirSync('output')
   const template = fs.readFileSync('template.html', 'utf8')
   const list = files
@@ -158,6 +162,7 @@ async function generateList() {
     'output/index.html',
     template.replace('{{ RSS-FILES }}', '<ul>' + list.join('\n') + '</ul>')
   )
+  logger.info(`📝 Generated`)
 }
 
 async function main() {
