@@ -1,0 +1,7 @@
+services:
+  app:
+    build: .
+    ports:
+      - 5910:5910
+    env_file:
+      - .env

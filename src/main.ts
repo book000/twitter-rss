@@ -44,7 +44,7 @@ async function generateRSS() {
   logger.info('🚀 Generating RSS...')
 
   if (!process.env.TWITTER_USERNAME || !process.env.TWITTER_PASSWORD) {
-    throw new Error('TWAPI_USERNAME, TWAPI_PASSWORD is not set')
+    throw new Error('TWITTER_USERNAME, TWITTER_PASSWORD is not set')
   }
 
   const browser = await RSSBrowser.init({
@@ -54,85 +54,93 @@ async function generateRSS() {
   })
   const twitter = new Twitter(browser)
 
-  const searchWords: SearchesModel = JSON.parse(
-    fs.readFileSync('data/searches.json', 'utf8')
-  )
-  for (const key in searchWords) {
-    const searchWord = searchWords[key]
-    const startAt = new Date()
-    logger.info(`🔎 Searching: ${searchWord}`)
-    const builder = new XMLBuilder({
-      ignoreAttributes: false,
-      format: true,
-    })
-
-    const statuses = await twitter.searchTweets(searchWord, 100)
-    const items: Item[] = statuses
-      .filter((status) => isFullUser(status.user))
-      .map((status) => {
-        if (!isFullUser(status.user)) {
-          throw new Error('status.user is not FullUser')
-        }
-
-        // タイトルは投稿日にする
-        // 微妙だけど、とりあえず9時間足す
-        const title = new Date(
-          new Date(status.created_at).getTime() + 9 * 60 * 60 * 1000
-        )
-          .toISOString()
-          .replace(/T/, ' ')
-          .replace(/Z/, '')
-          .replace(/\.\d+$/, '')
-
-        const content = getContent(status)
-
-        return {
-          title,
-          link:
-            'https://twitter.com/' +
-            status.user.screen_name +
-            '/status/' +
-            status.id_str,
-          'content:encoded': content,
-          author: status.user.name + ' (@' + status.user.screen_name + ')',
-          pubDate: new Date(status.created_at).toUTCString(),
-        }
-      })
-      .filter((item) => item != null) as Item[]
-
-    const obj = {
-      '?xml': {
-        '@_version': '1.0',
-        '@_encoding': 'UTF-8',
-      },
-      rss: {
-        '@_version': '2.0',
-        '@_xmlns:dc': 'http://purl.org/dc/elements/1.1/',
-        '@_xmlns:content': 'http://purl.org/rss/1.0/modules/content/',
-        '@_xmlns:atom': 'http://www.w3.org/2005/Atom',
-        channel: {
-          title: key,
-          description: searchWord,
-          link:
-            'https://twitter.com/search?q=' +
-            encodeURIComponent(searchWord) +
-            '&f=live',
-
-          generator: 'book000/twitter-rss',
-          language: 'ja',
-        },
-        item: items,
-      },
-    }
-
-    const feed = builder.build(obj)
-
-    const filename = sanitizeFileName(key)
-    fs.writeFileSync('output/' + filename + '.xml', feed.toString())
-    const endAt = new Date()
-    logger.info(
-      `📝 Generated: ${filename}.xml (${endAt.getTime() - startAt.getTime()}ms)`
+  try {
+    const searchWords: SearchesModel = JSON.parse(
+      fs.readFileSync('data/searches.json', 'utf8')
     )
+    for (const key in searchWords) {
+      const searchWord = searchWords[key]
+      const startAt = new Date()
+      logger.info(`🔎 Searching: ${searchWord}`)
+      const builder = new XMLBuilder({
+        ignoreAttributes: false,
+        format: true,
+      })
+
+      const statuses = await twitter.searchTweets(searchWord, 100)
+      const items: Item[] = statuses
+        .filter((status) => isFullUser(status.user))
+        .map((status) => {
+          if (!isFullUser(status.user)) {
+            throw new Error('status.user is not FullUser')
+          }
+
+          // タイトルは投稿日にする
+          // 微妙だけど、とりあえず9時間足す
+          const title = new Date(
+            new Date(status.created_at).getTime() + 9 * 60 * 60 * 1000
+          )
+            .toISOString()
+            .replace(/T/, ' ')
+            .replace(/Z/, '')
+            .replace(/\.\d+$/, '')
+
+          const content = getContent(status)
+
+          return {
+            title,
+            link:
+              'https://twitter.com/' +
+              status.user.screen_name +
+              '/status/' +
+              status.id_str,
+            'content:encoded': content,
+            author: status.user.name + ' (@' + status.user.screen_name + ')',
+            pubDate: new Date(status.created_at).toUTCString(),
+          }
+        })
+        .filter((item) => item != null) as Item[]
+
+      const obj = {
+        '?xml': {
+          '@_version': '1.0',
+          '@_encoding': 'UTF-8',
+        },
+        rss: {
+          '@_version': '2.0',
+          '@_xmlns:dc': 'http://purl.org/dc/elements/1.1/',
+          '@_xmlns:content': 'http://purl.org/rss/1.0/modules/content/',
+          '@_xmlns:atom': 'http://www.w3.org/2005/Atom',
+          channel: {
+            title: key,
+            description: searchWord,
+            link:
+              'https://twitter.com/search?q=' +
+              encodeURIComponent(searchWord) +
+              '&f=live',
+
+            generator: 'book000/twitter-rss',
+            language: 'ja',
+          },
+          item: items,
+        },
+      }
+
+      const feed = builder.build(obj)
+
+      const filename = sanitizeFileName(key)
+      fs.writeFileSync('output/' + filename + '.xml', feed.toString())
+      const endAt = new Date()
+      logger.info(
+        `📝 Generated: ${filename}.xml (${
+          endAt.getTime() - startAt.getTime()
+        }ms)`
+      )
+    }
+  } catch (e) {
+    logger.error('Erorr', e as Error)
+  } finally {
+    await browser.close()
   }
 }
 
