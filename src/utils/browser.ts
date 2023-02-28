@@ -98,7 +98,7 @@ export class RSSBrowser {
 
     const browser = await puppeteer.launch({
       headless: false,
-      executablePath: process.env.CHROMIUM_PATH,
+      executablePath: '/usr/bin/chromium-browser',
       args: puppeteerArguments,
       defaultViewport: {
         width: 600,

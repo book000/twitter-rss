@@ -30,6 +30,7 @@ jobs:
 
       - name: Install apt dependencies
         run: |
+          sudo apt-get update
           sudo apt-get install -y curl fontconfig fonts-noto-cjk
           fc-cache -fv
           sudo apt-get install -y chromium-browser libnss3 libfreetype6 libfreetype6-dev libharfbuzz-bin ca-certificates fonts-freefont-ttf nodejs xvfb xauth dbus dbus-x11
