@@ -1,6 +1,4 @@
 import { Page } from 'puppeteer-core'
-import { dirname } from 'node:path'
-import fs from 'node:fs'
 import { GraphQLUserByScreenNameResponse } from '@/model/user-by-screen-name'
 
 type GraphQLEndPoint = 'UserByScreenName' | 'Likes'
@@ -72,9 +70,6 @@ export class GraphQLResponse<T extends GraphQLEndPoint> {
       } catch {
         return
       }
-      const path = `/data/debug/graphql/${match[1]}/${Date.now()}.json`
-      fs.mkdirSync(dirname(path), { recursive: true })
-      fs.writeFileSync(path, text)
 
       if (endpoint && match[1] !== endpoint) {
         return

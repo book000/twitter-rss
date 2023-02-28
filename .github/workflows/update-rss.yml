@@ -42,7 +42,7 @@ jobs:
         id: update-rss
         run: |
           rm /tmp/.X*-lock || true
-          rm -rf /data/userdata/Singleton* || true
+          rm -rf data/userdata/Singleton* || true
           Xvfb :99 -ac -screen 0 600x1000x16 -listen tcp &
           export DISPLAY=:99
           yarn build

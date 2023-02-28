@@ -1,6 +1,4 @@
 import { Page } from 'puppeteer-core'
-import { dirname } from 'node:path'
-import fs from 'node:fs'
 import { RestSearchAdaptiveResponse } from '@/model/search-adaptive'
 
 type RestEndPoint = 'SearchAdaptive'
@@ -77,9 +75,6 @@ export class RestResponse<T extends RestEndPoint> {
       } catch {
         return
       }
-      const path = `/data/debug/rest/${resultEndpoint}/${Date.now()}.json`
-      fs.mkdirSync(dirname(path), { recursive: true })
-      fs.writeFileSync(path, text)
 
       if (endpoint && endpoint !== resultEndpoint) {
         return

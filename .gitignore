@@ -4,3 +4,4 @@ config/*
 !config/.gitkeep
 output/
 logs/
+.env
