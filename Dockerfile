@@ -37,6 +37,8 @@ COPY tsconfig.json .
 COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
 
+COPY template.html .
+
 ENV NODE_ENV production
 ENV API_PORT 80
 ENV DISPLAY :99
