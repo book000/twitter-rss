@@ -16,35 +16,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
+      - name: 🛎 Checkout
+        uses: actions/checkout@v3
         with:
-          node-version: 16
+          ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: yarn-cache
+      - name: 🏗 Setup node
+        uses: actions/setup-node@v3
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          node-version-file: .node-version
+          cache: yarn
+          cache-dependency-path: yarn.lock
 
-      - name: Install dependencies
+      - name: Install apt dependencies
+        run: |
+          sudo apt-get install -y curl fontconfig font-noto-cjk
+          fc-cache -fv
+          sudo apt-get install -y chromium nss freetype freetype-dev harfbuzz ca-certificates ttf-freefont nodejs yarn xvfb xauth dbus dbus-x11
+
+      - name: Install nodejs dependencies
         run: yarn
 
       - name: Update RSS
         id: update-rss
-        run: yarn build
+        run: |
+          rm /tmp/.X*-lock || true
+          rm -rf /data/userdata/Singleton* || true
+          Xvfb :99 -ac -screen 0 600x1000x16 -listen tcp &
+          export DISPLAY=:99
+          yarn build
+          kill -9 "$(pgrep -f "Xvfb" | awk '{print $2}')" || true
         env:
-          TWAPI_BASE_URL: ${{ secrets.TWAPI_BASE_URL }}
-          TWAPI_USERNAME: ${{ secrets.TWAPI_USERNAME }}
-          TWAPI_PASSWORD: ${{ secrets.TWAPI_PASSWORD }}
+          TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
+          TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
+          TWITTER_AUTH_CODE_SECRET: ${{ secrets.TWITTER_AUTH_CODE_SECRET }}
 
       - name: Error handling
         if: failure()
