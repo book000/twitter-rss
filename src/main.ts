@@ -138,7 +138,7 @@ async function generateRSS() {
       )
     }
   } catch (e) {
-    logger.error('Erorr', e as Error)
+    logger.error('Error', e as Error)
   } finally {
     await browser.close()
   }
@@ -180,6 +180,8 @@ async function main() {
 
   await generateRSS()
   await generateList()
+
+  process.exit(0)
 }
 
 ;(async () => {

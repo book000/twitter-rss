@@ -5,3 +5,7 @@ services:
       - 5910:5910
     env_file:
       - .env
+    volumes:
+      - type: bind
+        source: ./data
+        target: /app/data
