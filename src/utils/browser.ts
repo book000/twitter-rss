@@ -19,7 +19,7 @@ export class RSSBrowser {
     this.account = account
 
     this.browser.on('disconnected', () => {
-      RSSBrowser.getBrowser(`/data/userdata/`, this.account).then((browser) => {
+      RSSBrowser.getBrowser(`data/userdata/`, this.account).then((browser) => {
         this.browser = browser
 
         logger.info('🔌 Browser restarted.')
@@ -31,7 +31,7 @@ export class RSSBrowser {
         return
       }
 
-      RSSBrowser.getBrowser(`/data/userdata/`, this.account).then((browser) => {
+      RSSBrowser.getBrowser(`data/userdata/`, this.account).then((browser) => {
         this.browser = browser
 
         logger.info('🔌 Browser restarted.')
@@ -40,7 +40,7 @@ export class RSSBrowser {
   }
 
   public static async init(account: TwitterAccount) {
-    const userDataDirectory = '/data/userdata/'
+    const userDataDirectory = 'data/userdata/'
     if (!fs.existsSync(userDataDirectory)) {
       fs.mkdirSync(userDataDirectory, { recursive: true })
     }
