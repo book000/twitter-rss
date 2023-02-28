@@ -11,32 +11,9 @@ interface TwitterAccount {
 
 export class RSSBrowser {
   private browser: Browser
-  private readonly account: TwitterAccount
 
-  constructor(browser: Browser, account: TwitterAccount) {
-    const logger = Logger.configure('WTLBrowser')
+  constructor(browser: Browser) {
     this.browser = browser
-    this.account = account
-
-    this.browser.on('disconnected', () => {
-      RSSBrowser.getBrowser(`data/userdata/`, this.account).then((browser) => {
-        this.browser = browser
-
-        logger.info('🔌 Browser restarted.')
-      })
-    })
-
-    setInterval(() => {
-      if (this.browser.isConnected()) {
-        return
-      }
-
-      RSSBrowser.getBrowser(`data/userdata/`, this.account).then((browser) => {
-        this.browser = browser
-
-        logger.info('🔌 Browser restarted.')
-      })
-    }, 10_000)
   }
 
   public static async init(account: TwitterAccount) {
@@ -46,7 +23,7 @@ export class RSSBrowser {
     }
 
     const browser = await RSSBrowser.getBrowser(userDataDirectory, account)
-    return new RSSBrowser(browser, account)
+    return new RSSBrowser(browser)
   }
 
   public async newPage() {
