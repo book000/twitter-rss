@@ -51,12 +51,18 @@ export class RestResponse<T extends RestEndPoint> {
   }
 
   private init(page: Page, endpoint?: T) {
-    const regex = /https:\/\/api\.twitter\.com\/2\/(.+?)\.json/
+    const iRegex = /https:\/\/twitter\.com\/i\/api\/2\/(.+?)\.json/
+    const apiServerRegex = /https:\/\/api\.twitter\.com\/2\/(.+?)\.json/
     page.on('response', async (response) => {
       if (response.request().method() === 'OPTIONS') {
         return
       }
-      const match = response.url().match(regex)
+      const iMatch = response.url().match(iRegex)
+      const apiServerMatch = response.url().match(apiServerRegex)
+      if (!iMatch && !apiServerMatch) {
+        return
+      }
+      const match = iMatch ?? apiServerMatch
       if (!match || match.length !== 2) {
         return
       }
