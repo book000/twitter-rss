@@ -27,7 +27,7 @@
     "@typescript-eslint/parser": "5.55.0",
     "cycle": "1.0.3",
     "eslint": "8.36.0",
-    "eslint-config-prettier": "8.7.0",
+    "eslint-config-prettier": "8.8.0",
     "eslint-config-standard": "17.0.0",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-n": "15.6.1",
