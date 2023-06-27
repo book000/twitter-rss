@@ -2,9 +2,8 @@ import { XMLBuilder, XMLParser } from 'fast-xml-parser'
 import fs from 'fs'
 import { FullUser, Status, User } from 'twitter-d'
 import { Item } from './model/collect-result'
-import { RSSBrowser } from './utils/browser'
-import { Logger } from './utils/logger'
-import { Twitter } from './utils/twitter'
+import { Logger } from '@book000/node-utils'
+import { SearchTimelineParser, SearchType, Twitter } from '@book000/twitterts'
 
 interface SearchesModel {
   [key: string]: string
@@ -47,16 +46,30 @@ async function generateRSS() {
     throw new Error('TWITTER_USERNAME, TWITTER_PASSWORD is not set')
   }
 
-  const browser = await RSSBrowser.init({
+  const twitter = await Twitter.login({
     username: process.env.TWITTER_USERNAME,
     password: process.env.TWITTER_PASSWORD,
-    authCodeSecret: process.env.TWITTER_AUTH_CODE_SECRET,
+    otpSecret: process.env.TWITTER_AUTH_CODE_SECRET,
+    puppeteerOptions: {
+      executablePath: process.env.CHROMIUM_PATH,
+      userDataDirectory: process.env.USER_DATA_DIRECTORY || './data/userdata',
+    },
+    debugOptions: {
+      outputResponse: {
+        enable: process.env.DEBUG_OUTPUT_RESPONSE === 'true',
+        outputDirectory:
+          process.env.DEBUG_RESPONSE_DIRECTORY || './data/responses',
+        onResponse: (response) => {
+          logger.info(`📦 Response: ${response.type} ${response.name}`)
+        },
+      },
+    },
   })
-  const twitter = new Twitter(browser)
 
   try {
+    const searchWordPath = process.env.SEARCH_WORD_PATH || 'data/searches.json'
     const searchWords: SearchesModel = JSON.parse(
-      fs.readFileSync('data/searches.json', 'utf8')
+      fs.readFileSync(searchWordPath, 'utf8')
     )
     for (const key in searchWords) {
       const searchWord = searchWords[key]
@@ -67,7 +80,12 @@ async function generateRSS() {
         format: true,
       })
 
-      const statuses = await twitter.searchTweets(searchWord, 100)
+      const rawStatuses = await twitter.searchTweets({
+        query: searchWord,
+        searchType: SearchType.LIVE,
+      })
+      const parser = new SearchTimelineParser(rawStatuses)
+      const statuses = parser.getTweets()
       const items: Item[] = statuses
         .filter((status) => isFullUser(status.user))
         .map((status) => {
@@ -132,7 +150,7 @@ async function generateRSS() {
       fs.writeFileSync('output/' + filename + '.xml', feed.toString())
       const endAt = new Date()
       logger.info(
-        `📝 Generated: ${filename}.xml (${
+        `📝 Generated: ${filename}.xml. Found ${items.length} items (${
           endAt.getTime() - startAt.getTime()
         }ms)`
       )
@@ -140,7 +158,7 @@ async function generateRSS() {
   } catch (e) {
     logger.error('Error', e as Error)
   } finally {
-    await browser.close()
+    await twitter.close()
   }
 }
 
