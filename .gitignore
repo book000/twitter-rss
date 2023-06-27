@@ -5,4 +5,5 @@ config/*
 output/
 logs/
 .env
-data/userdata/
+data/*
+!data/searches.json
