@@ -30,16 +30,16 @@
     winston "3.10.0"
     winston-daily-rotate-file "4.7.1"
 
-"@book000/twitterts@0.9.26":
-  version "0.9.26"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.9.26.tgz#69a18c489de26380bd89a2892b6bb8185175d06d"
-  integrity sha512-XToWAYCoUelJmPKoOmBWsBqFf8tUOdl52ftQqS8PccMGi0XhdLtGCpJN/gvLJj1pXJCRCpBLuqESDij54Rgdfw==
+"@book000/twitterts@0.9.27":
+  version "0.9.27"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.9.27.tgz#d144c078156f8af283221d3806d3e5b5b1c8ffc6"
+  integrity sha512-2jFj33dCymrd5i2v7AVZn7fsrbORgNxuELLsrygxKz2q31j/5QXetJOymLfrAuozDwgeMIyV3ZNODgvhU7xZUw==
   dependencies:
     "@book000/node-utils" "1.3.34"
     genson-js "0.0.8"
     json-schema-to-typescript "13.0.2"
     otplib "12.0.1"
-    puppeteer-core "20.8.2"
+    puppeteer-core "20.8.3"
 
 "@colors/colors@1.5.0":
   version "1.5.0"
@@ -2340,10 +2340,10 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puppeteer-core@20.8.2:
-  version "20.8.2"
-  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-20.8.2.tgz#26e3810bec9656f313fe904ac67adc96e2e67fe4"
-  integrity sha512-dWo60gFuFPdNhdabW9MMm6GpvkG6tND2D8FvrZ2MF+HggNApHrvLfbERj8vD6vXKV7UqDAJO0KI1OMo3S3Cm5w==
+puppeteer-core@20.8.3:
+  version "20.8.3"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-20.8.3.tgz#67c71c1e6cb80307100d6d6b0b1f7ab3b3d18f89"
+  integrity sha512-/57/tKtjjRyPP/FgZMG+nkmyajm4OXms6Qu0r8sbTu5tyIbCQTqx82yZj859Rx0Zf0enOVEnN1pD9cqVc9i78g==
   dependencies:
     "@puppeteer/browsers" "1.4.5"
     chromium-bidi "0.4.16"
