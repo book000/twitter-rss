@@ -3,7 +3,7 @@ import fs from 'fs'
 import { FullUser, Status, User } from 'twitter-d'
 import { Item } from './model/collect-result'
 import { Logger } from '@book000/node-utils'
-import { SearchTimelineParser, SearchType, Twitter } from '@book000/twitterts'
+import { SearchType, Twitter } from '@book000/twitterts'
 
 interface SearchesModel {
   [key: string]: string
@@ -80,12 +80,10 @@ async function generateRSS() {
         format: true,
       })
 
-      const rawStatuses = await twitter.searchTweets({
+      const statuses = await twitter.searchTweets({
         query: searchWord,
         searchType: SearchType.LIVE,
       })
-      const parser = new SearchTimelineParser(rawStatuses)
-      const statuses = parser.getTweets()
       const items: Item[] = statuses
         .filter((status) => isFullUser(status.user))
         .map((status) => {
