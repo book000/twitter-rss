@@ -69,7 +69,7 @@ async function generateRSS() {
   try {
     const searchWordPath = process.env.SEARCH_WORD_PATH || 'data/searches.json'
     const searchWords: SearchesModel = JSON.parse(
-      fs.readFileSync(searchWordPath, 'utf8')
+      fs.readFileSync(searchWordPath, 'utf8'),
     )
     for (const key in searchWords) {
       const searchWord = searchWords[key]
@@ -94,7 +94,7 @@ async function generateRSS() {
           // タイトルは投稿日にする
           // 微妙だけど、とりあえず9時間足す
           const title = new Date(
-            new Date(status.created_at).getTime() + 9 * 60 * 60 * 1000
+            new Date(status.created_at).getTime() + 9 * 60 * 60 * 1000,
           )
             .toISOString()
             .replace(/T/, ' ')
@@ -150,7 +150,7 @@ async function generateRSS() {
       logger.info(
         `📝 Generated: ${filename}.xml. Found ${items.length} items (${
           endAt.getTime() - startAt.getTime()
-        }ms)`
+        }ms)`,
       )
     }
   } catch (e) {
@@ -178,13 +178,13 @@ async function generateList() {
       const title = feed.rss.channel.title
       const description = feed.rss.channel.description
       return `<li><a href='${encodeURIComponent(
-        file
+        file,
       )}'>${title}</a>: <code>${description}</code></li>`
     })
     .filter((s) => s !== null)
   fs.writeFileSync(
     'output/index.html',
-    template.replace('{{ RSS-FILES }}', '<ul>' + list.join('\n') + '</ul>')
+    template.replace('{{ RSS-FILES }}', '<ul>' + list.join('\n') + '</ul>'),
   )
   logger.info(`📝 Generated`)
 }
