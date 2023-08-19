@@ -30,16 +30,17 @@
     winston "3.10.0"
     winston-daily-rotate-file "4.7.1"
 
-"@book000/twitterts@0.29.0":
-  version "0.29.0"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.29.0.tgz#500e8ae8bc2aa3832eb55a6ba1b8f22802f4092a"
-  integrity sha512-EtScdYo+fELxVySyKqcnJ6SEkedrnvs4lad0FdeNQX6YkKxXZmabuITK/oL9DZmPmoZtxjQC8PytOBC47uoDQQ==
+"@book000/twitterts@0.32.0":
+  version "0.32.0"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.32.0.tgz#c7594d8af66fb397961f177d5fb1fc91aca9837b"
+  integrity sha512-Oklz5nwuZrQ9c2C/nP6TW/OIaKvHfhyiOd2e0f1yxrJ9sUg+9cKQDO9A2VcNbsDDO8mm6+mmN4pdYvBsT7hnLA==
   dependencies:
     "@book000/node-utils" "1.5.0"
     genson-js "0.0.8"
     json-schema-to-typescript "13.0.2"
     otplib "12.0.1"
     puppeteer-core "21.1.0"
+    twitter-d "0.6.0"
 
 "@colors/colors@1.5.0":
   version "1.5.0"
