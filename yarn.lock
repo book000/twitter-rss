@@ -30,14 +30,14 @@
     winston "3.10.0"
     winston-daily-rotate-file "4.7.1"
 
-"@book000/twitterts@0.42.4":
-  version "0.42.4"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.42.4.tgz#3024400b78bd89e01542f7452ae688cb67395675"
-  integrity sha512-GzRj27yhPe0WNtKBCBNBrD+DjH/jvhQWCsazMjnHJ9WCBm4E+VB0pfdyx2bSSC1g4/NHUskPEwgNdXH+jKt0iw==
+"@book000/twitterts@0.42.5":
+  version "0.42.5"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.42.5.tgz#5590f8a32d66bcb620cd1f1d1b83f81c5893b3d2"
+  integrity sha512-+Fq/YAPIkcLPPMf8BrUzYRG2vcXaKv3t97Ten2XI8hFbVayfIOGhNRxYE2NtWYD5892oOBmqexhQKg8jtHcpgQ==
   dependencies:
     "@book000/node-utils" "1.5.10"
     genson-js "0.0.8"
-    json-schema-to-typescript "13.0.2"
+    json-schema-to-typescript "13.1.0"
     otplib "12.0.1"
     puppeteer-core "21.1.0"
     twitter-d "0.6.0"
@@ -2067,10 +2067,10 @@ js-yaml@^4.1.0:
   dependencies:
     argparse "^2.0.1"
 
-json-schema-to-typescript@13.0.2:
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/json-schema-to-typescript/-/json-schema-to-typescript-13.0.2.tgz#35af1ded746e1bcb1b8f0ec169f24da33bed9eaf"
-  integrity sha512-TCaEVW4aI2FmMQe7f98mvr3/oiVmXEC1xZjkTZ9L/BSoTXFlC7p64mD5AD2d8XWycNBQZUnHwXL5iVXt1HWwNQ==
+json-schema-to-typescript@13.1.0:
+  version "13.1.0"
+  resolved "https://registry.yarnpkg.com/json-schema-to-typescript/-/json-schema-to-typescript-13.1.0.tgz#694fa9d576f98199fab10ed9f1888950431a63f6"
+  integrity sha512-DB6JGDgpszucGYAl5JXuIU84/b9KaPa0Iq09g+JqGEYGG2RzUvaef4nb4B680KT8eR6R5xKC+xBHsPDjc2UPAQ==
   dependencies:
     "@bcherny/json-schema-ref-parser" "10.0.5-fork"
     "@types/json-schema" "^7.0.11"
