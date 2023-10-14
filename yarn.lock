@@ -17,19 +17,6 @@
     call-me-maybe "^1.0.1"
     js-yaml "^4.1.0"
 
-"@book000/node-utils@1.6.22":
-  version "1.6.22"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.6.22.tgz#69967e15a3aed880ea2699acd9ea2060103f96da"
-  integrity sha512-1LdZm+vgLYWAGCdvQS9U8Y3ojmmsj6tYJ4kMZzELXaIM1p9A/K9Zh7DpjSu3uG7QDMPNPTbjbbphVr8uK1b92w==
-  dependencies:
-    axios "1.5.1"
-    cycle "1.0.3"
-    form-data "4.0.0"
-    jsonc-parser "3.2.0"
-    logform "2.5.1"
-    winston "3.11.0"
-    winston-daily-rotate-file "4.7.1"
-
 "@book000/node-utils@1.6.24":
   version "1.6.24"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.6.24.tgz#ed684db10f8f38a42df3518cc8b376b5ddf5989b"
@@ -43,12 +30,12 @@
     winston "3.11.0"
     winston-daily-rotate-file "4.7.1"
 
-"@book000/twitterts@0.43.48":
-  version "0.43.48"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.43.48.tgz#7585663fb97923e7b2fbe63722cad18903625b87"
-  integrity sha512-XfJq0y7VGwIi/GCCrHkJEvnFz+oJ2LHtSuNti/GFPsepl4FkRVZ7vdBAAQRcn+gG6hCE8RoKvvSr9r5nIfN6aA==
+"@book000/twitterts@0.44.1":
+  version "0.44.1"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.44.1.tgz#0dba214f3150170b5118860622d8a3db113c06da"
+  integrity sha512-nk/zmIa5kpLWu+d7feqLsvZ5+bwSqedxr2cub21bQIgwGXYY/e8LZi+YRSSkzbYdzCZaXawYHD2pLVVwz/t7vQ==
   dependencies:
-    "@book000/node-utils" "1.6.22"
+    "@book000/node-utils" "1.6.24"
     genson-js "0.0.8"
     json-schema-to-typescript "13.1.1"
     otplib "12.0.1"
@@ -2186,24 +2173,24 @@ lodash@^4.17.21:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
-logform@2.5.1, logform@^2.3.2, logform@^2.4.0:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/logform/-/logform-2.5.1.tgz#44c77c34becd71b3a42a3970c77929e52c6ed48b"
-  integrity sha512-9FyqAm9o9NKKfiAKfZoYo9bGXXuwMkxQiQttkT4YjjVtQVIQtK6LmVtlxmCaFswo6N4AfEkHqZTV0taDtPotNg==
-  dependencies:
-    "@colors/colors" "1.5.0"
-    "@types/triple-beam" "^1.3.2"
-    fecha "^4.2.0"
-    ms "^2.1.1"
-    safe-stable-stringify "^2.3.1"
-    triple-beam "^1.3.0"
-
 logform@2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/logform/-/logform-2.6.0.tgz#8c82a983f05d6eaeb2d75e3decae7a768b2bf9b5"
   integrity sha512-1ulHeNPp6k/LD8H91o7VYFBng5i1BDE7HoKxVbZiGFidS1Rj65qcywLxX+pVfAPoQJEjRdvKcusKwOupHCVOVQ==
   dependencies:
     "@colors/colors" "1.6.0"
+    "@types/triple-beam" "^1.3.2"
+    fecha "^4.2.0"
+    ms "^2.1.1"
+    safe-stable-stringify "^2.3.1"
+    triple-beam "^1.3.0"
+
+logform@^2.3.2, logform@^2.4.0:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/logform/-/logform-2.5.1.tgz#44c77c34becd71b3a42a3970c77929e52c6ed48b"
+  integrity sha512-9FyqAm9o9NKKfiAKfZoYo9bGXXuwMkxQiQttkT4YjjVtQVIQtK6LmVtlxmCaFswo6N4AfEkHqZTV0taDtPotNg==
+  dependencies:
+    "@colors/colors" "1.5.0"
     "@types/triple-beam" "^1.3.2"
     fecha "^4.2.0"
     ms "^2.1.1"
