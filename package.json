@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@book000/node-utils": "1.8.3",
-    "@book000/twitterts": "0.44.28",
+    "@book000/twitterts": "0.44.29",
     "@types/node": "20.8.9",
     "@typescript-eslint/eslint-plugin": "6.9.1",
     "@typescript-eslint/parser": "6.9.1",
