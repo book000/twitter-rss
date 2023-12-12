@@ -57,8 +57,6 @@ async function generateRSS() {
     debugOptions: {
       outputResponse: {
         enable: process.env.DEBUG_OUTPUT_RESPONSE === 'true',
-        outputDirectory:
-          process.env.DEBUG_RESPONSE_DIRECTORY || './data/responses',
         onResponse: (response) => {
           logger.info(`📦 Response: ${response.type} ${response.name}`)
         },
