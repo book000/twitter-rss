@@ -24,6 +24,20 @@
     call-me-maybe "^1.0.1"
     js-yaml "^4.1.0"
 
+"@book000/node-utils@1.12.10":
+  version "1.12.10"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.10.tgz#95d2d4f71662df42630c315d7027b34124bc9894"
+  integrity sha512-idp+2Jl1ZFiJGyBh3e6+b/OylDr8u+as1grwk5wKiN0ryJW8i4baPcKLRYGLJ0l6CR/UDB4XIB0Zv2/v57SmLA==
+  dependencies:
+    axios "1.6.3"
+    cycle "1.0.3"
+    form-data "4.0.0"
+    jsonc-parser "3.2.0"
+    logform "2.6.0"
+    moment-timezone "0.5.44"
+    winston "3.11.0"
+    winston-daily-rotate-file "4.7.1"
+
 "@book000/node-utils@1.12.9":
   version "1.12.9"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.9.tgz#2c17a693cd83364a8598d4813797d042b48ed87c"
@@ -2490,6 +2504,13 @@ moment-timezone@0.5.43:
   version "0.5.43"
   resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.43.tgz#3dd7f3d0c67f78c23cd1906b9b2137a09b3c4790"
   integrity sha512-72j3aNyuIsDxdF1i7CEgV2FfxM1r6aaqJyLB2vwb33mXYyoyLly+F1zbWqhA3/bVIoJ4szlUoMbUnVdid32NUQ==
+  dependencies:
+    moment "^2.29.4"
+
+moment-timezone@0.5.44:
+  version "0.5.44"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.44.tgz#a64a4e47b68a43deeab5ae4eb4f82da77cdf595f"
+  integrity sha512-nv3YpzI/8lkQn0U6RkLd+f0W/zy/JnoR5/EyPz/dNkPTBjA2jNLCVxaiQ8QpeLymhSZvX0wCL5s27NQWdOPwAw==
   dependencies:
     moment "^2.29.4"
 
