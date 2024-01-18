@@ -17,10 +17,10 @@
     call-me-maybe "^1.0.1"
     js-yaml "^4.1.0"
 
-"@book000/node-utils@1.12.23":
-  version "1.12.23"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.23.tgz#18ec0b77a6b6f0bebe90a8ecfa37e4f39a56dbd3"
-  integrity sha512-ZiNKddDCfZm1poXley5tal182Nge7nfuAGUfZtyJywHz8O3fcY3p/NHuRovZ5T0zu7oJxuA9DO3Oy5YqXrp44w==
+"@book000/node-utils@1.12.27":
+  version "1.12.27"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.27.tgz#4bd74462edda53ad40939c9b2bdf8da76dd45247"
+  integrity sha512-JhdJsMiqJBtHd8AR61lnjC59GxRrBAffSQQPhFQ9hqyvtL7WlrMsZ5PSnbB0T5rDw99KcMop7qj2/h47H+M0zQ==
   dependencies:
     axios "1.6.5"
     cycle "1.0.3"
@@ -45,15 +45,15 @@
     winston "3.11.0"
     winston-daily-rotate-file "4.7.1"
 
-"@book000/twitterts@0.59.2":
-  version "0.59.2"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.59.2.tgz#0f25a6414f3fc7397b41c9a7932049be6299bb30"
-  integrity sha512-wVcJAHybUg9H3JG2KuoM5R3A9sVreBwTOzpM2+S14uQZgxWG22s+Ou6AILmUVbXJ87eQz8zJ5g87iFGNaxdn6A==
+"@book000/twitterts@0.59.3":
+  version "0.59.3"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.59.3.tgz#0abc431f02379fcc444bbbf4085e62c0ef376d18"
+  integrity sha512-zkzyVY60yAfW0z7MIRTiMfMxpvPApeV+8kLOBgcLVmfSiHVNyJOa5FtIq95TFgCejFOdiSW2v90sT8A9qaNJCg==
   dependencies:
-    "@book000/node-utils" "1.12.23"
+    "@book000/node-utils" "1.12.27"
     genson-js "0.0.8"
     json-schema-to-typescript "13.1.2"
-    mysql2 "3.7.0"
+    mysql2 "3.7.1"
     otplib "12.0.1"
     puppeteer-core "21.7.0"
     twitter-d "0.6.0"
@@ -2578,10 +2578,10 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-mysql2@3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/mysql2/-/mysql2-3.7.0.tgz#06b39c706518d7cc602a3f06dfb6a2689b052627"
-  integrity sha512-c45jA3Jc1X8yJKzrWu1GpplBKGwv/wIV6ITZTlCSY7npF2YfJR+6nMP5e+NTQhUeJPSyOQAbGDCGEHbAl8HN9w==
+mysql2@3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/mysql2/-/mysql2-3.7.1.tgz#bb088fa3f01deefbfe04adaf0d3ec18571b33410"
+  integrity sha512-4EEqYu57mnkW5+Bvp5wBebY7PpfyrmvJ3knHcmLkp8FyBu4kqgrF2GxIjsC2tbLNZWqJaL21v/MYH7bU5f03oA==
   dependencies:
     denque "^2.1.0"
     generate-function "^2.3.1"
