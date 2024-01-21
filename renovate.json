@@ -1,12 +1,3 @@
 {
-  "extends": [
-    "config:base"
-  ],
-  "ignorePresets": [
-    ":prHourlyLimit2"
-  ],
-  "timezone": "Asia/Tokyo",
-  "dependencyDashboard": false,
-  "automerge": true,
-  "branchConcurrentLimit": 0
+  "extends": ["github>book000/templates//renovate/base-public"]
 }
