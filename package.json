@@ -22,7 +22,7 @@
     "fix:prettier": "prettier --write src"
   },
   "devDependencies": {
-    "@book000/node-utils": "1.12.41",
+    "@book000/node-utils": "1.12.42",
     "@book000/twitterts": "0.59.25",
     "@types/node": "20.11.9",
     "@typescript-eslint/eslint-plugin": "6.19.1",
