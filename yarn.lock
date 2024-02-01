@@ -17,15 +17,15 @@
     call-me-maybe "^1.0.1"
     js-yaml "^4.1.0"
 
-"@book000/node-utils@1.12.37":
-  version "1.12.37"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.37.tgz#81645fe2250ddd8ab0c9e4a25d3d8d88a07c6bea"
-  integrity sha512-ts/YDNVaDUNZGMT+VCxycIZu+MQ2mO5eGnC6Tv0fAu+wTSnsmTlSeiKo8IgwwtLsyDTKTSTkwAG7R6pWQfFq2Q==
+"@book000/node-utils@1.12.38":
+  version "1.12.38"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.38.tgz#75cbfc76b5d33ae8e76ebd55501d0d2e0372e3b7"
+  integrity sha512-f9Mn3senNpNDWDEaHfK516CZ36/MEowaDuhwjdiUrc+49qmplJyTpTlwVO2QMQ2DNAq5+MHjMte/KrNnY8ia8w==
   dependencies:
     axios "1.6.5"
     cycle "1.0.3"
     form-data "4.0.0"
-    jsonc-parser "3.2.0"
+    jsonc-parser "3.2.1"
     logform "2.6.0"
     moment-timezone "0.5.44"
     winston "3.11.0"
@@ -45,12 +45,12 @@
     winston "3.11.0"
     winston-daily-rotate-file "4.7.1"
 
-"@book000/twitterts@0.59.28":
-  version "0.59.28"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.59.28.tgz#86843b16da71a51bbd1cf37a9e1e1c4d44da9e66"
-  integrity sha512-0QckKGl7cFhC7nv00LjduUYJitcSHoUDxairCj6TuF1JdVnEU/jGbxFO8+zD8oKS35uyrTcUOeoMw5+vp+k/iA==
+"@book000/twitterts@0.59.29":
+  version "0.59.29"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.59.29.tgz#f01d7ea597071ca5114f49aa9a10188afaaf9db5"
+  integrity sha512-JdS2wsTCzQnJfV05g/rvrzq2djNR0F6RgwI72B2RiQv1m8u3qsfpB4qOZk440twIKFpzI1TLnIdlsGra5fSFCA==
   dependencies:
-    "@book000/node-utils" "1.12.37"
+    "@book000/node-utils" "1.12.38"
     genson-js "0.0.8"
     json-schema-to-typescript "13.1.2"
     mysql2 "3.8.0"
@@ -2129,11 +2129,6 @@ json5@^1.0.2:
   integrity sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==
   dependencies:
     minimist "^1.2.0"
-
-jsonc-parser@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-3.2.0.tgz#31ff3f4c2b9793f89c67212627c51c6394f88e76"
-  integrity sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==
 
 jsonc-parser@3.2.1:
   version "3.2.1"
