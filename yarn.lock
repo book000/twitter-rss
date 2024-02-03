@@ -17,12 +17,12 @@
     call-me-maybe "^1.0.1"
     js-yaml "^4.1.0"
 
-"@book000/node-utils@1.12.39":
-  version "1.12.39"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.39.tgz#4fa017f6a109eb09a323562dbef1ac97c0432e71"
-  integrity sha512-9y9BEd74N4aymUpLebFPy1nsin/oAygpChKxo+BhkFeMxlSK7zoOe7u1Y/WbDM6X2yA7EJtg7RTthM3iKNKQ/w==
+"@book000/node-utils@1.12.40":
+  version "1.12.40"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.40.tgz#4a5127676042514ce4cef1eae3122a19e7bde259"
+  integrity sha512-vfogd6pVD+Ifdyqcw9DDtc/kqCHFMKB/IdXCmJ6JfNSSwrjAozVA2Bhv2BuZRVjHFKPmVE+DU5N7nRvyJ82M/w==
   dependencies:
-    axios "1.6.5"
+    axios "1.6.6"
     cycle "1.0.3"
     form-data "4.0.0"
     jsonc-parser "3.2.1"
@@ -45,19 +45,19 @@
     winston "3.11.0"
     winston-daily-rotate-file "4.7.1"
 
-"@book000/twitterts@0.59.31":
-  version "0.59.31"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.59.31.tgz#34630c78e083c7555a9d55e601bd31069b86f395"
-  integrity sha512-3W+vNKC8euh8bY2TwMWKkZAtqOnaCAABXtCvkr05IpfdrJHGLzC/1gkUTfQDAbinzRafTvOWeydLKb1EYMQLwA==
+"@book000/twitterts@0.59.35":
+  version "0.59.35"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.59.35.tgz#3e75531084233b3dca8ec640757716c5fc87e490"
+  integrity sha512-5NqIqQtbQZWeCKd5O7Lc0uoUGhxJ93DleZQdxNPh4lTDhDyjkAwdecVEbuGZermNU+SXlE94Qe5XuOo/45g0TQ==
   dependencies:
-    "@book000/node-utils" "1.12.39"
+    "@book000/node-utils" "1.12.40"
     genson-js "0.0.8"
     json-schema-to-typescript "13.1.2"
-    mysql2 "3.8.0"
+    mysql2 "3.9.0"
     otplib "12.0.1"
     puppeteer-core "21.9.0"
     twitter-d "0.6.0"
-    typeorm "0.3.19"
+    typeorm "0.3.20"
     typeorm-naming-strategies "4.1.0"
 
 "@colors/colors@1.6.0", "@colors/colors@^1.6.0":
@@ -621,10 +621,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-axios@1.6.5:
-  version "1.6.5"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.5.tgz#2c090da14aeeab3770ad30c3a1461bc970fb0cd8"
-  integrity sha512-Ii012v05KEVuUoFWmMW/UQv9aRIc3ZwkWDcM+h5Il8izZCtRVpDUfwpoFf7eOtajT3QiGR4yDUx7lPqHJULgbg==
+axios@1.6.6:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.6.tgz#878db45401d91fe9e53aed8ac962ed93bde8dd1c"
+  integrity sha512-XZLZDFfXKM9U/Y/B4nNynfCRUqNyVZ4sBC/n9GDRCkq9vd2mIvKjKKsbIh1WPmHmNbg6ND7cTBY3Y2+u1G3/2Q==
   dependencies:
     follow-redirects "^1.15.4"
     form-data "^4.0.0"
@@ -2366,10 +2366,10 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-mysql2@3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/mysql2/-/mysql2-3.8.0.tgz#1bf7710da025f22e14a1ff5a4cad589f87f2f5d9"
-  integrity sha512-rC9J/Wy9TCaoQWhk/p4J0Jd+WCDYghniuawi7pheDqhQOEJyDfiWGiWOR3iPgTFJaOK3GezC7dmCki7cP1HFkQ==
+mysql2@3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/mysql2/-/mysql2-3.9.0.tgz#92fce31d7b13b5724bc56e18e270a9a1c984a0ff"
+  integrity sha512-yS7FtbnO9sYqUZbjaiUwflh1bJAENJ3DQ9aHEYj9G+Hi15+FP7UKaTDNe6SeXx/LpkU6coAQ6vIYQaAmsFA+qQ==
   dependencies:
     denque "^2.1.0"
     generate-function "^2.3.1"
@@ -2796,10 +2796,10 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
-reflect-metadata@^0.1.13:
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.14.tgz#24cf721fe60677146bb77eeb0e1f9dece3d65859"
-  integrity sha512-ZhYeb6nRaXCfhnndflDK8qI6ZQ/YcWZCISRAWICW9XYqMUwjZM9Z0DveWX/ABN01oxSHwVxKQmxeYZSsm0jh5A==
+reflect-metadata@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.2.1.tgz#8d5513c0f5ef2b4b9c3865287f3c0940c1f67f74"
+  integrity sha512-i5lLI6iw9AU3Uu4szRNPPEkomnkjRTaVt9hy/bn5g/oSzekBSMeLZblcjP74AW0vBabqERLLIrz+gR8QYR54Tw==
 
 regexp.prototype.flags@^1.5.1:
   version "1.5.1"
@@ -3424,10 +3424,10 @@ typeorm-naming-strategies@4.1.0:
   resolved "https://registry.yarnpkg.com/typeorm-naming-strategies/-/typeorm-naming-strategies-4.1.0.tgz#1ec6eb296c8d7b69bb06764d5b9083ff80e814a9"
   integrity sha512-vPekJXzZOTZrdDvTl1YoM+w+sUIfQHG4kZTpbFYoTsufyv9NIBRe4Q+PdzhEAFA2std3D9LZHEb1EjE9zhRpiQ==
 
-typeorm@0.3.19:
-  version "0.3.19"
-  resolved "https://registry.yarnpkg.com/typeorm/-/typeorm-0.3.19.tgz#a985ce8ae36d266018e44fed5e27a4a5da34ad2a"
-  integrity sha512-OGelrY5qEoAU80mR1iyvmUHiKCPUydL6xp6bebXzS7jyv/X70Gp/jBWRAfF4qGOfy2A7orMiGRfwsBUNbEL65g==
+typeorm@0.3.20:
+  version "0.3.20"
+  resolved "https://registry.yarnpkg.com/typeorm/-/typeorm-0.3.20.tgz#4b61d737c6fed4e9f63006f88d58a5e54816b7ab"
+  integrity sha512-sJ0T08dV5eoZroaq9uPKBoNcGslHBR4E4y+EBHs//SiGbblGe7IeduP/IH4ddCcj0qp3PHwDwGnuvqEAnKlq/Q==
   dependencies:
     "@sqltools/formatter" "^1.2.5"
     app-root-path "^3.1.0"
@@ -3439,7 +3439,7 @@ typeorm@0.3.19:
     dotenv "^16.0.3"
     glob "^10.3.10"
     mkdirp "^2.1.3"
-    reflect-metadata "^0.1.13"
+    reflect-metadata "^0.2.1"
     sha.js "^2.4.11"
     tslib "^2.5.0"
     uuid "^9.0.0"
