@@ -17,12 +17,12 @@
     call-me-maybe "^1.0.1"
     js-yaml "^4.1.0"
 
-"@book000/node-utils@1.12.40":
-  version "1.12.40"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.40.tgz#4a5127676042514ce4cef1eae3122a19e7bde259"
-  integrity sha512-vfogd6pVD+Ifdyqcw9DDtc/kqCHFMKB/IdXCmJ6JfNSSwrjAozVA2Bhv2BuZRVjHFKPmVE+DU5N7nRvyJ82M/w==
+"@book000/node-utils@1.12.42":
+  version "1.12.42"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.42.tgz#997139c1009f383e7c560172b4f70b6e91fef8e8"
+  integrity sha512-tHIEiQFndIZ6e5JsmGx6eDIuiDYTdiDXXFhKweJGtzLj7HwEh8cJyml1PWVIxitBY7wTqZUdvSF7UYBsPp5BIw==
   dependencies:
-    axios "1.6.6"
+    axios "1.6.7"
     cycle "1.0.3"
     form-data "4.0.0"
     jsonc-parser "3.2.1"
@@ -45,12 +45,12 @@
     winston "3.11.0"
     winston-daily-rotate-file "4.7.1"
 
-"@book000/twitterts@0.59.37":
-  version "0.59.37"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.59.37.tgz#4a7c133714a1a5f9bf77abac87102a993588611f"
-  integrity sha512-8K/d9kPRWJ1ppYqfy5xJSzwlM52GqcycHf4ydnRJhuOQKir4qOBFcEDf8zifrM1snhIUmAqUo8UZscnmzii6+w==
+"@book000/twitterts@0.59.38":
+  version "0.59.38"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.59.38.tgz#028a529570f83d36b556769ee882b4928437cf5d"
+  integrity sha512-IAmBop9fRM/xXi3IfYN6tq+llCl4crxjLZKhfcASrLFJ1+Etce9kIC1WFCXfCRu5Vcn+5EwXuA8xKNG7Pv9/dA==
   dependencies:
-    "@book000/node-utils" "1.12.40"
+    "@book000/node-utils" "1.12.42"
     genson-js "0.0.8"
     json-schema-to-typescript "13.1.2"
     mysql2 "3.9.0"
@@ -620,15 +620,6 @@ available-typed-arrays@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
-
-axios@1.6.6:
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.6.tgz#878db45401d91fe9e53aed8ac962ed93bde8dd1c"
-  integrity sha512-XZLZDFfXKM9U/Y/B4nNynfCRUqNyVZ4sBC/n9GDRCkq9vd2mIvKjKKsbIh1WPmHmNbg6ND7cTBY3Y2+u1G3/2Q==
-  dependencies:
-    follow-redirects "^1.15.4"
-    form-data "^4.0.0"
-    proxy-from-env "^1.1.0"
 
 axios@1.6.7:
   version "1.6.7"
