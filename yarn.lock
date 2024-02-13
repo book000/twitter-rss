@@ -17,17 +17,17 @@
     call-me-maybe "^1.0.1"
     js-yaml "^4.1.0"
 
-"@book000/node-utils@1.12.53":
-  version "1.12.53"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.53.tgz#83cde9d7666765cd13cc68425d0d983a9bb86844"
-  integrity sha512-kRHP3D810HBbmy6CJUxwAWhk7iLizQJ9VyCWUWLVNxQrrYXbLZ5N2HTksBYyk3K6Ph21eKtTojq5tC6Jn6V2bg==
+"@book000/node-utils@1.12.54":
+  version "1.12.54"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.54.tgz#272be310722ca0e6f17c882067b0000631a25703"
+  integrity sha512-7Y0nT5lslrh1AG9kayHrM46wD8cSmdIBKwFIDQHr01So98jF2/hsEocNYfASazHRyHKZnq+HDvlegwqmAC3TgQ==
   dependencies:
     axios "1.6.7"
     cycle "1.0.3"
     form-data "4.0.0"
     jsonc-parser "3.2.1"
     logform "2.6.0"
-    moment-timezone "0.5.44"
+    moment-timezone "0.5.45"
     winston "3.11.0"
     winston-daily-rotate-file "4.7.1"
 
@@ -45,12 +45,12 @@
     winston "3.11.0"
     winston-daily-rotate-file "4.7.1"
 
-"@book000/twitterts@0.59.68":
-  version "0.59.68"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.59.68.tgz#766d5d12aeb1832aad962c520415f7c33e53f992"
-  integrity sha512-nllc1j07IBRCDIMSIRsoiuRCACYNftsSyZ5v/Hl4bHCfvMwqKALarg5vCInGbEvw6b6EGmkIxe6YFBle2wi0hQ==
+"@book000/twitterts@0.59.69":
+  version "0.59.69"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.59.69.tgz#36f990ad9ecbe887030023dd4758dcda23b62132"
+  integrity sha512-loI1gd0d9x1O72Og7BS7IZu3NRu4C6T0fQlHd1YO6kruw4COgYT4/aopNN9Mc7x0xzsmWTaJkDQGN0hlOTs9xA==
   dependencies:
-    "@book000/node-utils" "1.12.53"
+    "@book000/node-utils" "1.12.54"
     genson-js "0.0.8"
     json-schema-to-typescript "13.1.2"
     mysql2 "3.9.1"
@@ -2365,13 +2365,6 @@ mkdirp@^2.1.3:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-2.1.6.tgz#964fbcb12b2d8c5d6fbc62a963ac95a273e2cc19"
   integrity sha512-+hEnITedc8LAtIP9u3HJDFIdcLV2vXP33sqLLIzkv1Db1zO/1OxbvYf0Y1OC/S/Qo5dxHXepofhmxL02PsKe+A==
-
-moment-timezone@0.5.44:
-  version "0.5.44"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.44.tgz#a64a4e47b68a43deeab5ae4eb4f82da77cdf595f"
-  integrity sha512-nv3YpzI/8lkQn0U6RkLd+f0W/zy/JnoR5/EyPz/dNkPTBjA2jNLCVxaiQ8QpeLymhSZvX0wCL5s27NQWdOPwAw==
-  dependencies:
-    moment "^2.29.4"
 
 moment-timezone@0.5.45:
   version "0.5.45"
