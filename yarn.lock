@@ -17,20 +17,6 @@
     call-me-maybe "^1.0.1"
     js-yaml "^4.1.0"
 
-"@book000/node-utils@1.12.78":
-  version "1.12.78"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.78.tgz#3b42f984a5c36b88b673882c85b42218d0d77c65"
-  integrity sha512-EmfsSxZk/syWntkEm2PJSw99m6XNOCipk5ul6v+uioDdM5L8ZN/2RmvYptlNmtCWmwsrtUQwMIYKjPfMRtZ1rQ==
-  dependencies:
-    axios "1.6.7"
-    cycle "1.0.3"
-    form-data "4.0.0"
-    jsonc-parser "3.2.1"
-    logform "2.6.0"
-    moment-timezone "0.5.45"
-    winston "3.11.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.12.79":
   version "1.12.79"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.79.tgz#80a48b59061effde2631531535a92c99d2293a69"
@@ -45,12 +31,12 @@
     winston "3.12.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.60.21":
-  version "0.60.21"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.60.21.tgz#61d9ae0c408044b293c20592a535769a257c3ac2"
-  integrity sha512-yvix+vDI45nIvxQjGnvrfjYnHYrzq3RD+KWSpAohRmwo4/w0ftZXWNkdZ+4LwxcAeeKqJmVUfNfDOzj+5Sb75w==
+"@book000/twitterts@0.60.22":
+  version "0.60.22"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.60.22.tgz#0ca1b6b97c1c5fbac8de24b083720b51042a6181"
+  integrity sha512-PyHOujVJW2E5VLRQK/aKXnrNvBCxEpWjT1PZgFZe6X6l31r+kIW0cnb6OSzYiL2DA+lGpyV3C1Ni5y2znzwPUA==
   dependencies:
-    "@book000/node-utils" "1.12.78"
+    "@book000/node-utils" "1.12.79"
     genson-js "0.0.8"
     json-schema-to-typescript "13.1.2"
     mysql2 "3.9.2"
@@ -3649,7 +3635,7 @@ winston-daily-rotate-file@5.0.0:
     triple-beam "^1.4.1"
     winston-transport "^4.7.0"
 
-winston-transport@^4.5.0, winston-transport@^4.7.0:
+winston-transport@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/winston-transport/-/winston-transport-4.7.0.tgz#e302e6889e6ccb7f383b926df6936a5b781bd1f0"
   integrity sha512-ajBj65K5I7denzer2IYW6+2bNIVqLGDHqDw3Ow8Ohh+vdW+rv4MZ6eiDvHoKhfJFZ2auyN8byXieDDJ96ViONg==
@@ -3657,23 +3643,6 @@ winston-transport@^4.5.0, winston-transport@^4.7.0:
     logform "^2.3.2"
     readable-stream "^3.6.0"
     triple-beam "^1.3.0"
-
-winston@3.11.0:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/winston/-/winston-3.11.0.tgz#2d50b0a695a2758bb1c95279f0a88e858163ed91"
-  integrity sha512-L3yR6/MzZAOl0DsysUXHVjOwv8mKZ71TrA/41EIduGpOOV5LQVodqN+QdQ6BS6PJ/RdIshZhq84P/fStEZkk7g==
-  dependencies:
-    "@colors/colors" "^1.6.0"
-    "@dabh/diagnostics" "^2.0.2"
-    async "^3.2.3"
-    is-stream "^2.0.0"
-    logform "^2.4.0"
-    one-time "^1.0.0"
-    readable-stream "^3.4.0"
-    safe-stable-stringify "^2.3.1"
-    stack-trace "0.0.x"
-    triple-beam "^1.3.0"
-    winston-transport "^4.5.0"
 
 winston@3.12.0:
   version "3.12.0"
