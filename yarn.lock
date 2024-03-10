@@ -17,20 +17,6 @@
     call-me-maybe "^1.0.1"
     js-yaml "^4.1.0"
 
-"@book000/node-utils@1.12.82":
-  version "1.12.82"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.82.tgz#5281bb99d5ff1efac636c39a1e8f174183270040"
-  integrity sha512-b3P+DlFwUbCGwXRVSWToD9IQ3uPCWcePgdigNeOws0/JV4wYSiAvQ2GdqnqHOVDKn2gey/T7HkOjWwAMSA9UxA==
-  dependencies:
-    axios "1.6.7"
-    cycle "1.0.3"
-    form-data "4.0.0"
-    jsonc-parser "3.2.1"
-    logform "2.6.0"
-    moment-timezone "0.5.45"
-    winston "3.12.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.12.84":
   version "1.12.84"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.84.tgz#c0ef4dd79b45399b9679b5a85439f320b5727f03"
@@ -45,12 +31,12 @@
     winston "3.12.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.60.30":
-  version "0.60.30"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.60.30.tgz#7d958bed7a6cfe88ddda09fca83764e0fc790f0f"
-  integrity sha512-NDu7f/xQtLMIjRw1ui0KUokJw2wJbhuAwKmEBd+5+7YCme8SJb6akafMxPPQnkJfIVYDowipRkkOkYm/VXdkCg==
+"@book000/twitterts@0.60.33":
+  version "0.60.33"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.60.33.tgz#082d66665d833c2546c7859c89a5c42776692e2d"
+  integrity sha512-lzOSRLDMFLVeZtb9lTCsUNe0q6MBJj0/MSQ/q2iJgabXIVFHOPOSDIbD0KlBuQl6IoxWSiij6ykPk3qFX95nXw==
   dependencies:
-    "@book000/node-utils" "1.12.82"
+    "@book000/node-utils" "1.12.84"
     genson-js "0.0.8"
     json-schema-to-typescript "13.1.2"
     mysql2 "3.9.2"
