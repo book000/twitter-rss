@@ -17,6 +17,20 @@
     call-me-maybe "^1.0.1"
     js-yaml "^4.1.0"
 
+"@book000/node-utils@1.12.100":
+  version "1.12.100"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.100.tgz#725fdd5bdf36154af27a2b022747475ed1b2f90c"
+  integrity sha512-Crn90r7jQWtSuiwKoN2rFS2UI2X56Q7viyN5NpOkGCdleZirRPlrzFuQTMEiWsXTtYXPyfpQbJLrb0tGrkTF/g==
+  dependencies:
+    axios "1.6.8"
+    cycle "1.0.3"
+    form-data "4.0.0"
+    jsonc-parser "3.2.1"
+    logform "2.6.0"
+    moment-timezone "0.5.45"
+    winston "3.12.0"
+    winston-daily-rotate-file "5.0.0"
+
 "@book000/node-utils@1.12.99":
   version "1.12.99"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.99.tgz#28d3a4d7acde8097934b8141b97e94208a1cb4dc"
