@@ -17,10 +17,10 @@
     call-me-maybe "^1.0.1"
     js-yaml "^4.1.0"
 
-"@book000/node-utils@1.12.117":
-  version "1.12.117"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.117.tgz#edf0fbcf6377777f5c28ca5d245f935f49c019df"
-  integrity sha512-V8pO0GYLzNiQmh6cQaPRBGIu4GSk+NFIUgM78hZGqeYioodTa6f5oL+aCoF6sGp5twv8HZ83vUuWn9vG9iGFXg==
+"@book000/node-utils@1.12.118":
+  version "1.12.118"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.118.tgz#bc05dca4e9c8baa858d5041e56bb606e692a2458"
+  integrity sha512-NYNYvpMO99zbi3Azl50Qp2m7h053koDMhkO7uwFDe/vUWh6IgBKIUctYDyH30WEBr62O+47KhSPgG4l4rgP8jw==
   dependencies:
     axios "1.6.8"
     cycle "1.0.3"
@@ -31,10 +31,10 @@
     winston "3.13.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/node-utils@1.12.118":
-  version "1.12.118"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.118.tgz#bc05dca4e9c8baa858d5041e56bb606e692a2458"
-  integrity sha512-NYNYvpMO99zbi3Azl50Qp2m7h053koDMhkO7uwFDe/vUWh6IgBKIUctYDyH30WEBr62O+47KhSPgG4l4rgP8jw==
+"@book000/node-utils@1.12.119":
+  version "1.12.119"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.119.tgz#4c9f3c4905712127ef108dabe8a90b6a42b5a847"
+  integrity sha512-ijltFWLYMIz468p518fT/MUcPPHdP9FVlu+3d+wicFMbqgBGZKTf0qvGSGvzKbFDpZszD+Po8688JtN9DJmkIg==
   dependencies:
     axios "1.6.8"
     cycle "1.0.3"
