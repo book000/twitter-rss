@@ -51,20 +51,6 @@
     globals "15.0.0"
     typescript-eslint "7.7.0"
 
-"@book000/node-utils@1.12.127":
-  version "1.12.127"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.12.127.tgz#ccf5d0436d2da0ff6a3da13fd5424f45ccb5429d"
-  integrity sha512-j5s8716u+tZCSKwbCAU6bST/F1YYA1bsLW6dNL/BmuK1EIQ9gmbQGuOnz0CAGdDFgkYdym63OuMzlc67saXTiQ==
-  dependencies:
-    axios "1.6.8"
-    cycle "1.0.3"
-    form-data "4.0.0"
-    jsonc-parser "3.2.1"
-    logform "2.6.0"
-    moment-timezone "0.5.45"
-    winston "3.13.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.13.3":
   version "1.13.3"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.3.tgz#158d766442a02480b43a7f0d23e87b2008adc427"
@@ -78,12 +64,12 @@
     winston "3.13.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.60.128":
-  version "0.60.128"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.60.128.tgz#b4156075e0b2f16ee41a9b873e59a97055698662"
-  integrity sha512-1p3EjzHJkLPCUdINxwqughIOTIuihxaG3yQ1Q6Bls/qkx+SaO3TXqQ8wDcWoUUH/gxQyMOmjPx+5+EUjLiOjJg==
+"@book000/twitterts@0.61.1":
+  version "0.61.1"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.61.1.tgz#05ae021e5cc08651cdbb2b7d4c50722e9f0d48ef"
+  integrity sha512-29gCEtxQ9sS6+WIZ2oZhe8E98hK4Lh9Cclb6jbYFE9qEY9PUCq0P0JeJRorVIZyxkMnjNCbOXKGfMERpbxGhzw==
   dependencies:
-    "@book000/node-utils" "1.12.127"
+    "@book000/node-utils" "1.13.3"
     genson-js "0.0.8"
     json-schema-to-typescript "14.0.0"
     mysql2 "3.9.6"
@@ -2470,7 +2456,7 @@ lodash@^4.17.21:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
-logform@2.6.0, logform@^2.3.2, logform@^2.4.0:
+logform@^2.3.2, logform@^2.4.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/logform/-/logform-2.6.0.tgz#8c82a983f05d6eaeb2d75e3decae7a768b2bf9b5"
   integrity sha512-1ulHeNPp6k/LD8H91o7VYFBng5i1BDE7HoKxVbZiGFidS1Rj65qcywLxX+pVfAPoQJEjRdvKcusKwOupHCVOVQ==
