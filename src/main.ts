@@ -1,18 +1,16 @@
 import { XMLBuilder, XMLParser } from 'fast-xml-parser'
-import fs from 'fs'
+import fs from 'node:fs'
 import { FullUser, Status, User } from 'twitter-d'
 import { Item } from './model/collect-result'
 import { Logger } from '@book000/node-utils'
 import { SearchType, Twitter } from '@book000/twitterts'
 
-interface SearchesModel {
-  [key: string]: string
-}
+type SearchesModel = Record<string, string>
 
 function sanitizeFileName(fileName: string) {
   // Windows / Linuxで使えない文字列をアンダーバーに置き換える
   // スペースをアンダーバーに置き換える
-  return fileName.replace(/[\\/:*?"<>| ]/g, '').trim()
+  return fileName.replaceAll(/[ "*/:<>?\\|]/g, '').trim()
 }
 
 function isFullUser(user: User): user is FullUser {
@@ -25,7 +23,7 @@ function getContent(tweet: Status) {
     throw new Error('tweet.full_text is empty')
   }
   const mediaUrls = []
-  if (tweet.extended_entities && tweet.extended_entities.media) {
+  if (tweet.extended_entities?.media) {
     for (const media of tweet.extended_entities.media) {
       tweetText = tweetText.replace(media.url, '')
       mediaUrls.push(media.media_url_https)
@@ -52,7 +50,7 @@ async function generateRSS() {
     otpSecret: process.env.TWITTER_AUTH_CODE_SECRET,
     puppeteerOptions: {
       executablePath: process.env.CHROMIUM_PATH,
-      userDataDirectory: process.env.USER_DATA_DIRECTORY || './data/userdata',
+      userDataDirectory: process.env.USER_DATA_DIRECTORY ?? './data/userdata',
     },
     debugOptions: {
       outputResponse: {
@@ -65,7 +63,7 @@ async function generateRSS() {
   })
 
   try {
-    const searchWordPath = process.env.SEARCH_WORD_PATH || 'data/searches.json'
+    const searchWordPath = process.env.SEARCH_WORD_PATH ?? 'data/searches.json'
     const searchWords: SearchesModel = JSON.parse(
       fs.readFileSync(searchWordPath, 'utf8'),
     )
@@ -113,11 +111,11 @@ async function generateRSS() {
             pubDate: new Date(status.created_at).toUTCString(),
           }
         })
-        .filter((item) => item != null) as Item[]
 
       const obj = {
         '?xml': {
           '@_version': '1.0',
+          // eslint-disable-next-line unicorn/text-encoding-identifier-case
           '@_encoding': 'UTF-8',
         },
         rss: {
@@ -140,7 +138,9 @@ async function generateRSS() {
         },
       }
 
-      const feed = builder.build(obj)
+      const feed: {
+        toString: () => string
+      } = builder.build(obj)
 
       const filename = sanitizeFileName(key)
       fs.writeFileSync('output/' + filename + '.xml', feed.toString())
@@ -151,14 +151,14 @@ async function generateRSS() {
         }ms)`,
       )
     }
-  } catch (e) {
-    logger.error('Error', e as Error)
+  } catch (error) {
+    logger.error('Error', error as Error)
   } finally {
     await twitter.close()
   }
 }
 
-async function generateList() {
+function generateList() {
   const logger = Logger.configure('generateList')
   logger.info('🚀 Generating list...')
   const files = fs.readdirSync('output')
@@ -172,7 +172,14 @@ async function generateList() {
         ignoreAttributes: false,
       })
 
-      const feed = parser.parse(fs.readFileSync('output/' + file, 'utf8'))
+      const feed: {
+        rss: {
+          channel: {
+            title: string
+            description: string
+          }
+        }
+      } = parser.parse(fs.readFileSync('output/' + file, 'utf8'))
       const title = feed.rss.channel.title
       const description = feed.rss.channel.description
       return `<li><a href='${encodeURIComponent(
@@ -193,8 +200,9 @@ async function main() {
   }
 
   await generateRSS()
-  await generateList()
+  generateList()
 
+  // eslint-disable-next-line unicorn/no-process-exit
   process.exit(0)
 }
 
