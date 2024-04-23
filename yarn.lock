@@ -64,17 +64,17 @@
     winston "3.13.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.61.12":
-  version "0.61.12"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.61.12.tgz#c973c5acf5490a48c82e9e293b3ef28ce0899ac2"
-  integrity sha512-EIFDCX1O/16BJ299rDOGKJapC3hTpQcI0/6W+YD4IkI//PD/AVcdG5TfoIto1JHiQ8LtV8vuPxQ61Dz+URTiOQ==
+"@book000/twitterts@0.61.13":
+  version "0.61.13"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.61.13.tgz#8066899084e0eb4881af15aa4bf4e34d55833083"
+  integrity sha512-T0VrtZn1/h5JkEY4U93x53eLHC6PiGWHCBnqNXdwn9F7bPZji+qrITGBVz/vNJFKmI7n7B98s8lYnQ7K+Wz42Q==
   dependencies:
     "@book000/node-utils" "1.13.8"
     genson-js "0.0.8"
     json-schema-to-typescript "14.0.0"
     mysql2 "3.9.7"
     otplib "12.0.1"
-    puppeteer-core "22.6.5"
+    puppeteer-core "22.7.0"
     twitter-d "0.6.0"
     typeorm "0.3.20"
     typeorm-naming-strategies "4.1.0"
@@ -1104,10 +1104,10 @@ denque@^2.1.0:
   resolved "https://registry.yarnpkg.com/denque/-/denque-2.1.0.tgz#e93e1a6569fb5e66f16a3c2a2964617d349d6ab1"
   integrity sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw==
 
-devtools-protocol@0.0.1262051:
-  version "0.0.1262051"
-  resolved "https://registry.yarnpkg.com/devtools-protocol/-/devtools-protocol-0.0.1262051.tgz#670b1f8459b2a136e05bd9a8d54ec0212d543a38"
-  integrity sha512-YJe4CT5SA8on3Spa+UDtNhEqtuV6Epwz3OZ4HQVLhlRccpZ9/PAYk0/cy/oKxFKRrZPBUPyxympQci4yWNWZ9g==
+devtools-protocol@0.0.1273771:
+  version "0.0.1273771"
+  resolved "https://registry.yarnpkg.com/devtools-protocol/-/devtools-protocol-0.0.1273771.tgz#46aeb5db41417e2c2ad3d8367c598c975290b1a5"
+  integrity sha512-QDbb27xcTVReQQW/GHJsdQqGKwYBE7re7gxehj467kKP2DKuYBUj6i2k5LRiAC66J1yZG/9gsxooz/s9pcm0Og==
 
 diff@^4.0.1:
   version "4.0.2"
@@ -3055,15 +3055,15 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
   integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
-puppeteer-core@22.6.5:
-  version "22.6.5"
-  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-22.6.5.tgz#320eb6ab51e479c6a04cbb831b414e1cd51a7220"
-  integrity sha512-s0/5XkAWe0/dWISiljdrybjwDCHhgN31Nu/wznOZPKeikgcJtZtbvPKBz0t802XWqfSQnQDt3L6xiAE5JLlfuw==
+puppeteer-core@22.7.0:
+  version "22.7.0"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-22.7.0.tgz#a65edb63da7c30844ba8e8556f31e1e59825bdeb"
+  integrity sha512-9Q+L3VD7cfhXnxv6AqwTHsVb/+/uXENByhPrgvwQ49wvzQwtf1d6b7v6gpoG3tpRdwYjxoV1eHTD8tFahww09g==
   dependencies:
     "@puppeteer/browsers" "2.2.2"
     chromium-bidi "0.5.17"
     debug "4.3.4"
-    devtools-protocol "0.0.1262051"
+    devtools-protocol "0.0.1273771"
     ws "8.16.0"
 
 queue-microtask@^1.2.2:
