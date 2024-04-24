@@ -51,6 +51,19 @@
     globals "15.0.0"
     typescript-eslint "7.7.1"
 
+"@book000/node-utils@1.13.11":
+  version "1.13.11"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.11.tgz#c6f4249a0fa41d4f452101b9b451cc034080f950"
+  integrity sha512-d2uUqEjN21YJRR6PssCuoRMC1tmipr9vXOxJpOelJg7J6BmFYueMIBCRNDWw1lc8yE/fZBIxH3yPJRw2KIbWjA==
+  dependencies:
+    axios "1.6.8"
+    cycle "1.0.3"
+    form-data "4.0.0"
+    jsonc-parser "3.2.1"
+    moment-timezone "0.5.45"
+    winston "3.13.0"
+    winston-daily-rotate-file "5.0.0"
+
 "@book000/node-utils@1.13.8":
   version "1.13.8"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.8.tgz#410b5cb02ecd15e23a0d4d57cbf3a4e6c7fa507d"
