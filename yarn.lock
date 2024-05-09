@@ -34,16 +34,16 @@
     js-tokens "^4.0.0"
     picocolors "^1.0.0"
 
-"@book000/eslint-config@1.6.9":
-  version "1.6.9"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.6.9.tgz#ef4427998cab7109c7f6b15d93045e56c302e601"
-  integrity sha512-xlzi2beXVPbnLbP2LzxPRK+mUBVJix0PVfq5HoMcvy1OVNNgyKftjc53FqsJ/8OlDtRIwZkQa+oDn6qkH+RJDw==
+"@book000/eslint-config@1.6.10":
+  version "1.6.10"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.6.10.tgz#538fa7f7393d071d0dac557dc74844603869452d"
+  integrity sha512-d2b5k0FHwkqDEgM2kfWhPnNfL5hXFo9p2mvdcZSgC8/a0H7O0bLsudlvTdj1syY0R5OXK7UMkkIJE34OiZ8YbQ==
   dependencies:
     "@eslint/eslintrc" "3.0.2"
     "@typescript-eslint/parser" "7.8.0"
     eslint-config-prettier "9.1.0"
     eslint-plugin-unicorn "52.0.0"
-    globals "15.1.0"
+    globals "15.2.0"
     typescript-eslint "7.8.0"
 
 "@book000/node-utils@1.13.39":
@@ -1919,10 +1919,10 @@ glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-globals@15.1.0, globals@^15.0.0:
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/globals/-/globals-15.1.0.tgz#4e03d200c8362201636b8cdfaa316d6cef67ff1e"
-  integrity sha512-926gJqg+4mkxwYKiFvoomM4J0kWESfk3qfTvRL2/oc/tK/eTDBbrfcKnSa2KtfdxB5onoL7D3A3qIHQFpd4+UA==
+globals@15.2.0:
+  version "15.2.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-15.2.0.tgz#fbcea7f8964a71d8c6e6867ddadb9788ae1083d8"
+  integrity sha512-FQ5YwCHZM3nCmtb5FzEWwdUc9K5d3V/w9mzcz8iGD1gC/aOTHc6PouYu0kkKipNJqHAT7m51sqzQjEjIP+cK0A==
 
 globals@^13.19.0:
   version "13.24.0"
@@ -1935,6 +1935,11 @@ globals@^14.0.0:
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/globals/-/globals-14.0.0.tgz#898d7413c29babcf6bafe56fcadded858ada724e"
   integrity sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==
+
+globals@^15.0.0:
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-15.1.0.tgz#4e03d200c8362201636b8cdfaa316d6cef67ff1e"
+  integrity sha512-926gJqg+4mkxwYKiFvoomM4J0kWESfk3qfTvRL2/oc/tK/eTDBbrfcKnSa2KtfdxB5onoL7D3A3qIHQFpd4+UA==
 
 globalthis@^1.0.3:
   version "1.0.4"
