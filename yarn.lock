@@ -59,12 +59,12 @@
     winston "3.13.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/node-utils@1.13.65":
-  version "1.13.65"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.65.tgz#34c1523851cf9916fd7ae4d2d5b5f950df761e69"
-  integrity sha512-8g9vpGpK7HCamEAg8GNW1dsrsVFbYq/9tlHdzAbopGvDGHh3KYmXotzEP8lTxn2GvgPQdfaCj+H22e3l8ZO/ug==
+"@book000/node-utils@1.13.66":
+  version "1.13.66"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.66.tgz#d55f1a7018ae2d8e6de013026be4dc2ba68b36b1"
+  integrity sha512-yFAC+xv8race1bcswm7cyNkp0mZeuIJ8beZlgz+lWjpx2jxTEEki2r5gr6iIOKb2uwelyDxx/Idavmbbsnv/8Q==
   dependencies:
-    axios "1.6.8"
+    axios "1.7.0"
     cycle "1.0.3"
     form-data "4.0.0"
     jsonc-parser "3.2.1"
@@ -657,6 +657,15 @@ axios@1.6.8:
   version "1.6.8"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.8.tgz#66d294951f5d988a00e87a0ffb955316a619ea66"
   integrity sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.0.tgz#b48f715325457ededfcb3f0a44a3fb9d5742acb6"
+  integrity sha512-IiB0wQeKyPRdsFVhBgIo31FbzOyf2M6wYl7/NVutFwFBRMiAbjNiydJIHKeLmPugF4kJLfA1uWZ82Is2QzqqFA==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
