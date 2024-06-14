@@ -34,15 +34,15 @@
     js-tokens "^4.0.0"
     picocolors "^1.0.0"
 
-"@book000/eslint-config@1.6.34":
-  version "1.6.34"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.6.34.tgz#b8cc8b8b146404c36cc3d3008993f27558e74c65"
-  integrity sha512-S1gDVr+JP89VfSOyxtYkZFaikUl9yLkb/CizDeqnP+MTwasJouGcYNrFquIyxdftv0pVkQ8mLeS5tqXzjMfKvw==
+"@book000/eslint-config@1.6.35":
+  version "1.6.35"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.6.35.tgz#6c75dcbde6f0180d568c31c466d0b954cfac043c"
+  integrity sha512-jWA09J9p2fGYd0Pg30W/KRXlSr0+oSpOr0zYmd+yunJbgbTNiUxZTup0vtJhbkIL5dLu/QQIjtq5UWMX3QhJmg==
   dependencies:
     "@eslint/eslintrc" "3.1.0"
     "@typescript-eslint/parser" "7.13.0"
     eslint-config-prettier "9.1.0"
-    eslint-plugin-unicorn "53.0.0"
+    eslint-plugin-unicorn "54.0.0"
     globals "15.4.0"
     typescript-eslint "7.13.0"
 
@@ -1425,10 +1425,10 @@ eslint-plugin-promise@6.2.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-6.2.0.tgz#e24ab0e3c0a25fa227d98d9ff612156b5af15945"
   integrity sha512-QmAqwizauvnKOlifxyDj2ObfULpHQawlg/zQdgEixur9vl0CvZGv/LCJV2rtj3210QCoeGBzVMfMXqGAOr/4fA==
 
-eslint-plugin-unicorn@53.0.0:
-  version "53.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-53.0.0.tgz#df3a5c9ecabeb759e6fd867b2d84198466ac8c4d"
-  integrity sha512-kuTcNo9IwwUCfyHGwQFOK/HjJAYzbODHN3wP0PgqbW+jbXqpNWxNVpVhj2tO9SixBwuAdmal8rVcWKBxwFnGuw==
+eslint-plugin-unicorn@54.0.0:
+  version "54.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-54.0.0.tgz#ce3ea853e8fd7ca2bda2fd6065bf065adb5d8b6d"
+  integrity sha512-XxYLRiYtAWiAjPv6z4JREby1TAE2byBC7wlh0V4vWDCpccOSU1KovWV//jqPXF6bq3WKxqX9rdjoRQ1EhdmNdQ==
   dependencies:
     "@babel/helper-validator-identifier" "^7.24.5"
     "@eslint-community/eslint-utils" "^4.4.0"
