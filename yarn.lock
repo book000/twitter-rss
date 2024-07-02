@@ -34,16 +34,16 @@
     js-tokens "^4.0.0"
     picocolors "^1.0.0"
 
-"@book000/eslint-config@1.7.12":
-  version "1.7.12"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.7.12.tgz#ac6f39e8827ebe17fd3406c75832cd827d773896"
-  integrity sha512-/MNS13uG/cbfuYfbdqUEXXf7/tialsuKS/1v4mnfVuQ4LRO1n7hwkI/LnCgnrvR/O0bnberhGbPCQUIC2v0SEA==
+"@book000/eslint-config@1.7.13":
+  version "1.7.13"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.7.13.tgz#10d78211b10ffb4e4df796fdf0ba6d75524b4a9d"
+  integrity sha512-QmrSTXkvqFsa2BEmKBM7y4uI1gSP+HRrIlFtZGN/QwF0omulZhSm6ENlS+eSKT/7oxT+oJa/hphGaYr8s/bBXA==
   dependencies:
     "@eslint/eslintrc" "3.1.0"
     "@typescript-eslint/parser" "7.15.0"
     eslint-config-prettier "9.1.0"
     eslint-plugin-unicorn "54.0.0"
-    globals "15.7.0"
+    globals "15.8.0"
     typescript-eslint "7.15.0"
 
 "@book000/node-utils@1.13.126":
@@ -1901,15 +1901,20 @@ glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-globals@15.7.0, globals@^15.0.0:
-  version "15.7.0"
-  resolved "https://registry.yarnpkg.com/globals/-/globals-15.7.0.tgz#d9ca65edad684c438b179749fc57def027557f93"
-  integrity sha512-ivatRXWwKC6ImcdKO7dOwXuXR5XFrdwo45qFwD7D0qOkEPzzJdLXC3BHceBdyrPOD3p1suPaWi4Y4NMm2D++AQ==
+globals@15.8.0:
+  version "15.8.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-15.8.0.tgz#e64bb47b619dd8cbf32b3c1a0a61714e33cbbb41"
+  integrity sha512-VZAJ4cewHTExBWDHR6yptdIBlx9YSSZuwojj9Nt5mBRXQzrKakDsVKQ1J63sklLvzAJm0X5+RpO4i3Y2hcOnFw==
 
 globals@^14.0.0:
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/globals/-/globals-14.0.0.tgz#898d7413c29babcf6bafe56fcadded858ada724e"
   integrity sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==
+
+globals@^15.0.0:
+  version "15.7.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-15.7.0.tgz#d9ca65edad684c438b179749fc57def027557f93"
+  integrity sha512-ivatRXWwKC6ImcdKO7dOwXuXR5XFrdwo45qFwD7D0qOkEPzzJdLXC3BHceBdyrPOD3p1suPaWi4Y4NMm2D++AQ==
 
 globalthis@^1.0.3:
   version "1.0.4"
