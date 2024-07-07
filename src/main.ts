@@ -44,13 +44,26 @@ async function generateRSS() {
     throw new Error('TWITTER_USERNAME, TWITTER_PASSWORD is not set')
   }
 
+  const proxyServer = process.env.PROXY_SERVER
+  const proxyUsername = process.env.PROXY_USERNAME
+  const proxyPassword = process.env.PROXY_PASSWORD
+  const proxyConfiguration = proxyServer
+    ? {
+        server: proxyServer,
+        username: proxyUsername,
+        password: proxyPassword,
+      }
+    : undefined
+
   const twitter = await Twitter.login({
     username: process.env.TWITTER_USERNAME,
     password: process.env.TWITTER_PASSWORD,
     otpSecret: process.env.TWITTER_AUTH_CODE_SECRET,
+    emailAddress: process.env.TWITTER_EMAIL_ADDRESS,
     puppeteerOptions: {
       executablePath: process.env.CHROMIUM_PATH,
       userDataDirectory: process.env.USER_DATA_DIRECTORY ?? './data/userdata',
+      proxy: proxyConfiguration,
     },
     debugOptions: {
       outputResponse: {
