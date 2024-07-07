@@ -59,14 +59,14 @@
     winston "3.13.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.64.14":
-  version "0.64.14"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.64.14.tgz#c9711c56bdf5b72ab9c26558c566c3872224c3ed"
-  integrity sha512-BcWYQYOS8YbGKxVi+7NnVBOihfQx47evC0wV9bj+83/Yvq+7g62/G9olPaO5mGY+EMe+3Vqw8IoV03n0H5gK6w==
+"@book000/twitterts@0.64.15":
+  version "0.64.15"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.64.15.tgz#1c2808ce9669c980d90974b4c525dafafd844f25"
+  integrity sha512-Ts8BjbD5FO1ChoWuvpuijvivy3+zG1YOqiQ7kDzsfz7ZmTD1ahla8/2WvU9IhrE2RP2FduVjiezkkr+BrcfiVg==
   dependencies:
     "@book000/node-utils" "1.13.159"
     genson-js "0.0.8"
-    json-schema-to-typescript "14.0.5"
+    json-schema-to-typescript "14.1.0"
     mysql2 "3.10.2"
     otplib "12.0.1"
     puppeteer-core "22.11.1"
@@ -2322,10 +2322,10 @@ json-parse-even-better-errors@^2.3.0:
   resolved "https://registry.yarnpkg.com/json-parse-even-better-errors/-/json-parse-even-better-errors-2.3.1.tgz#7c47805a94319928e05777405dc12e1f7a4ee02d"
   integrity sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==
 
-json-schema-to-typescript@14.0.5:
-  version "14.0.5"
-  resolved "https://registry.yarnpkg.com/json-schema-to-typescript/-/json-schema-to-typescript-14.0.5.tgz#e7793a1da6b3bd76844cef836074bfaf32a29844"
-  integrity sha512-JmHsbgY0KKo8Pw0HRXpGzAlZYxlu+M5kFhSzhNkUSrVJ4sCXPdAGIdSpzva5ev2/Kybz10S6AfnNdF4o3Pzt3A==
+json-schema-to-typescript@14.1.0:
+  version "14.1.0"
+  resolved "https://registry.yarnpkg.com/json-schema-to-typescript/-/json-schema-to-typescript-14.1.0.tgz#31160d9cf13bf8f948a7ccefdf97e995bc183591"
+  integrity sha512-VIeAFQkn88gFh26MSHWG4uX7TjK/arTw0NVLMZn6vX1WrSF+P6xu5MyEdovu+9PJ0uiS5gm0wzwQvYW9eSq1uw==
   dependencies:
     "@apidevtools/json-schema-ref-parser" "^11.5.5"
     "@types/json-schema" "^7.0.15"
@@ -2337,7 +2337,6 @@ json-schema-to-typescript@14.0.5:
     lodash "^4.17.21"
     minimist "^1.2.8"
     mkdirp "^3.0.1"
-    mz "^2.7.0"
     node-fetch "^3.3.2"
     prettier "^3.2.5"
 
@@ -2620,7 +2619,7 @@ mysql2@3.10.2:
     seq-queue "^0.0.5"
     sqlstring "^2.3.2"
 
-mz@^2.4.0, mz@^2.7.0:
+mz@^2.4.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/mz/-/mz-2.7.0.tgz#95008057a56cafadc2bc63dde7f9ff6955948e32"
   integrity sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==
