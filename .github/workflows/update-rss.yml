@@ -18,8 +18,6 @@ jobs:
     steps:
       - name: 🛎 Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: 🏗 Setup node
         uses: actions/setup-node@v4
@@ -56,10 +54,16 @@ jobs:
           TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
           TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
           TWITTER_AUTH_CODE_SECRET: ${{ secrets.TWITTER_AUTH_CODE_SECRET }}
+          TWITTER_EMAIL_ADDRESS: ${{ secrets.TWITTER_EMAIL_ADDRESS }}
+          PROXY_SERVER: ${{ secrets.PROXY_SERVER }}
+          PROXY_USERNAME: ${{ secrets.PROXY_USERNAME }}
+          PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }}
 
       - name: Error handling
         if: failure()
         uses: Ilshidur/action-discord@0.3.2
+        with:
+          args: ''
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_EMBEDS: |
