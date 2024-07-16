@@ -59,15 +59,15 @@
     winston "3.13.1"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.64.46":
-  version "0.64.46"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.64.46.tgz#939d45cf4dea39a3e16beed45f11c3a5404ed51e"
-  integrity sha512-Q/ST6RQviYkzbjADqItNHwPfo+efLuVT/5vEtcHsex1jytrYZfi5HcyxZdqTgMrLTdSW8oeAvFRVRmk5wqPJ+g==
+"@book000/twitterts@0.64.47":
+  version "0.64.47"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.64.47.tgz#eb23228878948bdb7672f34f362fcd7207814192"
+  integrity sha512-YYuZRVClEIJFxpBhZiXeBr4/r60NkPw35gs27536LFF1GTm9maWS5jpOKLkuybWglF556d9X6MP6SV69SllaTw==
   dependencies:
     "@book000/node-utils" "1.13.173"
     genson-js "0.0.8"
     json-schema-to-typescript "14.1.0"
-    mysql2 "3.10.2"
+    mysql2 "3.10.3"
     otplib "12.0.1"
     puppeteer-core "22.13.0"
     twitter-d "0.6.0"
@@ -619,6 +619,11 @@ available-typed-arrays@^1.0.7:
   integrity sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==
   dependencies:
     possible-typed-array-names "^1.0.0"
+
+aws-ssl-profiles@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/aws-ssl-profiles/-/aws-ssl-profiles-1.1.1.tgz#21ef8ad77d753927f6c01b144c5ef4cc4f150cdc"
+  integrity sha512-+H+kuK34PfMaI9PNU/NSjBKL5hh/KDM9J72kwYeYEm0A8B1AC4fuCy3qsjnA7lxklgyXsB68yn8Z2xoZEjgwCQ==
 
 axios@1.7.2:
   version "1.7.2"
@@ -2593,11 +2598,12 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-mysql2@3.10.2:
-  version "3.10.2"
-  resolved "https://registry.yarnpkg.com/mysql2/-/mysql2-3.10.2.tgz#37297d5d75d2958e37adc9cd4db865354832d7a4"
-  integrity sha512-KCXPEvAkO0RcHPr362O5N8tFY2fXvbjfkPvRY/wGumh4EOemo9Hm5FjQZqv/pCmrnuxGu5OxnSENG0gTXqKMgQ==
+mysql2@3.10.3:
+  version "3.10.3"
+  resolved "https://registry.yarnpkg.com/mysql2/-/mysql2-3.10.3.tgz#82646a2b9018370769ae1bb590e015af190e070d"
+  integrity sha512-k43gmH9i79rZD4hGPdj7pDuT0UBiFjs4UzXEy1cJrV0QqcSABomoLwvejqdbcXN+Vd7gi999CVM6o9vCPKq29g==
   dependencies:
+    aws-ssl-profiles "^1.1.1"
     denque "^2.1.0"
     generate-function "^2.3.1"
     iconv-lite "^0.6.3"
