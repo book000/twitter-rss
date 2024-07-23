@@ -46,19 +46,6 @@
     globals "15.8.0"
     typescript-eslint "7.17.0"
 
-"@book000/node-utils@1.13.183":
-  version "1.13.183"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.183.tgz#65b418dcd9d0cfcab614bd97cd85de2a3b72de98"
-  integrity sha512-1vDTe1wuf85D88EGRPBuErnhImLXL2rWLT5NaXdOP+9sbFmd6Ci/xF7QEa4ikugCZMHal/QUxLEdmvzm4VZkNQ==
-  dependencies:
-    axios "1.7.2"
-    cycle "1.0.3"
-    form-data "4.0.0"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.45"
-    winston "3.13.1"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.13.185":
   version "1.13.185"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.185.tgz#1f9f1741f1b5af02752f804647769e72ac4db5ad"
@@ -72,14 +59,14 @@
     winston "3.13.1"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.64.66":
-  version "0.64.66"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.64.66.tgz#2c2dfb80ed556e55da5bf1231ae996a477d4c3dc"
-  integrity sha512-9f6fgchoUJH1l9Df3MnhEgEuQbDyT3bxpdIzt5STiSrJ9qbwKwh52Bb3LLPV6IKnen4DMeUxfHMhgtHZYICQZw==
+"@book000/twitterts@0.64.70":
+  version "0.64.70"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.64.70.tgz#d1df65a364f96b7d2fd63dabeb606c8784334546"
+  integrity sha512-0geodtG4bAW8mzEJgvYrkFIYk5n/acLRlYBsCM7goMia1xFHgzqHLRauGcCZS33sDwGNp1uaXN/SLTj3hCG1YQ==
   dependencies:
-    "@book000/node-utils" "1.13.183"
+    "@book000/node-utils" "1.13.185"
     genson-js "0.0.8"
-    json-schema-to-typescript "14.1.0"
+    json-schema-to-typescript "15.0.0"
     mysql2 "3.10.3"
     otplib "12.0.1"
     puppeteer-core "22.13.1"
@@ -2328,10 +2315,10 @@ json-parse-even-better-errors@^2.3.0:
   resolved "https://registry.yarnpkg.com/json-parse-even-better-errors/-/json-parse-even-better-errors-2.3.1.tgz#7c47805a94319928e05777405dc12e1f7a4ee02d"
   integrity sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==
 
-json-schema-to-typescript@14.1.0:
-  version "14.1.0"
-  resolved "https://registry.yarnpkg.com/json-schema-to-typescript/-/json-schema-to-typescript-14.1.0.tgz#31160d9cf13bf8f948a7ccefdf97e995bc183591"
-  integrity sha512-VIeAFQkn88gFh26MSHWG4uX7TjK/arTw0NVLMZn6vX1WrSF+P6xu5MyEdovu+9PJ0uiS5gm0wzwQvYW9eSq1uw==
+json-schema-to-typescript@15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/json-schema-to-typescript/-/json-schema-to-typescript-15.0.0.tgz#cf7767eee4adaf73041cc0fc9d35e1d5f953585b"
+  integrity sha512-gOX3cJB4eL1ztMc3WUh569ubRcKnr8MnYk++6+/WaaN4bufGHSR6EcbUbvLZgirPQOfvni5SSGkRx0pYloYU8A==
   dependencies:
     "@apidevtools/json-schema-ref-parser" "^11.5.5"
     "@types/json-schema" "^7.0.15"
