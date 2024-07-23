@@ -36,7 +36,7 @@
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
     "twitter-d": "0.6.0",
-    "typescript": "5.5.3",
+    "typescript": "5.5.4",
     "yarn-run-all": "3.1.1"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
