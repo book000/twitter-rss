@@ -34,10 +34,10 @@
     js-tokens "^4.0.0"
     picocolors "^1.0.0"
 
-"@book000/eslint-config@1.7.23":
-  version "1.7.23"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.7.23.tgz#ff2e0d19ee5d7c2b282b3fa25f6be43ef5473885"
-  integrity sha512-YZTkCOuMYulxQ2K/Hl7bUH/VjwUExyhl55LuPOBaUt8DJ89P3gqJ/yC61R8S6eECp+tvV5oY4KYOolLrlPlc1w==
+"@book000/eslint-config@1.7.24":
+  version "1.7.24"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.7.24.tgz#6986ad12a38f081a4decf84dea1af9a5af09bdba"
+  integrity sha512-3Hha6jWiYaC2zU788hyWDPVR5rjV3BpgbgHnjJ1usPIw5/PeLz9GBVRJZkkfz6lt3RWFUtTbMfDxkvXP1+u83Q==
   dependencies:
     "@eslint/eslintrc" "3.1.0"
     "@typescript-eslint/parser" "7.17.0"
