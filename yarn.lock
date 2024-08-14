@@ -46,19 +46,6 @@
     globals "15.9.0"
     typescript-eslint "8.1.0"
 
-"@book000/node-utils@1.13.215":
-  version "1.13.215"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.215.tgz#9ad435ba2a395ae653a1b212fbf7389765b659a3"
-  integrity sha512-qEjq29aekyGSqk68A4JGOaFhgrPlz4/1jiXax43ZgRU5GxXju4L3NRqbH8ssF/XUziQvhsmBayA1/5uwKAb/UQ==
-  dependencies:
-    axios "1.7.3"
-    cycle "1.0.3"
-    form-data "4.0.0"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.45"
-    winston "3.14.1"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.13.216":
   version "1.13.216"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.216.tgz#68c2e0a776f4c6aec61061015b6875154d9e4c30"
@@ -72,12 +59,12 @@
     winston "3.14.1"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.69.12":
-  version "0.69.12"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.12.tgz#4e961963bcc396cef0d4466ffe6ee7fe84c74363"
-  integrity sha512-iYMxjs/H+eF6J6JktcwznKtmHvo+2HNwxYIzjF2+uaZrYq/wt4YHRsvI+eBsJQ+L8qSl5BOT08tCFfMmfphptw==
+"@book000/twitterts@0.69.13":
+  version "0.69.13"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.13.tgz#2450ed4037c17a6aee37f7e10247627cff32cc81"
+  integrity sha512-PhUgCI3TEiaLS5ys7N3apyPCEvRoHtV7UPFgMJRjFA5ia/raT8WROeKKi2cP0xJ7Y/gQUxLxA9dCN38EPfaW2g==
   dependencies:
-    "@book000/node-utils" "1.13.215"
+    "@book000/node-utils" "1.13.216"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.0"
     mysql2 "3.11.0"
@@ -628,15 +615,6 @@ aws-ssl-profiles@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/aws-ssl-profiles/-/aws-ssl-profiles-1.1.1.tgz#21ef8ad77d753927f6c01b144c5ef4cc4f150cdc"
   integrity sha512-+H+kuK34PfMaI9PNU/NSjBKL5hh/KDM9J72kwYeYEm0A8B1AC4fuCy3qsjnA7lxklgyXsB68yn8Z2xoZEjgwCQ==
-
-axios@1.7.3:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.3.tgz#a1125f2faf702bc8e8f2104ec3a76fab40257d85"
-  integrity sha512-Ar7ND9pU99eJ9GpoGQKhKf58GpUOgnzuaB7ueNQ5BMi0p+LZ5oaEnfF999fAArcTIBwXTCHAmGcHOZJaWPq9Nw==
-  dependencies:
-    follow-redirects "^1.15.6"
-    form-data "^4.0.0"
-    proxy-from-env "^1.1.0"
 
 axios@1.7.4:
   version "1.7.4"
