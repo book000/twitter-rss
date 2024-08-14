@@ -59,12 +59,25 @@
     winston "3.14.1"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.69.13":
-  version "0.69.13"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.13.tgz#2450ed4037c17a6aee37f7e10247627cff32cc81"
-  integrity sha512-PhUgCI3TEiaLS5ys7N3apyPCEvRoHtV7UPFgMJRjFA5ia/raT8WROeKKi2cP0xJ7Y/gQUxLxA9dCN38EPfaW2g==
+"@book000/node-utils@1.13.217":
+  version "1.13.217"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.217.tgz#7ba1c21b5a65a91ee819642e9afbf8680ea78a20"
+  integrity sha512-E9uUBMaDT5SkbVBStG6UNe2Dm/iDx1m5VRad90uBrg20EKlyw3yYGtPDsBPxYkCN6/3TiSNcoemY0/EmVnTFLg==
   dependencies:
-    "@book000/node-utils" "1.13.216"
+    axios "1.7.4"
+    cycle "1.0.3"
+    form-data "4.0.0"
+    jsonc-parser "3.3.1"
+    moment-timezone "0.5.45"
+    winston "3.14.2"
+    winston-daily-rotate-file "5.0.0"
+
+"@book000/twitterts@0.69.15":
+  version "0.69.15"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.15.tgz#17de281cd2b23855e521a150c44cd9e51bb9d574"
+  integrity sha512-dpDkIZDu24vaRfz90p3mLsA9hM2eKc6matx2feu5ZAMc/+CtWiNiiZ9XjPp3/OQVN2meTrQwdkr9CMpB7Lkm5w==
+  dependencies:
+    "@book000/node-utils" "1.13.217"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.0"
     mysql2 "3.11.0"
@@ -3815,6 +3828,23 @@ winston@3.14.1:
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/winston/-/winston-3.14.1.tgz#b296f2756e6b46d3b6faac5660d2af878fc3f666"
   integrity sha512-CJi4Il/msz8HkdDfXOMu+r5Au/oyEjFiOZzbX2d23hRLY0narGjqfE5lFlrT5hfYJhPtM8b85/GNFsxIML/RVA==
+  dependencies:
+    "@colors/colors" "^1.6.0"
+    "@dabh/diagnostics" "^2.0.2"
+    async "^3.2.3"
+    is-stream "^2.0.0"
+    logform "^2.6.0"
+    one-time "^1.0.0"
+    readable-stream "^3.4.0"
+    safe-stable-stringify "^2.3.1"
+    stack-trace "0.0.x"
+    triple-beam "^1.3.0"
+    winston-transport "^4.7.0"
+
+winston@3.14.2:
+  version "3.14.2"
+  resolved "https://registry.yarnpkg.com/winston/-/winston-3.14.2.tgz#94ce5fd26d374f563c969d12f0cd9c641065adab"
+  integrity sha512-CO8cdpBB2yqzEf8v895L+GNKYJiEq8eKlHU38af3snQBQ+sdAIUepjMSguOIJC7ICbzm0ZI+Af2If4vIJrtmOg==
   dependencies:
     "@colors/colors" "^1.6.0"
     "@dabh/diagnostics" "^2.0.2"
