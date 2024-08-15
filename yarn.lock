@@ -46,19 +46,6 @@
     globals "15.9.0"
     typescript-eslint "8.1.0"
 
-"@book000/node-utils@1.13.217":
-  version "1.13.217"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.217.tgz#7ba1c21b5a65a91ee819642e9afbf8680ea78a20"
-  integrity sha512-E9uUBMaDT5SkbVBStG6UNe2Dm/iDx1m5VRad90uBrg20EKlyw3yYGtPDsBPxYkCN6/3TiSNcoemY0/EmVnTFLg==
-  dependencies:
-    axios "1.7.4"
-    cycle "1.0.3"
-    form-data "4.0.0"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.45"
-    winston "3.14.2"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.13.218":
   version "1.13.218"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.218.tgz#9bac49761f289ca78a39c8b375ebb46b2c3c680d"
@@ -72,17 +59,17 @@
     winston "3.14.2"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.69.15":
-  version "0.69.15"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.15.tgz#17de281cd2b23855e521a150c44cd9e51bb9d574"
-  integrity sha512-dpDkIZDu24vaRfz90p3mLsA9hM2eKc6matx2feu5ZAMc/+CtWiNiiZ9XjPp3/OQVN2meTrQwdkr9CMpB7Lkm5w==
+"@book000/twitterts@0.69.17":
+  version "0.69.17"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.17.tgz#b713915f2898eb873a7caea94d670e53b97d550a"
+  integrity sha512-6pGS6FPQZY65XK1e85PKfdvE1FFLvbOMJfw2hbuOqOXz1HgM6u+E5XFFxaIKNybkkKS33fPsutvJbBC3iw7z/g==
   dependencies:
-    "@book000/node-utils" "1.13.217"
+    "@book000/node-utils" "1.13.218"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.0"
     mysql2 "3.11.0"
     otplib "12.0.1"
-    puppeteer-core "23.0.2"
+    puppeteer-core "23.1.0"
     twitter-d "0.6.0"
     ulid "2.3.0"
 
@@ -262,12 +249,12 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@puppeteer/browsers@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@puppeteer/browsers/-/browsers-2.3.0.tgz#791ea7d80450fea24eb19fb1d70c367ad4e08cae"
-  integrity sha512-ioXoq9gPxkss4MYhD+SFaU9p1IHFUX0ILAWFPyjGaBdjLsYAlZw6j1iLA0N/m12uVHLFDfSYNF7EQccjinIMDA==
+"@puppeteer/browsers@2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@puppeteer/browsers/-/browsers-2.3.1.tgz#238200dbdce5c00ae28c8f2a55ac053c3be71668"
+  integrity sha512-uK7o3hHkK+naEobMSJ+2ySYyXtQkBxIH8Gn4MK9ciePjNV+Pf+PgY/W7iPzn2MTjl3stcYB5AlcTmPYw7AXDwA==
   dependencies:
-    debug "^4.3.5"
+    debug "^4.3.6"
     extract-zip "^2.0.1"
     progress "^2.0.3"
     proxy-agent "^6.4.0"
@@ -995,7 +982,7 @@ data-view-byte-offset@^1.0.0:
     es-errors "^1.3.0"
     is-data-view "^1.0.1"
 
-debug@4, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@^4.3.5, debug@^4.3.6:
+debug@4, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@^4.3.6:
   version "4.3.6"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.6.tgz#2ab2c38fbaffebf8aa95fdfe6d88438c7a13c52b"
   integrity sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==
@@ -2944,15 +2931,16 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
   integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
-puppeteer-core@23.0.2:
-  version "23.0.2"
-  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-23.0.2.tgz#343c8d003e609620febfe35f76847a0014cdc97c"
-  integrity sha512-MvOHn+g1TYkAR2oVd/bf/YWXKqFTJmkhyyurYgxkrjh8rBOL1ZH5VyOsLJi0bLO7/yoipAmk1gFZEx9HUJnaoA==
+puppeteer-core@23.1.0:
+  version "23.1.0"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-23.1.0.tgz#50703d2e27c1d73d523c25b807f6e6d95a6b1c47"
+  integrity sha512-SvAsu+xnLN2FMXE/59bp3s3WXp8ewqUGzVV4AQtml/2xmsciZnU/bXcCW+eETHPWQ6Agg2vTI7QzWXPpEARK2g==
   dependencies:
-    "@puppeteer/browsers" "2.3.0"
+    "@puppeteer/browsers" "2.3.1"
     chromium-bidi "0.6.4"
     debug "^4.3.6"
     devtools-protocol "0.0.1312386"
+    typed-query-selector "^2.12.0"
     ws "^8.18.0"
 
 queue-microtask@^1.2.2:
@@ -3673,6 +3661,11 @@ typed-array-length@^1.0.6:
     has-proto "^1.0.3"
     is-typed-array "^1.1.13"
     possible-typed-array-names "^1.0.0"
+
+typed-query-selector@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/typed-query-selector/-/typed-query-selector-2.12.0.tgz#92b65dbc0a42655fccf4aeb1a08b1dddce8af5f2"
+  integrity sha512-SbklCd1F0EiZOyPiW192rrHZzZ5sBijB6xM+cpmrwDqObvdtunOHHIk9fCGsoK5JVIYXoyEp4iEdE3upFH3PAg==
 
 typescript-eslint@8.1.0:
   version "8.1.0"
