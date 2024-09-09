@@ -46,19 +46,6 @@
     globals "15.9.0"
     typescript-eslint "8.4.0"
 
-"@book000/node-utils@1.13.242":
-  version "1.13.242"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.242.tgz#e49b29e945867124f86c5014f2ff0b14d8fcfc00"
-  integrity sha512-EbooW4Gu0QmaIEaC23i32DxJG35y9mfpAIIDGlc5d6cQAhjlqfsVdJY8p3z7J/nYFAsmZUKjepEzT7FJ2cXjrQ==
-  dependencies:
-    axios "1.7.7"
-    cycle "1.0.3"
-    form-data "4.0.0"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.45"
-    winston "3.14.2"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.13.243":
   version "1.13.243"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.243.tgz#5ae2c383a4992f484f3423abcd2d62f9f7c17b4e"
@@ -72,12 +59,12 @@
     winston "3.14.2"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.69.74":
-  version "0.69.74"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.74.tgz#e09fa51fe7bbbeceb87fb7228056d4e815a73ee0"
-  integrity sha512-Yaf8D//E7MWBn9Xue15+sAFj+Rww3IRqJ2iOkIKKb/HmJ8hKdR8o51fH1hOC6KQYa4U1jF9eQv0TtCgkHD5lNA==
+"@book000/twitterts@0.69.76":
+  version "0.69.76"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.76.tgz#8dc53c8c2eb25460441454664a70dfc5ae83be91"
+  integrity sha512-JrKYWoxBxwXKe/joqvOWthoasJiBsPfWnco6uuXITx9zstJtaMUt/PfDxx+8la6sjrOPVcAofk1PyJsa9uEayw==
   dependencies:
-    "@book000/node-utils" "1.13.242"
+    "@book000/node-utils" "1.13.243"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.2"
     mysql2 "3.11.0"
