@@ -59,17 +59,17 @@
     winston "3.14.2"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.69.92":
-  version "0.69.92"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.92.tgz#856fe24b888916bcf9ecd0cbec0c4faabd34f83c"
-  integrity sha512-fJMhmsVm+i8LKVQhteaP+yo/HEattfutb48nLQhPRmCaBLUxDGdp8qTbn9jSCr2Q7cZBTOmIWV0BTaDYK23obA==
+"@book000/twitterts@0.69.93":
+  version "0.69.93"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.93.tgz#04e629306dd397ea3ab80d805deff4aaf0ff479e"
+  integrity sha512-y5F5w6Ea8tFfjzheRzhCv7a4F1LMJWDfyJ9eyw2QeHA8Pg5tfe9yJnXWaYSo84XvEe1k8hb+Q6plU28rGBHUZQ==
   dependencies:
     "@book000/node-utils" "1.13.249"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.2"
     mysql2 "3.11.3"
     otplib "12.0.1"
-    puppeteer-core "23.3.0"
+    puppeteer-core "23.3.1"
     twitter-d "0.6.0"
     ulid "2.3.0"
 
@@ -966,7 +966,7 @@ data-view-byte-offset@^1.0.0:
     es-errors "^1.3.0"
     is-data-view "^1.0.1"
 
-debug@4, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@^4.3.6:
+debug@4, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@^4.3.6, debug@^4.3.7:
   version "4.3.7"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.7.tgz#87945b4151a011d76d95a198d7111c865c360a52"
   integrity sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==
@@ -2757,14 +2757,14 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
   integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
-puppeteer-core@23.3.0:
-  version "23.3.0"
-  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-23.3.0.tgz#e9e7367367e230ab3ed0b6b674170b09ba0a96e3"
-  integrity sha512-sB2SsVMFs4gKad5OCdv6w5vocvtEUrRl0zQqSyRPbo/cj1Ktbarmhxy02Zyb9R9HrssBcJDZbkrvBnbaesPyYg==
+puppeteer-core@23.3.1:
+  version "23.3.1"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-23.3.1.tgz#b93d825e586f5f7dc268128a31a31c62bbe378ae"
+  integrity sha512-m5gTpITEqqpSgAvPUI/Ch9igh5sNJV+BVVbqQMzqirRDVHDCkLGHaydEQZx2NZvSXdwCFrIV///cpSlX/uD0Sg==
   dependencies:
     "@puppeteer/browsers" "2.4.0"
     chromium-bidi "0.6.5"
-    debug "^4.3.6"
+    debug "^4.3.7"
     devtools-protocol "0.0.1330662"
     typed-query-selector "^2.12.0"
     ws "^8.18.0"
