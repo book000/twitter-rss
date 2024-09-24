@@ -46,19 +46,6 @@
     globals "15.9.0"
     typescript-eslint "8.7.0"
 
-"@book000/node-utils@1.13.257":
-  version "1.13.257"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.257.tgz#862b13261d5c06f71e982c09bcf9c100f3e3c4ed"
-  integrity sha512-FqJRY4UY9EztZ5ENKvzKyP41hNISpM1BVeyuwcvIvJOopFsrP3WVsB2dg5CXEITywJoByAFyfgMra5GBMLnTjw==
-  dependencies:
-    axios "1.7.7"
-    cycle "1.0.3"
-    form-data "4.0.0"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.45"
-    winston "3.14.2"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.13.260":
   version "1.13.260"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.260.tgz#c2ab7ff44f2c47e8f6c8fadf54f0bede58cdb8c3"
@@ -72,12 +59,25 @@
     winston "3.14.2"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.69.106":
-  version "0.69.106"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.106.tgz#b4f021da2e60b85a30eed62e78385a44d27812ad"
-  integrity sha512-6cLqyS32E9U5f/RlJIyE5rhVOGbe//FpRmc4LzzIWbFfWOfxUueBxbuaufy4ZdxTqrnZV44S1/H9JNmIUfYeMQ==
+"@book000/node-utils@1.13.261":
+  version "1.13.261"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.261.tgz#acd12772a0a18fd7d132779979c7eea69407327b"
+  integrity sha512-mJ9ZlK9iGiaBFXmDOy7tfCHAWL4ziUWV5jKg99/WyJzQRidp9Lj99/w3sQqtTRi8c8gd54ew2Rh6QT2HaptE2w==
   dependencies:
-    "@book000/node-utils" "1.13.257"
+    axios "1.7.7"
+    cycle "1.0.3"
+    form-data "4.0.0"
+    jsonc-parser "3.3.1"
+    moment-timezone "0.5.45"
+    winston "3.14.2"
+    winston-daily-rotate-file "5.0.0"
+
+"@book000/twitterts@0.69.111":
+  version "0.69.111"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.111.tgz#90b0f0d33bcdb20e4f7804f9c702e9a3d5e56aad"
+  integrity sha512-rlH/RBC5c/Mvz4qSXyZ4qobYCzJnHlN/lMuo26uDKhy2WRZdD3HA//WaQ2o/75PrVi8prB7/t7YmWcSmXYrgeA==
+  dependencies:
+    "@book000/node-utils" "1.13.261"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.2"
     mysql2 "3.11.3"
