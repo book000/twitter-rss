@@ -46,19 +46,6 @@
     globals "15.10.0"
     typescript-eslint "8.8.0"
 
-"@book000/node-utils@1.13.280":
-  version "1.13.280"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.280.tgz#8d4b420ba5595d690b995be2c1a7831fb0b661a8"
-  integrity sha512-SyyEb6zWJYZdWjUrodzMRl0EyTIeaQ8V31FoBTQ+64e8bNo9/TtkxD5fnJamRLPCZRwcAnwK2/lydS6HySRLHw==
-  dependencies:
-    axios "1.7.7"
-    cycle "1.0.3"
-    form-data "4.0.0"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.45"
-    winston "3.15.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.13.281":
   version "1.13.281"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.281.tgz#ac0d0465e248b6c548582a55519931dfd7394268"
@@ -72,12 +59,12 @@
     winston "3.15.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.69.147":
-  version "0.69.147"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.147.tgz#0ece35bda344849ff676f551f3fe743cc4648dea"
-  integrity sha512-lW2BpKqAhfo0WX/ihBijgJTmYZ9qTVQV/tplLnB8xa7ghKCoJf3o9wROvcueqt5SrRqGziWYA5qcuK0ERsCFoQ==
+"@book000/twitterts@0.69.148":
+  version "0.69.148"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.148.tgz#fd2c33d30a2c7e7ff9d7b5352c931b4df16f7847"
+  integrity sha512-YUzg+CebpelzJTKBiFtKcw1EH+I9weIC7/sM/1eaAfwaUBD1cRg7kcHEUoY60B5sXfmnQsi85KCvPmKeycYQcg==
   dependencies:
-    "@book000/node-utils" "1.13.280"
+    "@book000/node-utils" "1.13.281"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.2"
     mysql2 "3.11.3"
@@ -2426,13 +2413,6 @@ mkdirp@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
-
-moment-timezone@0.5.45:
-  version "0.5.45"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.45.tgz#cb685acd56bac10e69d93c536366eb65aa6bcf5c"
-  integrity sha512-HIWmqA86KcmCAhnMAN0wuDOARV/525R2+lOLotuGFzn4HO+FH+/645z2wx0Dt3iDv6/p61SIvKnDstISainhLQ==
-  dependencies:
-    moment "^2.29.4"
 
 moment-timezone@0.5.46:
   version "0.5.46"
