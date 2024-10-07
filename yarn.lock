@@ -46,19 +46,6 @@
     globals "15.10.0"
     typescript-eslint "8.8.0"
 
-"@book000/node-utils@1.13.281":
-  version "1.13.281"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.281.tgz#ac0d0465e248b6c548582a55519931dfd7394268"
-  integrity sha512-6hl3aJbQo5NCVmXDmV44CzwRADN35tM0VnSwfmNm/tG9SArMT35PPvA+mj9ssyZ5RsSYXuhurGMWuKl0Gd1t7A==
-  dependencies:
-    axios "1.7.7"
-    cycle "1.0.3"
-    form-data "4.0.0"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.46"
-    winston "3.15.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.13.283":
   version "1.13.283"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.283.tgz#8c740353033ca38662e1263b87fffce145510cbf"
@@ -72,12 +59,25 @@
     winston "3.15.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.69.148":
-  version "0.69.148"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.148.tgz#fd2c33d30a2c7e7ff9d7b5352c931b4df16f7847"
-  integrity sha512-YUzg+CebpelzJTKBiFtKcw1EH+I9weIC7/sM/1eaAfwaUBD1cRg7kcHEUoY60B5sXfmnQsi85KCvPmKeycYQcg==
+"@book000/node-utils@1.13.284":
+  version "1.13.284"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.284.tgz#67444949a4a7d99bdad1c877def67a60ffae5296"
+  integrity sha512-scWH5boR2WiEvQj2AY6p0N+nbg58cDiecduihGWqua9q3EGCwLKq/nHJHfEv6QI7EPRfIj0u/1G3+HzYUVEs3Q==
   dependencies:
-    "@book000/node-utils" "1.13.281"
+    axios "1.7.7"
+    cycle "1.0.3"
+    form-data "4.0.0"
+    jsonc-parser "3.3.1"
+    moment-timezone "0.5.46"
+    winston "3.15.0"
+    winston-daily-rotate-file "5.0.0"
+
+"@book000/twitterts@0.69.152":
+  version "0.69.152"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.152.tgz#351e4ae66ec4de9ccabee458e7a21e214952e4ce"
+  integrity sha512-UOM+rbcMfVCOcjs1TOZTPb7RHxkJrdq2cYT6icyoy8IckBRYotDEd28LZVgQq0Oc8Jb+zeGtaCVgb4a8Bv8GaQ==
+  dependencies:
+    "@book000/node-utils" "1.13.284"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.2"
     mysql2 "3.11.3"
