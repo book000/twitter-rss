@@ -46,19 +46,6 @@
     globals "15.11.0"
     typescript-eslint "8.8.1"
 
-"@book000/node-utils@1.13.294":
-  version "1.13.294"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.294.tgz#bcf35fe56bfdd51011ba5da409681e7f4e188570"
-  integrity sha512-iE/rHOLZA3shH77YjrkP5oVPmcgzVIbtjK2UJr64uk+koDOMacINct4hkda506pvX5/9VBx71sLvQaXuyv9/dg==
-  dependencies:
-    axios "1.7.7"
-    cycle "1.0.3"
-    form-data "4.0.0"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.46"
-    winston "3.15.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.13.295":
   version "1.13.295"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.295.tgz#d0ff6e2afacde9c8fb44d28e74f176287b0dc47c"
@@ -72,12 +59,12 @@
     winston "3.15.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.69.166":
-  version "0.69.166"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.166.tgz#e3a7d8ff0d2d7dd311ccdfa5d451a408b4e76a6e"
-  integrity sha512-AnI4kfX8cM/nWqQgO/Y4NQdmLWPHVgAUEcjlqiCZ9PkwnWMbvaAaFfX+AeW4+uXvH/X47fH3vnDPIerRysPFlQ==
+"@book000/twitterts@0.69.167":
+  version "0.69.167"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.69.167.tgz#6d9a44074fc75424da88aef70459637d1c20b0b5"
+  integrity sha512-BCb91nvm5CAJ71dzM7dzcyscc6pRiauwhnT/pgTW2tNyiV2j/k88fJfAY8X8G/VZx82eWPK0zzgwQIccfrpI8A==
   dependencies:
-    "@book000/node-utils" "1.13.294"
+    "@book000/node-utils" "1.13.295"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.2"
     mysql2 "3.11.3"
@@ -1650,19 +1637,19 @@ foreground-child@^3.1.0:
     cross-spawn "^7.0.0"
     signal-exit "^4.0.1"
 
-form-data@4.0.0, form-data@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.0.tgz#93919daeaf361ee529584b9b31664dc12c9fa452"
-  integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
+form-data@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.1.tgz#ba1076daaaa5bfd7e99c1a6cb02aa0a5cff90d48"
+  integrity sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==
   dependencies:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
-form-data@4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.1.tgz#ba1076daaaa5bfd7e99c1a6cb02aa0a5cff90d48"
-  integrity sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==
+form-data@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.0.tgz#93919daeaf361ee529584b9b31664dc12c9fa452"
+  integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
   dependencies:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
