@@ -37,10 +37,10 @@
     globals "15.11.0"
     typescript-eslint "8.12.1"
 
-"@book000/node-utils@1.13.318":
-  version "1.13.318"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.318.tgz#ff5c980c9e93bd078b0ccfd15972bffcdd9d6092"
-  integrity sha512-sKc719WE/x0FXglPeZpZ1YzkS82qFCLlyB/Y9jr19y0+fzTHFBgCCPMd3xy/P8EXZ4Zv/nN1m1jQ1Z1muP85Bg==
+"@book000/node-utils@1.13.320":
+  version "1.13.320"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.320.tgz#fe3183088cdeadbefd6d7e3c6ae7563c1239dec7"
+  integrity sha512-ngSNJJBetfiuteIf7JY8VmAXJO7YEF62UNFvzxUaWEfnBh+4xQQORxUvajDRbWhHQMGD1Y2o06IKTy4JF1UPPg==
   dependencies:
     axios "1.7.7"
     cycle "1.0.3"
@@ -50,10 +50,10 @@
     winston "3.15.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/node-utils@1.13.320":
-  version "1.13.320"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.320.tgz#fe3183088cdeadbefd6d7e3c6ae7563c1239dec7"
-  integrity sha512-ngSNJJBetfiuteIf7JY8VmAXJO7YEF62UNFvzxUaWEfnBh+4xQQORxUvajDRbWhHQMGD1Y2o06IKTy4JF1UPPg==
+"@book000/node-utils@1.13.321":
+  version "1.13.321"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.321.tgz#27bbe6bbb97f356261c4c6f8facc04188cdff0e0"
+  integrity sha512-EeuDrYsBDv7LdLIrLvR5q/zh0QCIeXc9UayB9Fx7EnB9UUs3u+GtRQl1GfmzhZW7hqIYWVz5vlbgJcwQ8OLAdw==
   dependencies:
     axios "1.7.7"
     cycle "1.0.3"
