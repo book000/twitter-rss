@@ -37,19 +37,6 @@
     globals "15.11.0"
     typescript-eslint "8.12.2"
 
-"@book000/node-utils@1.13.327":
-  version "1.13.327"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.327.tgz#fa646602e4997bcfe7119457296de32604dedd81"
-  integrity sha512-e/VGDWKfuJvpc+ECvXR1en6CgFbXvklgGRqFYGhT7y1wLfd5jsC7hAOXcJ4s3aL2NeyQfezsf+p56YuUO6vM+g==
-  dependencies:
-    axios "1.7.7"
-    cycle "1.0.3"
-    form-data "4.0.1"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.46"
-    winston "3.15.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.13.330":
   version "1.13.330"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.330.tgz#51c89e9b3f1be66150aadaec0b95caacf3683cd6"
@@ -63,12 +50,12 @@
     winston "3.16.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.70.59":
-  version "0.70.59"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.70.59.tgz#264b3554ca7043c587ff5d25f7a7dd1178a8ef20"
-  integrity sha512-yr46KuQxWB/arrrZp8QDTchzK6pOQKt3Pbf8YUzaODHV/uD19dgqAJpARw5Ke3ymapFV2I9tTsqotRlgVQbNFg==
+"@book000/twitterts@0.70.62":
+  version "0.70.62"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.70.62.tgz#484044e7b16642d00dccddba06826451c64fc5f9"
+  integrity sha512-2JdnH1tcj/ce96FOwMvr4kxjEkXIrPYScUBI8mfgU279zlY3OXkHd/CDP5gyobE2hAeq3A6rVY9i155Jg9lRjw==
   dependencies:
-    "@book000/node-utils" "1.13.327"
+    "@book000/node-utils" "1.13.330"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.2"
     mysql2 "3.11.3"
@@ -3648,23 +3635,6 @@ winston-transport@^4.7.0:
     logform "^2.6.1"
     readable-stream "^4.5.2"
     triple-beam "^1.3.0"
-
-winston@3.15.0:
-  version "3.15.0"
-  resolved "https://registry.yarnpkg.com/winston/-/winston-3.15.0.tgz#4df7b70be091bc1a38a4f45b969fa79589b73ff5"
-  integrity sha512-RhruH2Cj0bV0WgNL+lOfoUBI4DVfdUNjVnJGVovWZmrcKtrFTTRzgXYK2O9cymSGjrERCtaAeHwMNnUWXlwZow==
-  dependencies:
-    "@colors/colors" "^1.6.0"
-    "@dabh/diagnostics" "^2.0.2"
-    async "^3.2.3"
-    is-stream "^2.0.0"
-    logform "^2.6.0"
-    one-time "^1.0.0"
-    readable-stream "^3.4.0"
-    safe-stable-stringify "^2.3.1"
-    stack-trace "0.0.x"
-    triple-beam "^1.3.0"
-    winston-transport "^4.7.0"
 
 winston@3.16.0:
   version "3.16.0"
