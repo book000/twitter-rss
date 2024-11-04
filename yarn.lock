@@ -25,16 +25,16 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.25.9.tgz#24b64e2c3ec7cd3b3c547729b8d16871f22cbdc7"
   integrity sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==
 
-"@book000/eslint-config@1.7.84":
-  version "1.7.84"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.7.84.tgz#84fdb5a1800980f2a0e3f3e04cb64be8184923a4"
-  integrity sha512-3iVMxJOiVoO9GsArwA50DYMWYO56qyYUi2nfNy/0bTSC3WhWoNjK5EjwT/ZrrVmqWvkDhMNXgnOIPCbdSv6Lfw==
+"@book000/eslint-config@1.7.85":
+  version "1.7.85"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.7.85.tgz#acdafd497bbe00f2bde3a1ab398ea92db9c5741a"
+  integrity sha512-9ydX32NXgyji75F7tx8ukJSrecYx+cdK+Xgjg66uksLVv1C7IGq7FO/YcvqSeWsRLhpBz7IiJHNSf/0oNAyT4Q==
   dependencies:
     "@eslint/eslintrc" "3.1.0"
     "@typescript-eslint/parser" "8.12.2"
     eslint-config-prettier "9.1.0"
     eslint-plugin-unicorn "56.0.0"
-    globals "15.11.0"
+    globals "15.12.0"
     typescript-eslint "8.12.2"
 
 "@book000/node-utils@1.13.333":
@@ -1761,15 +1761,20 @@ glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-globals@15.11.0, globals@^15.11.0, globals@^15.9.0:
-  version "15.11.0"
-  resolved "https://registry.yarnpkg.com/globals/-/globals-15.11.0.tgz#b96ed4c6998540c6fb824b24b5499216d2438d6e"
-  integrity sha512-yeyNSjdbyVaWurlwCpcA6XNBrHTMIeDdj0/hnvX/OLJ9ekOXYbLsLinH/MucQyGvNnXhidTdNhTtJaffL2sMfw==
+globals@15.12.0:
+  version "15.12.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-15.12.0.tgz#1811872883ad8f41055b61457a130221297de5b5"
+  integrity sha512-1+gLErljJFhbOVyaetcwJiJ4+eLe45S2E7P5UiZ9xGfeq3ATQf5DOv9G7MH3gGbKQLkzmNh2DxfZwLdw+j6oTQ==
 
 globals@^14.0.0:
   version "14.0.0"
   resolved "https://registry.yarnpkg.com/globals/-/globals-14.0.0.tgz#898d7413c29babcf6bafe56fcadded858ada724e"
   integrity sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==
+
+globals@^15.11.0, globals@^15.9.0:
+  version "15.11.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-15.11.0.tgz#b96ed4c6998540c6fb824b24b5499216d2438d6e"
+  integrity sha512-yeyNSjdbyVaWurlwCpcA6XNBrHTMIeDdj0/hnvX/OLJ9ekOXYbLsLinH/MucQyGvNnXhidTdNhTtJaffL2sMfw==
 
 globalthis@^1.0.3:
   version "1.0.4"
