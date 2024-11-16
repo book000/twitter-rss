@@ -25,12 +25,12 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.25.9.tgz#24b64e2c3ec7cd3b3c547729b8d16871f22cbdc7"
   integrity sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==
 
-"@book000/eslint-config@1.7.91":
-  version "1.7.91"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.7.91.tgz#a1958e3c3b7049a106dc6dbe77d35f0dfeed4cea"
-  integrity sha512-yjRGPeBL2j+36hFo51vP8b2SDxBMvMblWY69FLtdGIGDAlKpoItTaciadL/+0oXKolGSx2eaupt8MmuYJ8yvHg==
+"@book000/eslint-config@1.7.93":
+  version "1.7.93"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.7.93.tgz#ec22c75ef3f5f255dd2dffb37452412b0a51bf1c"
+  integrity sha512-BjI1BkYTpwMi9OiQcWlDo8JmDeGiAXMGi0iEOsylhII90s46GWp+VTV1VPYK+UfMZC2LCjwI/7jbyQRJtMf6Rw==
   dependencies:
-    "@eslint/eslintrc" "3.1.0"
+    "@eslint/eslintrc" "3.2.0"
     "@typescript-eslint/parser" "8.14.0"
     eslint-config-prettier "9.1.0"
     eslint-plugin-unicorn "56.0.0"
@@ -112,7 +112,22 @@
   resolved "https://registry.yarnpkg.com/@eslint/core/-/core-0.7.0.tgz#a1bb4b6a4e742a5ff1894b7ee76fbf884ec72bd3"
   integrity sha512-xp5Jirz5DyPYlPiKat8jaq0EmYvDXKKpzTbxXMpT9eqlRJkRKIz9AGMdlvYjih+im+QlhWrpvVjl8IPC/lHlUw==
 
-"@eslint/eslintrc@3.1.0", "@eslint/eslintrc@^3.1.0":
+"@eslint/eslintrc@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-3.2.0.tgz#57470ac4e2e283a6bf76044d63281196e370542c"
+  integrity sha512-grOjVNN8P3hjJn/eIETF1wwd12DdnwFDoyceUJLYYdkpbwq3nLi+4fqrTAONx7XDALqlL220wC/RHSC/QTI/0w==
+  dependencies:
+    ajv "^6.12.4"
+    debug "^4.3.2"
+    espree "^10.0.1"
+    globals "^14.0.0"
+    ignore "^5.2.0"
+    import-fresh "^3.2.1"
+    js-yaml "^4.1.0"
+    minimatch "^3.1.2"
+    strip-json-comments "^3.1.1"
+
+"@eslint/eslintrc@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-3.1.0.tgz#dbd3482bfd91efa663cbe7aa1f506839868207b6"
   integrity sha512-4Bfj15dVJdoy3RfZmmo86RK1Fwzn6SstsvK9JS+BaVKqC6QQQQyXekNaC+g+LKNgkQ+2VhGAzm6hO40AhMR3zQ==
