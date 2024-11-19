@@ -25,15 +25,15 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.25.9.tgz#24b64e2c3ec7cd3b3c547729b8d16871f22cbdc7"
   integrity sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==
 
-"@book000/eslint-config@1.7.95":
-  version "1.7.95"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.7.95.tgz#d365f4cd6872e132f86a0344ceca8d24a7f9f0a9"
-  integrity sha512-s2Kbo8XJorr4BKQJL2ig5uTlmtHKolqGy8I0vjlcEda5QDm7tqqCZoI8a7mUnEVeoXGOXUdMWJzWzpuNk3BmWg==
+"@book000/eslint-config@1.7.96":
+  version "1.7.96"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.7.96.tgz#93fa922422add6f8430efcae916f9fae580ccf51"
+  integrity sha512-ACeOjxvwg6c0Q950DKtuWfDCwjyF9MylxIfynDmYHB9GcHPz4NmVTJm5CtwzG+Iuym4tBrA+6IaGdx7SjK5VjQ==
   dependencies:
     "@eslint/eslintrc" "3.2.0"
     "@typescript-eslint/parser" "8.15.0"
     eslint-config-prettier "9.1.0"
-    eslint-plugin-unicorn "56.0.0"
+    eslint-plugin-unicorn "56.0.1"
     globals "15.12.0"
     typescript-eslint "8.15.0"
 
@@ -1265,10 +1265,10 @@ eslint-plugin-promise@7.1.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-7.1.0.tgz#06b3ad6d36b3c3ef3ec201c8a8d97049cf5dbb20"
   integrity sha512-8trNmPxdAy3W620WKDpaS65NlM5yAumod6XeC4LOb+jxlkG4IVcp68c6dXY2ev+uT4U1PtG57YDV6EGAXN0GbQ==
 
-eslint-plugin-unicorn@56.0.0:
-  version "56.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-56.0.0.tgz#9fd3ebe6f478571734541fa745026b743175b59e"
-  integrity sha512-aXpddVz/PQMmd69uxO98PA4iidiVNvA0xOtbpUoz1WhBd4RxOQQYqN618v68drY0hmy5uU2jy1bheKEVWBjlPw==
+eslint-plugin-unicorn@56.0.1:
+  version "56.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-56.0.1.tgz#d10a3df69ba885939075bdc95a65a0c872e940d4"
+  integrity sha512-FwVV0Uwf8XPfVnKSGpMg7NtlZh0G0gBarCaFcMUOoqPxXryxdYxTRRv4kH6B9TFCVIrjRXG+emcxIk2ayZilog==
   dependencies:
     "@babel/helper-validator-identifier" "^7.24.7"
     "@eslint-community/eslint-utils" "^4.4.0"
