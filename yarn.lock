@@ -25,10 +25,10 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.25.9.tgz#24b64e2c3ec7cd3b3c547729b8d16871f22cbdc7"
   integrity sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==
 
-"@book000/eslint-config@1.7.111":
-  version "1.7.111"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.7.111.tgz#f92308cc7563ec105b13f00c05822a9957d4110e"
-  integrity sha512-nNJqHShkQYWXrxcxPlBr3o5lXJFV1XUh/MICH9U5PfxxM+462pnEhA1QkRcfmDvuaxpKI881F5iR0uWMHlSNGQ==
+"@book000/eslint-config@1.7.112":
+  version "1.7.112"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.7.112.tgz#ab89d6335b31e7e5fbc71233036dcf055d251bf9"
+  integrity sha512-FONcCFH8eySKMm2qoEbX8DR8tDfmfkQC8KUrVVVmmzmqV4y9YKr5zfgZXODw9+SFuptYRBWWL3Nt+Nn90+MMLA==
   dependencies:
     "@eslint/eslintrc" "3.2.0"
     "@typescript-eslint/parser" "8.18.0"
