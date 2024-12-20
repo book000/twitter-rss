@@ -37,19 +37,6 @@
     globals "15.14.0"
     typescript-eslint "8.18.1"
 
-"@book000/node-utils@1.13.397":
-  version "1.13.397"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.397.tgz#fc5d59dcb59299356bf120382f809c997335b174"
-  integrity sha512-fFd/GRea8VPZwEHsb8PDnOl7EH37i2aXBb6IMgmaaTMFPb/2WIz22MfHm1dyPygh7KzXN7teKaHbXLJUqYGGyA==
-  dependencies:
-    axios "1.7.9"
-    cycle "1.0.3"
-    form-data "4.0.1"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.46"
-    winston "3.16.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.13.398":
   version "1.13.398"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.398.tgz#b32c5095dc3eb571b4f15934b5931b0bfa1f7b72"
@@ -63,12 +50,25 @@
     winston "3.16.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.71.102":
-  version "0.71.102"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.102.tgz#57df58898e540960f7823a1f3acaa309088e0944"
-  integrity sha512-JzekP7Ss4Zw3/02vkxFbb+VJ1fkObGBia1EYjUnJ6Zn8m7Ve7mW/aah9WAH17m5iWw5mBrYrfLnpBVoa6cna4w==
+"@book000/node-utils@1.13.399":
+  version "1.13.399"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.399.tgz#a5326dfa8389b38423fcd471996fe59ae6ba6db0"
+  integrity sha512-HeZESd9yxN75dfGgN+AcfC6B2/wv8L3ul0PuBA0MvZQqEufDz4eJXP6Wwfv6mXTi495afgWb14AdUrFKvm/EnQ==
   dependencies:
-    "@book000/node-utils" "1.13.397"
+    axios "1.7.9"
+    cycle "1.0.3"
+    form-data "4.0.1"
+    jsonc-parser "3.3.1"
+    moment-timezone "0.5.46"
+    winston "3.16.0"
+    winston-daily-rotate-file "5.0.0"
+
+"@book000/twitterts@0.71.104":
+  version "0.71.104"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.104.tgz#b2f8abf91508ed88a803193748ca067a6f9a149d"
+  integrity sha512-U+HJITSzVuuq4M+IVQG6fV8VM6/7xCFhNpQHkMWrpyvtwqC3V/Q5CoCvrnKqixrBazQmXpTeIrdHBYB0Ik0SPA==
+  dependencies:
+    "@book000/node-utils" "1.13.399"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.3"
     json-stable-stringify "1.1.1"
