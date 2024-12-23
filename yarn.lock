@@ -50,16 +50,16 @@
     winston "3.16.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.71.108":
-  version "0.71.108"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.108.tgz#2e4b5ee507740a031bc7ece77757c2488c35f315"
-  integrity sha512-AEN/z01/w8fCTAH5bOoBGVeMaIw6SOzJu0hr4MyCmMV9g+5z81R2XZ3uKOh2ILn03Fv5HUVnB+3Eyq9pWyOJVA==
+"@book000/twitterts@0.71.109":
+  version "0.71.109"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.109.tgz#b90a581409f9b66c3cfa7cd794452e93bd0725d0"
+  integrity sha512-aG+NJSd2glXke5/ygjMOGVUdSwCq9tsB/jXbXCHYgrFQYJbF2dU5ebM8tQxvVm+9t2VORQRLqwUn/ER+Co6m8g==
   dependencies:
     "@book000/node-utils" "1.13.401"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.3"
     json-stable-stringify "1.1.1"
-    mysql2 "3.11.5"
+    mysql2 "3.12.0"
     otplib "12.0.1"
     puppeteer-core "23.11.1"
     twitter-d "0.6.0"
@@ -2372,10 +2372,10 @@ ms@^2.1.1, ms@^2.1.3:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-mysql2@3.11.5:
-  version "3.11.5"
-  resolved "https://registry.yarnpkg.com/mysql2/-/mysql2-3.11.5.tgz#1a1cb9a61e78d636da10e122a3c4d6978ad08625"
-  integrity sha512-0XFu8rUmFN9vC0ME36iBvCUObftiMHItrYFhlCRvFWbLgpNqtC4Br/NmZX1HNCszxT0GGy5QtP+k3Q3eCJPaYA==
+mysql2@3.12.0:
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/mysql2/-/mysql2-3.12.0.tgz#db8fc770f8b76ebaba49dc4bbfe2a1754057d882"
+  integrity sha512-C8fWhVysZoH63tJbX8d10IAoYCyXy4fdRFz2Ihrt9jtPILYynFEKUUzpp1U7qxzDc3tMbotvaBH+sl6bFnGZiw==
   dependencies:
     aws-ssl-profiles "^1.1.1"
     denque "^2.1.0"
