@@ -50,15 +50,15 @@
     winston "3.16.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.71.116":
-  version "0.71.116"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.116.tgz#dd904078fc6e94fd06f54a6418069ba952454308"
-  integrity sha512-ya2FU5UDcaF5WsEf7AcnhkmtCSilTsaixz3Y3bJiPRHGgZALiWLR8n6BMlHtvrvvvEz6uLBfKEvTDB4sLrQxCQ==
+"@book000/twitterts@0.71.117":
+  version "0.71.117"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.117.tgz#e77b7c93bf4961ad7f86cf11bcc21f4b88036056"
+  integrity sha512-qS1qGTuFhLQroLupHAKEw3hFWObkNLAmN21NYKvRoVWjygC9W0hdUbS5JTzN+nXKQFNuEDDfAFfcsur9pMzqKg==
   dependencies:
     "@book000/node-utils" "1.13.406"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.3"
-    json-stable-stringify "1.1.1"
+    json-stable-stringify "1.2.1"
     mysql2 "3.12.0"
     otplib "12.0.1"
     puppeteer-core "23.11.1"
@@ -731,7 +731,7 @@ call-bind-apply-helpers@^1.0.0, call-bind-apply-helpers@^1.0.1:
     es-errors "^1.3.0"
     function-bind "^1.1.2"
 
-call-bind@^1.0.5, call-bind@^1.0.7, call-bind@^1.0.8:
+call-bind@^1.0.7, call-bind@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/call-bind/-/call-bind-1.0.8.tgz#0736a9660f537e3388826f440d5ec45f744eaa4c"
   integrity sha512-oKlSFMcMwpUg2ednkhQ454wfWiU/ul3CkJe/PEHcTKuiX6RpbehUiFMXu13HalGZxfUwCQzZG747YXBn1im9ww==
@@ -2161,12 +2161,13 @@ json-stable-stringify-without-jsonify@^1.0.1:
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==
 
-json-stable-stringify@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/json-stable-stringify/-/json-stable-stringify-1.1.1.tgz#52d4361b47d49168bcc4e564189a42e5a7439454"
-  integrity sha512-SU/971Kt5qVQfJpyDveVhQ/vya+5hvrjClFOcr8c0Fq5aODJjMwutrOfCU+eCnVD5gpx1Q3fEqkyom77zH1iIg==
+json-stable-stringify@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/json-stable-stringify/-/json-stable-stringify-1.2.1.tgz#addb683c2b78014d0b78d704c2fcbdf0695a60e2"
+  integrity sha512-Lp6HbbBgosLmJbjx0pBLbgvx68FaFU1sdkmBuckmhhJ88kL13OA51CDtR2yJB50eCNMH9wRqtQNNiAqQH4YXnA==
   dependencies:
-    call-bind "^1.0.5"
+    call-bind "^1.0.8"
+    call-bound "^1.0.3"
     isarray "^2.0.5"
     jsonify "^0.0.1"
     object-keys "^1.1.1"
