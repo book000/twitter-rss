@@ -50,10 +50,10 @@
     winston "3.16.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.71.170":
-  version "0.71.170"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.170.tgz#ee0aca4037adcd1408234b1e8a7cf705f3da6097"
-  integrity sha512-x4jjiDdSNaLdVGt8gRYidijTRh5OnhlpcS2aIGXd0ncn2k3SkaW05ybR9dl3ObTIEkSQqhHkofNHRU7RsUNjlA==
+"@book000/twitterts@0.71.171":
+  version "0.71.171"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.171.tgz#615e495384813e332a07c0cf72cacb5b0c148571"
+  integrity sha512-T3Cpnr16fwFaHrFiSfxIzfUEb08N1TMcOi0S1d7TLxwmrGKY+PXurAKziKPuDx9vm5o1y/OiE36ZqPqUiKsd1w==
   dependencies:
     "@book000/node-utils" "1.13.433"
     genson-js "0.0.8"
@@ -61,7 +61,7 @@
     json-stable-stringify "1.2.1"
     mysql2 "3.12.0"
     otplib "12.0.1"
-    puppeteer-core "24.1.0"
+    puppeteer-core "24.1.1"
     twitter-d "0.6.0"
     ulid "2.3.0"
 
@@ -801,13 +801,13 @@ chokidar@^3.5.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
-chromium-bidi@0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/chromium-bidi/-/chromium-bidi-0.11.0.tgz#9c3c42ee7b42d8448e9fce8d649dc8bfbcc31153"
-  integrity sha512-6CJWHkNRoyZyjV9Rwv2lYONZf1Xm0IuDyNq97nwSsxxP3wf5Bwy15K5rOvVKMtJ127jJBmxFUanSAOjgFRxgrA==
+chromium-bidi@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/chromium-bidi/-/chromium-bidi-1.1.0.tgz#45e7d050ef512393424b6faa32a0ba67b2194040"
+  integrity sha512-HislCEczCuamWm3+55Lig9XKmMF13K+BGKum9rwtDAzgUAHT4h5jNwhDmD4U20VoVUG8ujnv9UZ89qiIf5uF8w==
   dependencies:
     mitt "3.0.1"
-    zod "3.23.8"
+    zod "3.24.1"
 
 ci-info@^4.0.0:
   version "4.1.0"
@@ -2785,13 +2785,13 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
   integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
-puppeteer-core@24.1.0:
-  version "24.1.0"
-  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-24.1.0.tgz#4ea006ab26077dfbf6c72e2cf74797a7ff6db468"
-  integrity sha512-ReefWoQgqdyl67uWEBy/TMZ4mAB7hP0JB5HIxSE8B1ot/4ningX1gmzHCOSNfMbTiS/VJHCvaZAe3oJTXph7yw==
+puppeteer-core@24.1.1:
+  version "24.1.1"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-24.1.1.tgz#cbf5a888168559e66319c0418f877a553c8ed2fa"
+  integrity sha512-7FF3gq6bpIsbq3I8mfbodXh3DCzXagoz3l2eGv1cXooYU4g0P4mcHQVHuBD4iSZPXNg8WjzlP5kmRwK9UvwF0A==
   dependencies:
     "@puppeteer/browsers" "2.7.0"
-    chromium-bidi "0.11.0"
+    chromium-bidi "1.1.0"
     debug "^4.4.0"
     devtools-protocol "0.0.1380148"
     typed-query-selector "^2.12.0"
@@ -3799,7 +3799,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod@3.23.8:
-  version "3.23.8"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.23.8.tgz#e37b957b5d52079769fb8097099b592f0ef4067d"
-  integrity sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==
+zod@3.24.1:
+  version "3.24.1"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.24.1.tgz#27445c912738c8ad1e9de1bea0359fa44d9d35ee"
+  integrity sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==
