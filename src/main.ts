@@ -75,6 +75,8 @@ async function generateRSS() {
     },
   })
 
+  const rssLanguage = process.env.RSS_LANGUAGE ?? 'ja'
+
   try {
     const searchWordPath = process.env.SEARCH_WORD_PATH ?? 'data/searches.json'
     const searchWords: SearchesModel = JSON.parse(
@@ -143,11 +145,10 @@ async function generateRSS() {
               'https://twitter.com/search?q=' +
               encodeURIComponent(searchWord) +
               '&f=live',
-
             generator: 'book000/twitter-rss',
-            language: 'ja',
+            language: rssLanguage,
+            item: items,
           },
-          item: items,
         },
       }
 
