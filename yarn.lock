@@ -50,6 +50,19 @@
     winston "3.16.0"
     winston-daily-rotate-file "5.0.0"
 
+"@book000/node-utils@1.13.439":
+  version "1.13.439"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.439.tgz#3a62e01b3211e143c406ce652d56112b7c02bd21"
+  integrity sha512-uqrPfuXp6HL/FpISAcPjprI2WPix4rbrTG7OhPXKwR4SN6CUGK6pnurrxLTndJu5Rh4EFhoEXTv10DR7ZB2xQA==
+  dependencies:
+    axios "1.7.9"
+    cycle "1.0.3"
+    form-data "4.0.1"
+    jsonc-parser "3.3.1"
+    moment-timezone "0.5.47"
+    winston "3.16.0"
+    winston-daily-rotate-file "5.0.0"
+
 "@book000/twitterts@0.71.183":
   version "0.71.183"
   resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.183.tgz#45b9ba7fff4ef59ffa490b3f20237608a5d7d9ee"
@@ -2393,6 +2406,13 @@ moment-timezone@0.5.46:
   version "0.5.46"
   resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.46.tgz#a21aa6392b3c6b3ed916cd5e95858a28d893704a"
   integrity sha512-ZXm9b36esbe7OmdABqIWJuBBiLLwAjrN7CE+7sYdCCx82Nabt1wHDj8TVseS59QIlfFPbOoiBPm6ca9BioG4hw==
+  dependencies:
+    moment "^2.29.4"
+
+moment-timezone@0.5.47:
+  version "0.5.47"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.47.tgz#d4d1a21b78372d914d6d69ae285454732a429749"
+  integrity sha512-UbNt/JAWS0m/NJOebR0QMRHBk0hu03r5dx9GK8Cs0AS3I81yDcOc9k+DytPItgVvBP7J6Mf6U2n3BPAacAV9oA==
   dependencies:
     moment "^2.29.4"
 
