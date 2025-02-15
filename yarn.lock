@@ -37,19 +37,6 @@
     globals "15.15.0"
     typescript-eslint "8.24.0"
 
-"@book000/node-utils@1.13.467":
-  version "1.13.467"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.467.tgz#15d87b3e3cd9f7e35354bd60eb5c7b1d97e717d2"
-  integrity sha512-IeF7THoP0yP8mfeaDWRaXDgi48WUToDCpqrs/79zqbARDS18B+oypiqo7gkrxwaVGpDEXsRB7Zyz5srTQvzvHw==
-  dependencies:
-    axios "1.7.9"
-    cycle "1.0.3"
-    form-data "4.0.1"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.47"
-    winston "3.17.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.13.468":
   version "1.13.468"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.13.468.tgz#f7bb4785da318074f25d68c8b0ff0e41cb374517"
@@ -63,12 +50,12 @@
     winston "3.17.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.71.224":
-  version "0.71.224"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.224.tgz#cd04b172de9b4db779268699cedb0c611b745412"
-  integrity sha512-b9lkgZf9IVubnoHgv+i/bk1jkJdQ2jD8W0wOSHmY+5lfZOGMmit6z2m565B0Mc18P14c+oFSD0RR5aqyD4ap7g==
+"@book000/twitterts@0.71.225":
+  version "0.71.225"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.225.tgz#4e08ed1ac721690929b3a8218e244594616c32d4"
+  integrity sha512-8vIUzc7GOYNRxHrOrn3Nx4O0UJj6PuL5eBP9T/D9C9+GYQUzepRgqGG4woGoiHuMnlFHGak90zD+Y/KYbxeiyA==
   dependencies:
-    "@book000/node-utils" "1.13.467"
+    "@book000/node-utils" "1.13.468"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.4"
     json-stable-stringify "1.2.1"
@@ -1591,15 +1578,6 @@ for-each@^0.3.3:
   dependencies:
     is-callable "^1.2.7"
 
-form-data@4.0.1, form-data@^4.0.0:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.1.tgz#ba1076daaaa5bfd7e99c1a6cb02aa0a5cff90d48"
-  integrity sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==
-  dependencies:
-    asynckit "^0.4.0"
-    combined-stream "^1.0.8"
-    mime-types "^2.1.12"
-
 form-data@4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.2.tgz#35cabbdd30c3ce73deb2c42d3c8d3ed9ca51794c"
@@ -1608,6 +1586,15 @@ form-data@4.0.2:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
     es-set-tostringtag "^2.1.0"
+    mime-types "^2.1.12"
+
+form-data@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.1.tgz#ba1076daaaa5bfd7e99c1a6cb02aa0a5cff90d48"
+  integrity sha512-tzN8e4TX8+kkxGPK8D5u0FNmjPUjw3lwC9lSLxxoB/+GtsJG91CO8bSWy73APlgAZzZbXEYZJuxjkHH2w+Ezhw==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
 from@~0:
