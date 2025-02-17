@@ -24,7 +24,7 @@
   "devDependencies": {
     "@book000/eslint-config": "1.8.2",
     "@book000/node-utils": "1.13.471",
-    "@book000/twitterts": "0.71.227",
+    "@book000/twitterts": "0.71.228",
     "@types/node": "22.13.4",
     "eslint": "9.20.1",
     "eslint-config-standard": "17.1.0",
