@@ -50,12 +50,25 @@
     winston "3.17.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.71.248":
-  version "0.71.248"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.248.tgz#d8d114477b58df4fd5b5b4aacc20c15283507074"
-  integrity sha512-tQ9Zg0R+i02c9l7fQ1NhByB2wE+e4/2MeL+tCoFog80vF2MqOrsDgkb7/o+2ccdwUIRnCk7DzlNVfUQGpN/Jvw==
+"@book000/node-utils@1.14.1":
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.14.1.tgz#91b2b5ac7b819ed7da0fade4b6e08088ba9e4f3f"
+  integrity sha512-83r2q3yU4TGlRegQ++YFy36Q4EeZvVPACD7B/374BVrCFLc26FkzhR/+hWCcsbMOhY2cJxuAp7lK3kA/hzl5Nw==
   dependencies:
-    "@book000/node-utils" "1.14.0"
+    axios "1.8.1"
+    cycle "1.0.3"
+    form-data "4.0.2"
+    jsonc-parser "3.3.1"
+    moment-timezone "0.5.47"
+    winston "3.17.0"
+    winston-daily-rotate-file "5.0.0"
+
+"@book000/twitterts@0.71.249":
+  version "0.71.249"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.249.tgz#4303c1239abddca8c01fd8d15c44f2f568ff051c"
+  integrity sha512-2cjMeBlXZBP5+MWBsczCC3O7YlOuUUqsTCxZLi/LbYeanD5Plhoh0zCE6ALQ3TZC/xs8vR4pHJ+SjfmPt8p9Xg==
+  dependencies:
+    "@book000/node-utils" "1.14.1"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.4"
     json-stable-stringify "1.2.1"
@@ -610,6 +623,15 @@ axios@1.7.9:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.9.tgz#d7d071380c132a24accda1b2cfc1535b79ec650a"
   integrity sha512-LhLcE7Hbiryz8oMDdDptSrWowmB4Bl6RCt6sIJKpRB4XtVf0iEgewX3au/pJqm+Py1kCASkb/FFKjxQaLtxJvw==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.8.1.tgz#7c118d2146e9ebac512b7d1128771cdd738d11e3"
+  integrity sha512-NN+fvwH/kV01dYUQ3PTOZns4LWtWhOFCAhQ/pHb88WQ1hNe5V/dvFwc4VJcDL11LT9xSX0QtsR8sWUuyOuOq7g==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
