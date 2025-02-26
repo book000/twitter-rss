@@ -25,14 +25,14 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.25.9.tgz#24b64e2c3ec7cd3b3c547729b8d16871f22cbdc7"
   integrity sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==
 
-"@book000/eslint-config@1.8.12":
-  version "1.8.12"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.8.12.tgz#cd51c943122b564fde903aa1e2be5d477b400790"
-  integrity sha512-MsF1IZAw78GxlHsZC0EQOG7gbWNWtINZUyyNEFTGmNOUq4zJY2LnYKxVizxIvw/G1X7mzfYAMvOXMeSQ9IjTBg==
+"@book000/eslint-config@1.8.13":
+  version "1.8.13"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.8.13.tgz#7b14b80417e213b770731718f9199e4870782c66"
+  integrity sha512-Ah6ICJeW350gPXOsBPjdWykN331yNfShIYrIy9A8S3nNLlepRhsJ3Gx9WtKrIpgTmIbx3U0Avvp70PKvNxZ35A==
   dependencies:
     "@eslint/eslintrc" "3.3.0"
     "@typescript-eslint/parser" "8.25.0"
-    eslint-config-prettier "10.0.1"
+    eslint-config-prettier "10.0.2"
     eslint-plugin-unicorn "57.0.0"
     globals "16.0.0"
     typescript-eslint "8.25.0"
@@ -1226,10 +1226,10 @@ eslint-compat-utils@^0.5.1:
   dependencies:
     semver "^7.5.4"
 
-eslint-config-prettier@10.0.1:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-10.0.1.tgz#fbb03bfc8db0651df9ce4e8b7150d11c5fe3addf"
-  integrity sha512-lZBts941cyJyeaooiKxAtzoPHTN+GbQTJFAIdQbRhA4/8whaAraEh47Whw/ZFfrjNSnlAxqfm9i0XVAEkULjCw==
+eslint-config-prettier@10.0.2:
+  version "10.0.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-10.0.2.tgz#47444de8aa104ce82c2f91ad2a5e96b62c01e20d"
+  integrity sha512-1105/17ZIMjmCOJOPNfVdbXafLCLj3hPmkmB7dLgt7XsQ/zkxSuDerE/xgO3RxoHysR1N1whmquY0lSn2O0VLg==
 
 eslint-config-standard@17.1.0:
   version "17.1.0"
