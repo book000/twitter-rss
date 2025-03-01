@@ -37,19 +37,6 @@
     globals "16.0.0"
     typescript-eslint "8.25.0"
 
-"@book000/node-utils@1.14.5":
-  version "1.14.5"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.14.5.tgz#cf160c321f51e2e09fcdc0e7f5b30aad12bb20da"
-  integrity sha512-wJ89HUqtL7KdTLPP9cQsYao443wzmoBqqRLOJ59Gub4rbCuWN56DLlGEJSqu43+scdu2ZvUDtkyoNuiMDztIXg==
-  dependencies:
-    axios "1.8.1"
-    cycle "1.0.3"
-    form-data "4.0.2"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.47"
-    winston "3.17.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.14.6":
   version "1.14.6"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.14.6.tgz#797825ed7788efc418857e36be837940888546fd"
@@ -63,12 +50,25 @@
     winston "3.17.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.71.254":
-  version "0.71.254"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.254.tgz#9ba6e7ca31d4d60ddedcae0e2687ec9b15900c76"
-  integrity sha512-nt0xm3JOuundEhHWGNKxzsI0r0bVYC431sp9VYMlM9w7mhhYFCHhyNPojWWYRrAQKBkl2p0WWYD3jdbyxWby1Q==
+"@book000/node-utils@1.14.7":
+  version "1.14.7"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.14.7.tgz#e9001fd8a20fedd9f9e37b8d885d484836c47573"
+  integrity sha512-ebkNRsxFklBijttXcBdfS0St73icyH1joD7Gc6rYKUpHlFXJ8ONa5FUz8Ll2KNEO5n04Gg0FxnhwmHzEgVI6nw==
   dependencies:
-    "@book000/node-utils" "1.14.5"
+    axios "1.8.1"
+    cycle "1.0.3"
+    form-data "4.0.2"
+    jsonc-parser "3.3.1"
+    moment-timezone "0.5.47"
+    winston "3.17.0"
+    winston-daily-rotate-file "5.0.0"
+
+"@book000/twitterts@0.71.257":
+  version "0.71.257"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.257.tgz#145747d5c2d7645a79a8aed27cad2638382b2fd7"
+  integrity sha512-BcoTI5o8w8BpAM/jMrlR4N1RzBCUkOw66Qei7cbKYHgGtjbe/EUSAzA6FX3ttD/UP4wK79JesGdinp/Y7hnDJw==
+  dependencies:
+    "@book000/node-utils" "1.14.7"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.4"
     json-stable-stringify "1.2.1"
