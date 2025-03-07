@@ -37,19 +37,6 @@
     globals "16.0.0"
     typescript-eslint "8.26.0"
 
-"@book000/node-utils@1.14.17":
-  version "1.14.17"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.14.17.tgz#3b34938b4468bc675b0f2670ba07a45364a8f75b"
-  integrity sha512-xP327Lme6hYem1XR/RJxzCDywEL1fZTtU4awMDfEOLuk/hfRO149IPHDJBOcroaSAPa7DPZ7ndwPKextW6vshQ==
-  dependencies:
-    axios "1.8.1"
-    cycle "1.0.3"
-    form-data "4.0.2"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.5.47"
-    winston "3.17.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.14.19":
   version "1.14.19"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.14.19.tgz#79a889d5dc2e2980957f459b64da7213f6643419"
@@ -63,12 +50,25 @@
     winston "3.17.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.71.275":
-  version "0.71.275"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.275.tgz#c2cda837544027bebafbebd67a60405c1c019292"
-  integrity sha512-4xjTDOa34iMnVJpi0yl5dpGuO919d3nggpFaxxi9lBy09HqYBl4Zs2wJo+meHIxfpKaElt32yAKnUQo+Jp25Og==
+"@book000/node-utils@1.14.21":
+  version "1.14.21"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.14.21.tgz#6ab98fccf79a8b1471914ed584b351d035dc608a"
+  integrity sha512-PpIiejK2EZneglaETD7QTbdl6+WVRcloa0xZOLqPNvW7TD47D3Hr9c8kdI/dZbmRWL81V4kQ7iWRn8cP10zpQQ==
   dependencies:
-    "@book000/node-utils" "1.14.17"
+    axios "1.8.2"
+    cycle "1.0.3"
+    form-data "4.0.2"
+    jsonc-parser "3.3.1"
+    moment-timezone "0.5.47"
+    winston "3.17.0"
+    winston-daily-rotate-file "5.0.0"
+
+"@book000/twitterts@0.71.278":
+  version "0.71.278"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.71.278.tgz#8824ee4f09c1b687e2621526b93eaa97d79f4c49"
+  integrity sha512-ikHSW9lnSgE5xqfMqGKTZVuA75zX8HSSm+MtjWC0ECvRNfCQ7xgyXinARKmx1mGefMiJLvBgzWaTHlzr5JIHYA==
+  dependencies:
+    "@book000/node-utils" "1.14.21"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.4"
     json-stable-stringify "1.2.1"
@@ -630,6 +630,15 @@ axios@1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.8.1.tgz#7c118d2146e9ebac512b7d1128771cdd738d11e3"
   integrity sha512-NN+fvwH/kV01dYUQ3PTOZns4LWtWhOFCAhQ/pHb88WQ1hNe5V/dvFwc4VJcDL11LT9xSX0QtsR8sWUuyOuOq7g==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.8.2.tgz#fabe06e241dfe83071d4edfbcaa7b1c3a40f7979"
+  integrity sha512-ls4GYBm5aig9vWx8AWDSGLpnpDQRtWAfrjU+EuytuODrFBkqesN2RkOQCBzrA1RQNHw1SmRMSDDDSwzNAYQ6Rg==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
