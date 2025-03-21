@@ -25,7 +25,7 @@
     "@book000/eslint-config": "1.8.29",
     "@book000/node-utils": "1.14.41",
     "@book000/twitterts": "0.71.307",
-    "@types/node": "22.13.10",
+    "@types/node": "22.13.11",
     "eslint": "9.22.0",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.31.0",
