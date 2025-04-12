@@ -1,0 +1,14 @@
+curl=8.5.0-2ubuntu10.6
+fontconfig=2.15.0-1.1ubuntu2
+fonts-noto-cjk=1:20230817+repack1-3
+chromium-browser=2:1snap1-0ubuntu2
+libnss3=2:3.98-1build1
+libfreetype6=2.13.2+dfsg-1build3
+libharfbuzz-bin=8.3.0-2build2
+ca-certificates=20240203
+fonts-freefont-ttf=20211204+svn4273-2
+nodejs=18.19.1+dfsg-6ubuntu5
+xvfb=2:21.1.12-1ubuntu1.3
+xauth=1:1.1.2-1build1
+dbus=1.14.10-4ubuntu4.1
+dbus-x11=1.14.10-4ubuntu4.1
