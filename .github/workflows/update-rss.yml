@@ -34,7 +34,7 @@ jobs:
           timeout_minutes: 30
           command: |
             sudo apt-get update
-            xargs -a .github/apt-packages.txt sudo apt-get install -y
+            grep -vE '^\s*#|^\s*$' .github/apt-packages.txt | xargs sudo apt-get install -y
             fc-cache -fv
 
       - name: Install nodejs dependencies
@@ -72,7 +72,7 @@ jobs:
                 "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
                 "color": 16711680,
                 "footer": {
-                  "text": "${{ github.repository }}",
+                  "text": "${{ github.repository }}"
                 }
               }
             ]
