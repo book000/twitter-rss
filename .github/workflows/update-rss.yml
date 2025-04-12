@@ -8,6 +8,10 @@ on:
       - master
     paths:
       - '**/*.ts'
+  pull_request:
+    branches:
+      - main
+      - master
   schedule:
     - cron: '0 * * * *'
 
@@ -59,7 +63,7 @@ jobs:
           PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }}
 
       - name: Error handling
-        if: failure()
+        if: failure() && github.event_name != 'pull_request'
         uses: Ilshidur/action-discord@0.3.2
         with:
           args: ''
@@ -85,6 +89,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
     needs: update-rss
     permissions:
       pages: write
