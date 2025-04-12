@@ -34,9 +34,8 @@ jobs:
           timeout_minutes: 30
           command: |
             sudo apt-get update
-            sudo apt-get install -y curl fontconfig fonts-noto-cjk
+            xargs -a .github/apt-packages.txt sudo apt-get install -y
             fc-cache -fv
-            sudo apt-get install -y chromium-browser libnss3 libfreetype6 libfreetype6-dev libharfbuzz-bin ca-certificates fonts-freefont-ttf nodejs xvfb xauth dbus dbus-x11
 
       - name: Install nodejs dependencies
         run: yarn
@@ -71,7 +70,10 @@ jobs:
               {
                 "title": "RSS Update Failed",
                 "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
-                "color": 16711680
+                "color": 16711680,
+                "footer": {
+                  "text": "${{ github.repository }}",
+                }
               }
             ]
 
