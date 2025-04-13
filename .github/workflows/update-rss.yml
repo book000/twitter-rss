@@ -34,8 +34,7 @@ jobs:
         uses: nick-fields/retry@v3
         with:
           max_attempts: 3
-          retry_on: error
-          timeout_minutes: 30
+          timeout_minutes: 10
           command: |
             sudo apt-get update
             grep -vE '^\s*#|^\s*$' .github/apt-packages.txt | xargs sudo apt-get install -y
