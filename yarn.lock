@@ -50,10 +50,10 @@
     winston "3.17.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.74.16":
-  version "0.74.16"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.74.16.tgz#00ace1ec6e5571ddc03cc3bd486b283d03014035"
-  integrity sha512-4JyzWk94ro/myML4AfpaS9+oxB4Kxec2LbepykVBpOhk6gKDfSfqjAQIn7mmBYKWfbaPLoyVRYeriI3FEkrCIg==
+"@book000/twitterts@0.74.17":
+  version "0.74.17"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.74.17.tgz#06942b9f2bd86f6899e7b29ed2adfe38a5968910"
+  integrity sha512-N/0b7XDc3v+p8CUMWVKQvaEwU7ihMRe2dLdLHT15y5fGfkInVgDrIwfLWies7M8wzrr2t1xb3IcCfhCVVphYiA==
   dependencies:
     "@book000/node-utils" "1.14.89"
     genson-js "0.0.8"
@@ -61,7 +61,7 @@
     json-stable-stringify "1.3.0"
     mysql2 "3.14.0"
     otplib "12.0.1"
-    puppeteer-core "24.7.1"
+    puppeteer-core "24.7.2"
     twitter-d "0.6.0"
     ulid "3.0.0"
 
@@ -798,10 +798,10 @@ chokidar@^3.5.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
-chromium-bidi@4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/chromium-bidi/-/chromium-bidi-4.0.1.tgz#b2a56c4acbf262daae8e83c1354d85a4ab639594"
-  integrity sha512-oRgKuzRQYXEUBlrlXWeBbot0KLyFOAwTe0pt3EJYZ1I0yvvr1dl6zhnUxlkKvSAk0pin+c1SxeuxBILISEgIEw==
+chromium-bidi@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/chromium-bidi/-/chromium-bidi-4.1.1.tgz#e1c34154ddd94473f180fd15158a24d36049e3d5"
+  integrity sha512-biR7t4vF3YluE6RlMSk9IWk+b9U+WWyzHp+N2pL9vRTk+UXHYRTVp7jTK58ZNzMLBgoLMHY4QyJMbeuw3eKxqg==
   dependencies:
     mitt "^3.0.1"
     zod "^3.24.1"
@@ -2772,13 +2772,13 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
   integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
-puppeteer-core@24.7.1:
-  version "24.7.1"
-  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-24.7.1.tgz#f9c02297223adf70044fd90c899c7ba2113c3914"
-  integrity sha512-ORJJEk5nZiIRlYm4PgbtwTvnTGLlHiB8E9V6jZqqu8kaWjpbj/6HT1Yfj81rE66P3ZZqMPXqjEBxRkK1QSsu+w==
+puppeteer-core@24.7.2:
+  version "24.7.2"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-24.7.2.tgz#734e377a5634ce1e419fa3ce20ad297a7e1a99ff"
+  integrity sha512-P9pZyTmJqKODFCnkZgemCpoFA4LbAa8+NumHVQKyP5X9IgdNS1ZnAnIh1sMAwhF8/xEUGf7jt+qmNLlKieFw1Q==
   dependencies:
     "@puppeteer/browsers" "2.10.2"
-    chromium-bidi "4.0.1"
+    chromium-bidi "4.1.1"
     debug "^4.4.0"
     devtools-protocol "0.0.1425554"
     typed-query-selector "^2.12.0"
