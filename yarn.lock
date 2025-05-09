@@ -16,10 +16,10 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.27.1.tgz#a7054dcc145a967dd4dc8fee845a57c1316c9df8"
   integrity sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==
 
-"@book000/eslint-config@1.8.65":
-  version "1.8.65"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.8.65.tgz#d3e4c05529685044b0bf92fbdbb41233341c08a2"
-  integrity sha512-7Mcwc8iNxi/Xo18oNddRiIBPPosBKzx6/MZTjXj50kKkhJnZBB9kqtK1c/64SxqUglLq3LvMPd+sJUG0YSBRlQ==
+"@book000/eslint-config@1.8.66":
+  version "1.8.66"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.8.66.tgz#451f18658fa5a5db4a3a3162eb6fac5f86349364"
+  integrity sha512-6Dwws/2K/Ve1MjjP7wCo8H5ghVXj4nOcLMkcvgeQW+0YpDAtzsG4m7eZx1LEr4yQvbs1BUGX4IT/23tKuJWSAw==
   dependencies:
     "@eslint/eslintrc" "3.3.1"
     "@typescript-eslint/parser" "8.32.0"
@@ -27,7 +27,7 @@
     eslint-plugin-import "2.31.0"
     eslint-plugin-n "17.17.0"
     eslint-plugin-promise "7.2.1"
-    eslint-plugin-unicorn "59.0.0"
+    eslint-plugin-unicorn "59.0.1"
     globals "16.0.0"
     typescript-eslint "8.32.0"
 
@@ -1394,10 +1394,10 @@ eslint-plugin-promise@7.2.1:
   dependencies:
     "@eslint-community/eslint-utils" "^4.4.0"
 
-eslint-plugin-unicorn@59.0.0:
-  version "59.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-59.0.0.tgz#11783a80ce81ab397cccbb1ce046a30eda9bb4b9"
-  integrity sha512-7IEeqkymGa7tr6wTWS4DolfXnfcE3QjcD0g7I+qCfV5GPMvVsFsLT7zTIYvnudqwAm5nWekdGIOTTXA93Sz9Ow==
+eslint-plugin-unicorn@59.0.1:
+  version "59.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-59.0.1.tgz#e76ca18f6b92633440973e5442923a36544a1422"
+  integrity sha512-EtNXYuWPUmkgSU2E7Ttn57LbRREQesIP1BiLn7OZLKodopKfDXfBUkC/0j6mpw2JExwf43Uf3qLSvrSvppgy8Q==
   dependencies:
     "@babel/helper-validator-identifier" "^7.25.9"
     "@eslint-community/eslint-utils" "^4.5.1"
