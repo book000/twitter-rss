@@ -31,19 +31,6 @@
     globals "16.2.0"
     typescript-eslint "8.33.1"
 
-"@book000/node-utils@1.18.0":
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.0.tgz#3f6f71b01378936ea9c4d7cd7f610a70ffbb4c7a"
-  integrity sha512-qTeAXLYpti2B/OroIYl+ZTy9wF7Zh8Mr6PPhs8Kh5GXcGX56RoZn8LbhSKc/pInTMW0NknoKZIzouQ6bE/hTPA==
-  dependencies:
-    axios "1.9.0"
-    cycle "1.0.3"
-    form-data "4.0.2"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.6.0"
-    winston "3.17.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.18.4":
   version "1.18.4"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.4.tgz#0673953399b618ffb8d197f3ac6f08aa8fb056b2"
@@ -57,12 +44,12 @@
     winston "3.17.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.77.15":
-  version "0.77.15"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.77.15.tgz#a565e833e328212da612adf1fbab1e6014b9ee24"
-  integrity sha512-CBuolcGM4MwBlauSCoyxzXdydOKvGlrMdM2D3FTLKJdoBK/w0fb70BG0aJ5bPJpqsehy9tNuAVYZLKKkBywWJg==
+"@book000/twitterts@0.77.16":
+  version "0.77.16"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.77.16.tgz#e89be64abc872cd1f79c43ca410015c9d08c236d"
+  integrity sha512-JolrO8FB2To560ayc//vUP67qCkzYLWGarWvToO68X9zouhhpPdVH8H79E1lwXoCrqZ5b79NJny8uJsWSVUQPg==
   dependencies:
-    "@book000/node-utils" "1.18.0"
+    "@book000/node-utils" "1.18.4"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.4"
     json-stable-stringify "1.3.0"
@@ -1608,16 +1595,6 @@ for-each@^0.3.3, for-each@^0.3.5:
   integrity sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg==
   dependencies:
     is-callable "^1.2.7"
-
-form-data@4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.2.tgz#35cabbdd30c3ce73deb2c42d3c8d3ed9ca51794c"
-  integrity sha512-hGfm/slu0ZabnNt4oaRZ6uREyfCj6P4fT/n6A1rGV+Z0VdGXjfOhVUpkn6qVQONHGIFwmveGXyDs75+nr6FM8w==
-  dependencies:
-    asynckit "^0.4.0"
-    combined-stream "^1.0.8"
-    es-set-tostringtag "^2.1.0"
-    mime-types "^2.1.12"
 
 form-data@4.0.3, form-data@^4.0.0:
   version "4.0.3"
