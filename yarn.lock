@@ -44,10 +44,10 @@
     winston "3.17.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/node-utils@1.18.74":
-  version "1.18.74"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.74.tgz#54fb91af4145b4c5f38466c8b09bc88eb02936bc"
-  integrity sha512-3Bb+x0kA3eQW99VPpJVttsjHboS9/amtBgxK80uMRjOJ4BlrwfIoc/ZRpf6hRQ/RZHzbjZIGdhTBGvuH8GpUMg==
+"@book000/node-utils@1.18.76":
+  version "1.18.76"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.76.tgz#6d9dd1a99b688c68d1537e2d01c55ccece7214f6"
+  integrity sha512-9hnzbQXfmjSfv8hwZFQ1tNpXcypPlFaAhVxCQ8qyd0p/7FjVAtwtsnNDo+ENXFxvdyr5QEO1erF3Zk7VJVFSVQ==
   dependencies:
     axios "1.10.0"
     cycle "1.0.3"
