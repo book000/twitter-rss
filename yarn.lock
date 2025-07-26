@@ -31,19 +31,6 @@
     globals "16.3.0"
     typescript-eslint "8.38.0"
 
-"@book000/node-utils@1.18.81":
-  version "1.18.81"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.81.tgz#e9610191202fb4c697d95988a147cf5435f2e4b6"
-  integrity sha512-iYh4oj/AcfEj7tXhju/CVPFFhkJg0oyd04Ipei2T1c405eLmOhHmKo75o6dVGJoxth+laONwBtGNSjZQRALIyw==
-  dependencies:
-    axios "1.10.0"
-    cycle "1.0.3"
-    form-data "4.0.4"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.6.0"
-    winston "3.17.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.18.82":
   version "1.18.82"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.82.tgz#4933a10645ecccacd0d5aa467478968fd973a7c6"
@@ -57,12 +44,12 @@
     winston "3.17.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.82.17":
-  version "0.82.17"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.82.17.tgz#9969131d2a9cef3cec508ef80974a3c4525a6f84"
-  integrity sha512-0J4BEGSTzXqqr46QghpHpLIqZQskvoBEjZPFD/qs7qEIIaadfR2ZETwygieqPwNBEY1XxkGRUAcvHLXC0ph6Vw==
+"@book000/twitterts@0.82.18":
+  version "0.82.18"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.82.18.tgz#678f7e2ac428104b23eb7a8d2c19f75446a7d560"
+  integrity sha512-TFJLQ8QnScVRrm/nCOYEbyS2xC7Lr5mZnCqDnycgO09N4Q/FETnRIHK0BH6eAV6FXeAuZtNCVWGooV05WeOyjQ==
   dependencies:
-    "@book000/node-utils" "1.18.81"
+    "@book000/node-utils" "1.18.82"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.4"
     json-stable-stringify "1.3.0"
@@ -647,15 +634,6 @@ aws-ssl-profiles@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/aws-ssl-profiles/-/aws-ssl-profiles-1.1.2.tgz#157dd77e9f19b1d123678e93f120e6f193022641"
   integrity sha512-NZKeq9AfyQvEeNlN0zSYAaWrmBffJh3IELMZfRpJVWgrpEbtEpnjvzqBPf+mxoI287JohRDoa+/nsfqqiZmF6g==
-
-axios@1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.10.0.tgz#af320aee8632eaf2a400b6a1979fa75856f38d54"
-  integrity sha512-/1xYAC4MP/HEG+3duIhFr4ZQXR4sQXOIe+o6sdqzeykGLx6Upp/1p8MHqhINOvGeP7xyNHe7tsiJByc4SSVUxw==
-  dependencies:
-    follow-redirects "^1.15.6"
-    form-data "^4.0.0"
-    proxy-from-env "^1.1.0"
 
 axios@1.11.0:
   version "1.11.0"
@@ -1624,7 +1602,7 @@ for-each@^0.3.3, for-each@^0.3.5:
   dependencies:
     is-callable "^1.2.7"
 
-form-data@4.0.4, form-data@^4.0.0, form-data@^4.0.4:
+form-data@4.0.4, form-data@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.4.tgz#784cdcce0669a9d68e94d11ac4eea98088edd2c4"
   integrity sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==
