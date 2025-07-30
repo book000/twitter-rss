@@ -44,6 +44,19 @@
     winston "3.17.0"
     winston-daily-rotate-file "5.0.0"
 
+"@book000/node-utils@1.18.87":
+  version "1.18.87"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.87.tgz#0dad8a1d8ee9384db07f94d5f26c280407fd298d"
+  integrity sha512-LOBWQAuoJc9EQH2G7uGYnY30/Z6FnAlqZo3Vf5pd1zSphkEaMr0UciMMsSphpEHSgCARIbDkt5GsoutksgizWQ==
+  dependencies:
+    axios "1.11.0"
+    cycle "1.0.3"
+    form-data "4.0.4"
+    jsonc-parser "3.3.1"
+    moment-timezone "0.6.0"
+    winston "3.17.0"
+    winston-daily-rotate-file "5.0.0"
+
 "@book000/twitterts@0.82.27":
   version "0.82.27"
   resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.82.27.tgz#705e4e65ec9c32fd38de59490edd7aec7a0997a5"
@@ -1292,21 +1305,6 @@ eslint-plugin-import@2.32.0:
     semver "^6.3.1"
     string.prototype.trimend "^1.0.9"
     tsconfig-paths "^3.15.0"
-
-eslint-plugin-n@17.21.0:
-  version "17.21.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-n/-/eslint-plugin-n-17.21.0.tgz#6b1833e5e8fd07a69bbab2be429771ff2309db5e"
-  integrity sha512-1+iZ8We4ZlwVMtb/DcHG3y5/bZOdazIpa/4TySo22MLKdwrLcfrX0hbadnCvykSQCCmkAnWmIP8jZVb2AAq29A==
-  dependencies:
-    "@eslint-community/eslint-utils" "^4.5.0"
-    enhanced-resolve "^5.17.1"
-    eslint-plugin-es-x "^7.8.0"
-    get-tsconfig "^4.8.1"
-    globals "^15.11.0"
-    ignore "^5.3.2"
-    minimatch "^9.0.5"
-    semver "^7.6.3"
-    ts-declaration-location "^1.0.6"
 
 eslint-plugin-n@17.21.1:
   version "17.21.1"
