@@ -31,19 +31,6 @@
     globals "16.3.0"
     typescript-eslint "8.38.0"
 
-"@book000/node-utils@1.18.86":
-  version "1.18.86"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.86.tgz#abac90d521a2c05493d0b78f86b16f9952b6dd68"
-  integrity sha512-7x2YQmrS2g1SaGVsEPZf+nU1hUp5RgvGKjbzqf2uW4nxfY4yqCatiLRptgRIfqS493v/0Vu2c/CiRmXqPIud4Q==
-  dependencies:
-    axios "1.11.0"
-    cycle "1.0.3"
-    form-data "4.0.4"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.6.0"
-    winston "3.17.0"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.18.89":
   version "1.18.89"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.89.tgz#6e23187542067dc4397009c970c252239aaa0a9d"
@@ -57,12 +44,12 @@
     winston "3.17.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.82.32":
-  version "0.82.32"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.82.32.tgz#2945053ddefc112790d8e009ebe010ea98f9dc29"
-  integrity sha512-0YR/3nVATCfXg+TXy/JZr1mylbCRbmdcH1lC0R3dO4ZnfCjVzS3bED2pkMBlFPKXp8DI84WI/Qvba/XivizmXw==
+"@book000/twitterts@0.82.35":
+  version "0.82.35"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.82.35.tgz#44ab70ad7f7d3161e0ce97ec1b2dee5db2164b8f"
+  integrity sha512-0UG9leurvqFr4ZUpSDblf8Y9/qsaunDUiiCjv7AUnO1Mb6p8C0zTEDLNAJLLS5XLFSYJinylHtos5eZqwsqJUQ==
   dependencies:
-    "@book000/node-utils" "1.18.86"
+    "@book000/node-utils" "1.18.89"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.4"
     json-stable-stringify "1.3.0"
@@ -1305,21 +1292,6 @@ eslint-plugin-import@2.32.0:
     semver "^6.3.1"
     string.prototype.trimend "^1.0.9"
     tsconfig-paths "^3.15.0"
-
-eslint-plugin-n@17.21.2:
-  version "17.21.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-n/-/eslint-plugin-n-17.21.2.tgz#eba404bf818ea41ed2ebd12a75050a6f1a6137dc"
-  integrity sha512-s3ai4Msfk5mbSvOgCkYo6k5+zP3W/OK+AvLmMmx++Ki4a5CPO7luIDwOnjUZm/t+oZYP0YADTxe+u4JqnT8+Dg==
-  dependencies:
-    "@eslint-community/eslint-utils" "^4.5.0"
-    enhanced-resolve "^5.17.1"
-    eslint-plugin-es-x "^7.8.0"
-    get-tsconfig "^4.8.1"
-    globals "^15.11.0"
-    globrex "^0.1.2"
-    ignore "^5.3.2"
-    semver "^7.6.3"
-    ts-declaration-location "^1.0.6"
 
 eslint-plugin-n@17.21.3:
   version "17.21.3"
