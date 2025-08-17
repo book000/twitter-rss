@@ -16,10 +16,10 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.27.1.tgz#a7054dcc145a967dd4dc8fee845a57c1316c9df8"
   integrity sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==
 
-"@book000/eslint-config@1.10.10":
-  version "1.10.10"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.10.10.tgz#95a35dfa760228667e386a0bf92dae2958bd8ca0"
-  integrity sha512-+sAINzpHI2nCscGtYsOSkyQVER8lwcduz6uxNP6l8oI1Kez7EJ3yWlmdHVOb2i9cYM0cdn3NvDQJr26jepRSZQ==
+"@book000/eslint-config@1.10.11":
+  version "1.10.11"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.10.11.tgz#944964eb8d167cdf89ba572c4086ccf281ee5eba"
+  integrity sha512-Nm94cmN0bFkIdER6jOuPIZs9rzeiDM037ssRdK07Xy0SOxLw8xuAKcgalAmqoa69q8dKUNwruEMseUkTA/ggmg==
   dependencies:
     "@eslint/eslintrc" "3.3.1"
     "@typescript-eslint/parser" "8.39.1"
