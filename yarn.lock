@@ -44,10 +44,10 @@
     winston "3.17.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.82.125":
-  version "0.82.125"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.82.125.tgz#0fb7d972754b7a4c10caeb209ace155ab332516c"
-  integrity sha512-Y19qLZZUYtCXkc+hpQXS+c/rY76G6AGY5Papc6tMOgtoxdOD18fXafnQ/qayjozFnSL/7jzPpQKaH/lRn6Z/oA==
+"@book000/twitterts@0.82.127":
+  version "0.82.127"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.82.127.tgz#9a42b5bac5de8f913d7e13895c1455e339af7338"
+  integrity sha512-wgHv7H36+6gnkJgoGPSHol8Vm4o2iVVPprTBmslA0x1xrxNxSWK64FAlB6dXaaZjOLxRZjgUxjW1YYlyL7+s2g==
   dependencies:
     "@book000/node-utils" "1.18.125"
     genson-js "0.0.8"
@@ -55,7 +55,7 @@
     json-stable-stringify "1.3.0"
     mysql2 "3.14.5"
     otplib "12.0.1"
-    puppeteer-core "24.20.0"
+    puppeteer-core "24.21.0"
     twitter-d "0.6.0"
     ulid "3.0.1"
 
@@ -251,12 +251,12 @@
     "@otplib/plugin-crypto" "^12.0.1"
     "@otplib/plugin-thirty-two" "^12.0.1"
 
-"@puppeteer/browsers@2.10.9":
-  version "2.10.9"
-  resolved "https://registry.yarnpkg.com/@puppeteer/browsers/-/browsers-2.10.9.tgz#7d96549e83a49534e94c23eeaf81142be40ce039"
-  integrity sha512-kUGHwABarVhvMP+zhW5zvDA7LmGcd4TwrTEBwcTQic5EebUqaK5NjC0UXLJepIFVGsr2N/Z8NJQz2JYGo1ZwxA==
+"@puppeteer/browsers@2.10.10":
+  version "2.10.10"
+  resolved "https://registry.yarnpkg.com/@puppeteer/browsers/-/browsers-2.10.10.tgz#f806f92d966918c931fb9c48052eba2db848beaa"
+  integrity sha512-3ZG500+ZeLql8rE0hjfhkycJjDj0pI/btEh3L9IkWUYcOrgP0xCNRq3HbtbqOPbvDhFaAWD88pDFtlLv8ns8gA==
   dependencies:
-    debug "^4.4.1"
+    debug "^4.4.3"
     extract-zip "^2.0.1"
     progress "^2.0.3"
     proxy-agent "^6.5.0"
@@ -986,7 +986,7 @@ data-view-byte-offset@^1.0.1:
     es-errors "^1.3.0"
     is-data-view "^1.0.1"
 
-debug@4, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@^4.4.1:
+debug@4, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@^4.4.3:
   version "4.4.3"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.4.3.tgz#c6ae432d9bd9662582fce08709b038c58e9e3d6a"
   integrity sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==
@@ -2793,17 +2793,17 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
   integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
-puppeteer-core@24.20.0:
-  version "24.20.0"
-  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-24.20.0.tgz#405b0f3dc0db8a33a4d8fdbf82bd99689517b121"
-  integrity sha512-n0y/f8EYyZt4yEJkjP3Vrqf9A4qa3uYpKYdsiedIY4bxIfTw1aAJSpSVPmWBPlr1LO4cNq2hGNIBWKPhvBF68w==
+puppeteer-core@24.21.0:
+  version "24.21.0"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-24.21.0.tgz#527cd84c7b1c3244dbe1dc7610eebaaef8d3340b"
+  integrity sha512-WR4FehOs4XJ8OSp7MkGyVB4mfMs9Q6t8Y48TxiTCRxc8G2lJ5OKYPJvgU80dtKl+aIqIbdcNTgIooY49S5SsmA==
   dependencies:
-    "@puppeteer/browsers" "2.10.9"
+    "@puppeteer/browsers" "2.10.10"
     chromium-bidi "8.0.0"
-    debug "^4.4.1"
+    debug "^4.4.3"
     devtools-protocol "0.0.1495869"
     typed-query-selector "^2.12.0"
-    webdriver-bidi-protocol "0.2.8"
+    webdriver-bidi-protocol "0.2.11"
     ws "^8.18.3"
 
 queue-microtask@^1.2.2:
@@ -3586,10 +3586,10 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-webdriver-bidi-protocol@0.2.8:
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/webdriver-bidi-protocol/-/webdriver-bidi-protocol-0.2.8.tgz#a5dfe45137db4e8e1dc2c44c342095d52059dc8f"
-  integrity sha512-KPvtVAIX8VHjLZH1KHT5GXoOaPeb0Ju+JlAcdshw6Z/gsmRtLoxt0Hw99PgJwZta7zUQaAUIHHWDRkzrPHsQTQ==
+webdriver-bidi-protocol@0.2.11:
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/webdriver-bidi-protocol/-/webdriver-bidi-protocol-0.2.11.tgz#dba18d9b0a33aed33fab272dbd6e42411ac753cc"
+  integrity sha512-Y9E1/oi4XMxcR8AT0ZC4OvYntl34SPgwjmELH+owjBr0korAX4jKgZULBWILGCVGdVCQ0dodTToIETozhG8zvA==
 
 which-boxed-primitive@^1.1.0, which-boxed-primitive@^1.1.1:
   version "1.1.1"
