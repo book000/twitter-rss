@@ -44,10 +44,10 @@
     winston "3.17.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.83.15":
-  version "0.83.15"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.83.15.tgz#e16463a67f75fb630869c6d5ebdec7e8ed49a8cb"
-  integrity sha512-F6VjF88huHSvEWJAtz4PTFoBGbwQDgeZUHZz8dNBWXnsvO92qrh5hWjNTZ+fi02YtK9UwHhpvTFNVlzZNrO6mw==
+"@book000/twitterts@0.83.19":
+  version "0.83.19"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.83.19.tgz#808209bcf252e4d69eb16b962ac83fc0bf73b257"
+  integrity sha512-TLiPrMsmEg78bltSY89QgXH0LI55PNVTEi97gP8KF4Iqrx9G92qRP1rJIJ3NwOJeLFf0or3n1HDtmA2rk5WSVg==
   dependencies:
     "@book000/node-utils" "1.18.125"
     genson-js "0.0.8"
@@ -55,7 +55,7 @@
     json-stable-stringify "1.3.0"
     mysql2 "3.15.1"
     otplib "12.0.1"
-    puppeteer-core "24.22.3"
+    puppeteer-core "24.23.0"
     twitter-d "0.6.0"
     ulid "3.0.1"
 
@@ -1042,10 +1042,10 @@ denque@^2.1.0:
   resolved "https://registry.yarnpkg.com/denque/-/denque-2.1.0.tgz#e93e1a6569fb5e66f16a3c2a2964617d349d6ab1"
   integrity sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw==
 
-devtools-protocol@0.0.1495869:
-  version "0.0.1495869"
-  resolved "https://registry.yarnpkg.com/devtools-protocol/-/devtools-protocol-0.0.1495869.tgz#f68daef77a48d5dcbcdd55dbfa3265a51989c91b"
-  integrity sha512-i+bkd9UYFis40RcnkW7XrOprCujXRAHg62IVh/Ah3G8MmNXpCGt1m0dTFhSdx/AVs8XEMbdOGRwdkR1Bcta8AA==
+devtools-protocol@0.0.1508733:
+  version "0.0.1508733"
+  resolved "https://registry.yarnpkg.com/devtools-protocol/-/devtools-protocol-0.0.1508733.tgz#047deb3531470efda2c7bf43c10b3ae9e4b3d51b"
+  integrity sha512-QJ1R5gtck6nDcdM+nlsaJXcelPEI7ZxSMw1ujHpO1c4+9l+Nue5qlebi9xO1Z2MGr92bFOQTW7/rrheh5hHxDg==
 
 diff@^4.0.1:
   version "4.0.2"
@@ -2800,17 +2800,17 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
   integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
-puppeteer-core@24.22.3:
-  version "24.22.3"
-  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-24.22.3.tgz#63285a37da6e2c44069c0b31f2171f8ab81bbe23"
-  integrity sha512-M/Jhg4PWRANSbL/C9im//Yb55wsWBS5wdp+h59iwM+EPicVQQCNs56iC5aEAO7avfDPRfxs4MM16wHjOYHNJEw==
+puppeteer-core@24.23.0:
+  version "24.23.0"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-24.23.0.tgz#1f84abafa480358652ae8df340af984438173a14"
+  integrity sha512-yl25C59gb14sOdIiSnJ08XiPP+O2RjuyZmEG+RjYmCXO7au0jcLf7fRiyii96dXGUBW7Zwei/mVKfxMx/POeFw==
   dependencies:
     "@puppeteer/browsers" "2.10.10"
     chromium-bidi "9.1.0"
     debug "^4.4.3"
-    devtools-protocol "0.0.1495869"
+    devtools-protocol "0.0.1508733"
     typed-query-selector "^2.12.0"
-    webdriver-bidi-protocol "0.2.11"
+    webdriver-bidi-protocol "0.3.6"
     ws "^8.18.3"
 
 queue-microtask@^1.2.2:
@@ -3592,10 +3592,10 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-webdriver-bidi-protocol@0.2.11:
-  version "0.2.11"
-  resolved "https://registry.yarnpkg.com/webdriver-bidi-protocol/-/webdriver-bidi-protocol-0.2.11.tgz#dba18d9b0a33aed33fab272dbd6e42411ac753cc"
-  integrity sha512-Y9E1/oi4XMxcR8AT0ZC4OvYntl34SPgwjmELH+owjBr0korAX4jKgZULBWILGCVGdVCQ0dodTToIETozhG8zvA==
+webdriver-bidi-protocol@0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/webdriver-bidi-protocol/-/webdriver-bidi-protocol-0.3.6.tgz#55ad4ff9697532e3e04fb0446bb6dd4c158b3ad5"
+  integrity sha512-mlGndEOA9yK9YAbvtxaPTqdi/kaCWYYfwrZvGzcmkr/3lWM+tQj53BxtpVd6qbC6+E5OnHXgCcAhre6AkXzxjA==
 
 which-boxed-primitive@^1.1.0, which-boxed-primitive@^1.1.1:
   version "1.1.1"
