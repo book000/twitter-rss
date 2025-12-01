@@ -31,19 +31,6 @@
     globals "16.5.0"
     typescript-eslint "8.48.0"
 
-"@book000/node-utils@1.18.165":
-  version "1.18.165"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.165.tgz#cfce1bf1d66f5c4db67f4a27025587abb4aec3c4"
-  integrity sha512-Jx+jxVknB0goqx928ENtnWg9METAuoGt/WBYi3z6oagWo5SQsgMgpTGWJGewJLX990a+fYkN2qHG8E0MsFDs3w==
-  dependencies:
-    axios "1.13.2"
-    cycle "1.0.3"
-    form-data "4.0.5"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.6.0"
-    winston "3.18.3"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.18.167":
   version "1.18.167"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.167.tgz#2a352171b18e47c4c4772d0d54bace01620c530a"
@@ -57,12 +44,25 @@
     winston "3.18.3"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.84.6":
-  version "0.84.6"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.84.6.tgz#46b2aff6f0c0bf200b6b35f7bbcf1ea3036148cf"
-  integrity sha512-GxBG0cG7AjToFjdYDs+I7gKpkd4D6C2LkHcpeLzjHd7g+85KrVDGTzagb1/7Nidtd/GdDS84Y3CZgDvsqUdqGg==
+"@book000/node-utils@1.18.169":
+  version "1.18.169"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.169.tgz#1a26b03490dafb04fb73b95e04a84a80d9c3b77c"
+  integrity sha512-sluQOClATSjXLhkS4OLiF1LBrMTwDfObFTXJXjDxKaBS81cfWH9JyNYNH4a0B2k9QLz9RkdhLAL2SRNcjDuUGA==
   dependencies:
-    "@book000/node-utils" "1.18.165"
+    axios "1.13.2"
+    cycle "1.0.3"
+    form-data "4.0.5"
+    jsonc-parser "3.3.1"
+    moment-timezone "0.6.0"
+    winston "3.18.3"
+    winston-daily-rotate-file "5.0.0"
+
+"@book000/twitterts@0.84.8":
+  version "0.84.8"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.84.8.tgz#27ce1979fe7548a7cc65089ec4b554c4cf8a2cd0"
+  integrity sha512-3rTSqAEMRUWCJKhydnJWTIdVBYO4g4LlIeptaYFMg5xjN/2n0OT2nNS4eNf4hhXoDQsZCdsNUqhTkYW4ZJc+lw==
+  dependencies:
+    "@book000/node-utils" "1.18.169"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.4"
     json-stable-stringify "1.3.0"
