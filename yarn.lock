@@ -31,19 +31,6 @@
     globals "16.5.0"
     typescript-eslint "8.48.0"
 
-"@book000/node-utils@1.18.172":
-  version "1.18.172"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.172.tgz#c4427a1add11bb5cb5f4e6772021590e9eae96dc"
-  integrity sha512-qiMtsrJ93FPB7XBYFUKkJ+PEYlGw4URXGa9ZCfvThc3w9EF7xnbRRsVyEcZ4Hw6k8b4Bbg6pzoboDM0KzmCqOQ==
-  dependencies:
-    axios "1.13.2"
-    cycle "1.0.3"
-    form-data "4.0.5"
-    jsonc-parser "3.3.1"
-    moment-timezone "0.6.0"
-    winston "3.18.3"
-    winston-daily-rotate-file "5.0.0"
-
 "@book000/node-utils@1.18.173":
   version "1.18.173"
   resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.18.173.tgz#458b7369691b0c313917fa110f5d2baee8306bf5"
@@ -57,12 +44,12 @@
     winston "3.18.3"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.85.1":
-  version "0.85.1"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.85.1.tgz#0de5286ed6bf6cc07ae0d59fc9cffcfbe430e523"
-  integrity sha512-qk0bklM+724S6D7wrOloBvDMjXFQ+kH1JfkK6uWrmjeSO2uxUwDvAJTDPR3xGVwGBlumNV2eEsSM08DGZdwhLg==
+"@book000/twitterts@0.85.3":
+  version "0.85.3"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.85.3.tgz#7cec6d815df813270c60452014f456a8fcad418d"
+  integrity sha512-Hsd1Ug0Hu49KWjdOjmVoAQsvqVR1jLHS/4qvS7PyEZ3GcDkxBecZcV1ueOoqge9DkkbWQgAIJSaRbsgU83ajRw==
   dependencies:
-    "@book000/node-utils" "1.18.172"
+    "@book000/node-utils" "1.18.173"
     genson-js "0.0.8"
     json-schema-to-typescript "15.0.4"
     json-stable-stringify "1.3.0"
@@ -70,7 +57,7 @@
     otplib "12.0.1"
     puppeteer-core "24.25.0"
     twitter-d "0.6.0"
-    ulid "3.0.1"
+    ulid "3.0.2"
 
 "@colors/colors@1.6.0", "@colors/colors@^1.6.0":
   version "1.6.0"
@@ -3429,10 +3416,10 @@ typescript@5.9.3:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.3.tgz#5b4f59e15310ab17a216f5d6cf53ee476ede670f"
   integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==
 
-ulid@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/ulid/-/ulid-3.0.1.tgz#6fae1779938843f476702946931122d127cf3243"
-  integrity sha512-dPJyqPzx8preQhqq24bBG1YNkvigm87K8kVEHCD+ruZg24t6IFEFv00xMWfxcC4djmFtiTLdFuADn4+DOz6R7Q==
+ulid@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/ulid/-/ulid-3.0.2.tgz#b6a1f2a3de7852e39aa86bf497a8e33b1867c984"
+  integrity sha512-yu26mwteFYzBAot7KVMqFGCVpsF6g8wXfJzQUHvu1no3+rRRSFcSV2nKeYvNPLD2J4b08jYBDhHUjeH0ygIl9w==
 
 unbox-primitive@^1.1.0:
   version "1.1.0"
