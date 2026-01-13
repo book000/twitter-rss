@@ -44,10 +44,10 @@
     winston "3.19.0"
     winston-daily-rotate-file "5.0.0"
 
-"@book000/twitterts@0.85.45":
-  version "0.85.45"
-  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.85.45.tgz#da3e7ad7b28a4b448aaf1a914f0981efa2796fc5"
-  integrity sha512-98Tl5BeFWA9QQRoWogRA29g7zqIo8DzkYrZKp4K9QImZcpGHjgtkLDbr45hC0pNJ7nz+ATqqGNO47chP58GUXQ==
+"@book000/twitterts@0.85.47":
+  version "0.85.47"
+  resolved "https://registry.yarnpkg.com/@book000/twitterts/-/twitterts-0.85.47.tgz#5666984907e7dddc49a5745da761a01dd271f5e7"
+  integrity sha512-QSvYzWd4H+DWBTUeuF8YYMGL2Vj7X7PtuTvJUFVkNz0uyRd4ro35u4IHEZmCYaAvpEnPsN3ZfVA2M6GuKaZDNw==
   dependencies:
     "@book000/node-utils" "1.24.16"
     genson-js "0.0.8"
