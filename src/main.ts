@@ -55,12 +55,11 @@ async function cycleTLSFetchWithProxy(
       for (const [key, value] of init.headers) {
         headers[key] = value
       }
-    } else if (
-      h[Symbol.iterator] &&
-      typeof h[Symbol.iterator] === 'function'
-    ) {
+    } else if (h[Symbol.iterator] && typeof h[Symbol.iterator] === 'function') {
       // イテラブル（Symbol.iterator を持つオブジェクト）
-      for (const [key, value] of init.headers as Iterable<[string, string]>) {
+      for (const [key, value] of init.headers as unknown as Iterable<
+        [string, string]
+      >) {
         headers[key] = value
       }
     } else {
