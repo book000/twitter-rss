@@ -43,7 +43,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: data/twitter-cookies.json
-          key: twitter-cookies-${{ github.repository }}
+          key: twitter-cookies-v1-${{ github.repository }}
 
       - name: Update RSS
         id: update-rss

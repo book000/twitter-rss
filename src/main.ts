@@ -162,7 +162,9 @@ function loadCachedCookies(): CachedCookies | null {
       return null
     }
     return data
-  } catch {
+  } catch (error) {
+    const logger = Logger.configure('loadCachedCookies')
+    logger.warn('Failed to load cached cookies', error as Error)
     return null
   }
 }
@@ -313,6 +315,8 @@ async function withRetry<T>(
     }
   }
 
+  // Unreachable: loop always returns on success or throws on last attempt
+  // This satisfies TypeScript's control flow analysis
   throw new Error(`${operationName} failed after ${maxRetries} attempts`)
 }
 
