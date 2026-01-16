@@ -39,17 +39,30 @@ async function cycleTLSFetchWithProxy(
   const method = (init?.method ?? 'GET').toUpperCase()
 
   const headers: Record<string, string> = {}
+  // ヘッダーを抽出（_Headers クラス対応）
   if (init?.headers) {
-    if (init.headers instanceof Headers) {
-      for (const [key, value] of init.headers.entries()) {
+    const h = init.headers as {
+      entries?: () => IterableIterator<[string, string]>
+      forEach?: (fn: (value: string, key: string) => void) => void
+    }
+    if (h.entries && typeof h.entries === 'function') {
+      // entries() メソッドを使用（_Headers クラス対応）
+      for (const [key, value] of h.entries()) {
         headers[key] = value
       }
+    } else if (h.forEach && typeof h.forEach === 'function') {
+      // forEach を使用
+      h.forEach((value: string, key: string) => {
+        headers[key] = value
+      })
     } else if (Array.isArray(init.headers)) {
+      // 配列形式
       for (const [key, value] of init.headers) {
         headers[key] = value
       }
     } else {
-      Object.assign(headers, init.headers)
+      // プレーンオブジェクト
+      Object.assign(headers, init.headers as Record<string, string>)
     }
   }
 
@@ -93,15 +106,18 @@ async function cycleTLSFetchWithProxy(
     }
   }
 
-  const options = {
+  // proxy が undefined の場合はオプションに含めない（CycleTLS の動作に影響する可能性があるため）
+  const options: Record<string, unknown> = {
     body,
     headers,
-    proxy,
-    // Chrome 120 on Windows 10
+    // Chrome 120 on Windows 10 (ライブラリと同じ JA3 フィンガープリント)
     ja3: '771,4865-4866-4867-49195-49199-49196-49200-52393-52392-49171-49172-156-157-47-53,0-23-65281-10-11-35-16-5-13-18-51-45-43-27-17513,29-23-24,0',
     userAgent:
       headers['user-agent'] ||
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
+  }
+  if (proxy) {
+    options.proxy = proxy
   }
 
   const response = await instance(
@@ -130,14 +146,15 @@ async function cycleTLSFetchWithProxy(
     }
   }
 
-  let responseBody = ''
-  if (typeof response.text === 'function') {
-    responseBody = await response.text()
-  } else if (response.data) {
+  // CycleTLS のレスポンスから本文を取得
+  let responseBody: string
+  if (response.data !== undefined && response.data !== null) {
     responseBody =
       typeof response.data === 'string'
         ? response.data
         : JSON.stringify(response.data)
+  } else {
+    responseBody = ''
   }
 
   return new Response(responseBody, {
@@ -256,6 +273,7 @@ async function getAuthCookies(): Promise<{ authToken: string; ct0: string }> {
   }
 
   logger.info('Logging in with twitter-scraper + CycleTLS...')
+  // 常にカスタム実装を使用（プロキシサポート付き）
   const scraper = new Scraper({
     fetch: cycleTLSFetchWithProxy,
   })
