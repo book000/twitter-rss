@@ -12,6 +12,15 @@ import { Headers } from 'headers-polyfill'
 
 type SearchesModel = Record<string, string>
 
+/**
+ * Headers ライクなオブジェクトのインターフェース
+ * undici の _Headers クラスや標準の Headers クラスに対応
+ */
+interface HeadersLike {
+  entries?: () => IterableIterator<[string, string]>
+  [Symbol.iterator]?: () => Iterator<[string, string]>
+}
+
 // CycleTLS インスタンス（プロキシサポート付き）
 // Promise ベースのシングルトンパターンで並行初期化を防止
 let cycleTLSInstancePromise: Promise<CycleTLSClient> | null = null
@@ -41,10 +50,7 @@ async function cycleTLSFetchWithProxy(
   const headers: Record<string, string> = {}
   // ヘッダーを抽出（_Headers クラス対応）
   if (init?.headers) {
-    const h = init.headers as {
-      entries?: () => IterableIterator<[string, string]>
-      [Symbol.iterator]?: () => Iterator<[string, string]>
-    }
+    const h = init.headers as HeadersLike
     if (h.entries && typeof h.entries === 'function') {
       // entries() メソッドを使用（_Headers クラス対応）
       for (const [key, value] of h.entries()) {
@@ -112,8 +118,10 @@ async function cycleTLSFetchWithProxy(
   const options: Record<string, unknown> = {
     body,
     headers,
-    // Chrome 120 on Windows 10 (ライブラリと同じ JA3 フィンガープリント)
+    // JA3 フィンガープリント: Chrome 120 on Windows 10 (ライブラリと同じ値を使用)
+    // 注: JA3 は TLS ハンドシェイクの特徴を示すもので、UserAgent とは独立
     ja3: '771,4865-4866-4867-49195-49199-49196-49200-52393-52392-49171-49172-156-157-47-53,0-23-65281-10-11-35-16-5-13-18-51-45-43-27-17513,29-23-24,0',
+    // UserAgent: Chrome 135 (最新の Chrome バージョンを使用)
     userAgent:
       headers['user-agent'] ||
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
