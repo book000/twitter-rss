@@ -203,7 +203,7 @@ async function loginWithRetry(
           error.message.includes('Service Unavailable'))
 
       if (is503 && attempt < maxRetries) {
-        const delay = Math.min(1000 * Math.pow(2, attempt), 30_000)
+        const delay = Math.min(1000 * Math.pow(2, attempt - 1), 30_000)
         logger.warn(`503 error, retrying in ${delay / 1000}s...`)
         await new Promise((resolve) => setTimeout(resolve, delay))
       } else {
