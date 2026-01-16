@@ -13,11 +13,12 @@ import { Headers } from 'headers-polyfill'
 type SearchesModel = Record<string, string>
 
 // CycleTLS インスタンス（プロキシサポート付き）
-let cycleTLSInstance: CycleTLSClient | null = null
+// Promise ベースのシングルトンパターンで並行初期化を防止
+let cycleTLSInstancePromise: Promise<CycleTLSClient> | null = null
 
 async function initCycleTLSWithProxy(): Promise<CycleTLSClient> {
-  cycleTLSInstance ??= await initCycleTLS()
-  return cycleTLSInstance
+  cycleTLSInstancePromise ??= initCycleTLS()
+  return cycleTLSInstancePromise
 }
 
 /**
@@ -88,7 +89,7 @@ async function cycleTLSFetchWithProxy(
     ja3: '771,4865-4866-4867-49195-49199-49196-49200-52393-52392-49171-49172-156-157-47-53,0-23-65281-10-11-35-16-5-13-18-51-45-43-27-17513,29-23-24,0',
     userAgent:
       headers['user-agent'] ||
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
   }
 
   const response = await instance(
@@ -149,21 +150,35 @@ function sanitizeFileName(fileName: string) {
   return fileName.replaceAll(/[ "*/:<>?\\|]/g, '').trim()
 }
 
+function isValidCachedCookies(data: unknown): data is CachedCookies {
+  if (typeof data !== 'object' || data === null) {
+    return false
+  }
+  const obj = data as Record<string, unknown>
+  return (
+    typeof obj.auth_token === 'string' &&
+    typeof obj.ct0 === 'string' &&
+    typeof obj.savedAt === 'number'
+  )
+}
+
 function loadCachedCookies(): CachedCookies | null {
+  const logger = Logger.configure('loadCachedCookies')
   try {
     if (!fs.existsSync(COOKIE_CACHE_FILE)) {
       return null
     }
-    const data: CachedCookies = JSON.parse(
-      fs.readFileSync(COOKIE_CACHE_FILE, 'utf8'),
-    )
+    const data: unknown = JSON.parse(fs.readFileSync(COOKIE_CACHE_FILE, 'utf8'))
+    if (!isValidCachedCookies(data)) {
+      logger.warn('Invalid cookie cache structure')
+      return null
+    }
     const expiryMs = COOKIE_EXPIRY_DAYS * 24 * 60 * 60 * 1000
     if (Date.now() - data.savedAt > expiryMs) {
       return null
     }
     return data
   } catch (error) {
-    const logger = Logger.configure('loadCachedCookies')
     logger.warn('Failed to load cached cookies', error as Error)
     return null
   }
@@ -528,7 +543,21 @@ async function main() {
     await generateRSS()
     generateList()
   } finally {
-    cycleTLSExit()
+    // CycleTLS インスタンスのクリーンアップ（初期化されている場合のみ）
+    if (cycleTLSInstancePromise) {
+      try {
+        const instance = await cycleTLSInstancePromise
+        await instance.exit()
+      } catch {
+        // インスタンスの終了に失敗しても無視
+      }
+    }
+    // twitter-scraper の内部 CycleTLS インスタンスも終了
+    try {
+      cycleTLSExit()
+    } catch {
+      // 初期化されていない場合のエラーを無視
+    }
   }
 
   // eslint-disable-next-line unicorn/no-process-exit
