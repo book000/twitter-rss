@@ -188,7 +188,7 @@
     color "^5.0.2"
     text-hex "1.0.x"
 
-"@the-convocation/twitter-scraper@^0.21.1":
+"@the-convocation/twitter-scraper@0.21.1":
   version "0.21.1"
   resolved "https://registry.yarnpkg.com/@the-convocation/twitter-scraper/-/twitter-scraper-0.21.1.tgz#7612154ab9196e76c507ccee90d515f2f5abc95b"
   integrity sha512-q8HjTWQyrNMEitJli4/cG1ht0sV67bwWQKv4jWhQnq1OuFNBepdU/kCsbnf43UUk6BgmHdmH3uvHeIjGowqrVQ==
@@ -264,7 +264,7 @@
   resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
   integrity sha512-7NQmHra/JILCd1QqpSzl8+mJRc8ZHz3uDm8YV1Ks9IhK0epEiTw8aIErbvH9PI+6XbqhyIQy3462nEsn7UVzjQ==
 
-"@types/tough-cookie@^4.0.5":
+"@types/tough-cookie@4.0.5":
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-4.0.5.tgz#cb6e2a691b70cb177c6e3ae9c1d2e8b2ea8cd304"
   integrity sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==
@@ -805,7 +805,7 @@ cycle@1.0.3:
   resolved "https://registry.yarnpkg.com/cycle/-/cycle-1.0.3.tgz#21e80b2be8580f98b468f379430662b046c34ad2"
   integrity sha512-TVF6svNzeQCOpjCqsy0/CSy8VgObG3wXusJ73xW2GbG5rGx7lC8zxDSURicsXI2UsGdi2L0QNRCi745/wUDvsA==
 
-cycletls@^2.0.5:
+cycletls@2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/cycletls/-/cycletls-2.0.5.tgz#52c491eb34c5171022f3d896a7e6bb932ff429a2"
   integrity sha512-Nud94JBPZu1JTXWJ1GpIoQNR1xxU84WYt7G0dxzwpUe1xAAs6YbihvlQhIhPv9xljjonINJfWPFaeb8Ex1wLhQ==
@@ -925,7 +925,7 @@ domutils@^3.0.1, domutils@^3.2.1:
     domelementtype "^2.3.0"
     domhandler "^5.0.3"
 
-dotenv@^17.2.3:
+dotenv@17.2.3:
   version "17.2.3"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-17.2.3.tgz#ad995d6997f639b11065f419a22fabf567cdb9a2"
   integrity sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w==
@@ -1642,15 +1642,15 @@ he@1.2.0:
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
+headers-polyfill@4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/headers-polyfill/-/headers-polyfill-4.0.3.tgz#922a0155de30ecc1f785bcf04be77844ca95ad07"
+  integrity sha512-IScLbePpkvO846sIwOtOTDjutRMWdXdJmXdMvk6gCBHxFO8d+QKOQedyZSxFTTFYRSmlgSTDtXqqq4pcenBXLQ==
+
 headers-polyfill@^3.1.2:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/headers-polyfill/-/headers-polyfill-3.3.0.tgz#67c6ef7b72d4c8cac832ad5936f5b3a56e7b705a"
   integrity sha512-5e57etwBpNcDc0b6KCVWEh/Ro063OxPvzVimUdM0/tsYM/T7Hfy3kknIGj78SFTOhNd8AZY41U8mOHoO4LzmIQ==
-
-headers-polyfill@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/headers-polyfill/-/headers-polyfill-4.0.3.tgz#922a0155de30ecc1f785bcf04be77844ca95ad07"
-  integrity sha512-IScLbePpkvO846sIwOtOTDjutRMWdXdJmXdMvk6gCBHxFO8d+QKOQedyZSxFTTFYRSmlgSTDtXqqq4pcenBXLQ==
 
 hosted-git-info@^2.1.4:
   version "2.8.9"
@@ -2999,7 +2999,7 @@ twitter-openapi-typescript-generated@^0.0.38:
   resolved "https://registry.yarnpkg.com/twitter-openapi-typescript-generated/-/twitter-openapi-typescript-generated-0.0.38.tgz#a30b69e540c11d9d180f6a8f6c1d528fa3579962"
   integrity sha512-7BvPYNeq7W1eAk6H1ZcQLZ8oyA9ma2OGT279+8BbeuNqFpITMK/odqhJbBsQ7dG/dgCcCTkRv49gShtUHCSxng==
 
-twitter-openapi-typescript@^0.0.55:
+twitter-openapi-typescript@0.0.55:
   version "0.0.55"
   resolved "https://registry.yarnpkg.com/twitter-openapi-typescript/-/twitter-openapi-typescript-0.0.55.tgz#cd298a814f5643771e74d7b689bc93b13b97e9c9"
   integrity sha512-VuvrUMHtMOWumTRxRxtr+MmTHExvtycKoR3cL9sY8L0ZQ5LhqlZVWnUyHW3hCwaSlfeiqQJPA8rWnW3GDUZHgg==
