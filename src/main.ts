@@ -565,28 +565,21 @@ async function main() {
     fs.mkdirSync('output')
   }
 
+  let exitCode = 0
   try {
     await generateRSS()
     generateList()
   } catch (error) {
     logger.error('Fatal error occurred', error as Error)
+    exitCode = 1
+  } finally {
     await cleanup()
-    // eslint-disable-next-line unicorn/no-process-exit
-    process.exit(1)
   }
 
-  await cleanup()
   // eslint-disable-next-line unicorn/no-process-exit
-  process.exit(0)
+  process.exit(exitCode)
 }
 
 ;(async () => {
-  try {
-    await main()
-  } catch (error) {
-    const logger = Logger.configure('main')
-    logger.error('Unhandled error in main', error as Error)
-    // eslint-disable-next-line unicorn/no-process-exit
-    process.exit(1)
-  }
+  await main()
 })()
