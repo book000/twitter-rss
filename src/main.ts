@@ -68,22 +68,28 @@ async function cycleTLSFetchWithProxy(
   let proxy: string | undefined
   const proxyServer = process.env.PROXY_SERVER
   if (proxyServer) {
+    // プロトコルがない場合、または HTTP(S) 以外の場合は http:// を追加
+    const normalizedProxyServer =
+      proxyServer.startsWith('http://') || proxyServer.startsWith('https://')
+        ? proxyServer
+        : `http://${proxyServer}`
+
     const proxyUsername = process.env.PROXY_USERNAME
     const proxyPassword = process.env.PROXY_PASSWORD
     if (proxyUsername && proxyPassword) {
       // http://username:password@host:port 形式
       try {
-        const proxyUrl = new URL(proxyServer)
+        const proxyUrl = new URL(normalizedProxyServer)
         proxyUrl.username = proxyUsername
         proxyUrl.password = proxyPassword
         proxy = proxyUrl.toString()
       } catch {
         throw new Error(
-          `Invalid PROXY_SERVER URL: ${proxyServer}. Expected format: http://host:port or https://host:port`,
+          `Invalid PROXY_SERVER URL: ${proxyServer}. Expected format: host:port, http://host:port or https://host:port`,
         )
       }
     } else {
-      proxy = proxyServer
+      proxy = normalizedProxyServer
     }
   }
 
