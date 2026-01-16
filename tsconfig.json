@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
     "outDir": "./dist",
     "removeComments": true,

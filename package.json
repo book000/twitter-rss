@@ -22,10 +22,13 @@
     "fix:prettier": "prettier --write src"
   },
   "devDependencies": {
-    "@book000/eslint-config": "1.12.36",
-    "@book000/node-utils": "1.24.24",
-    "@book000/twitterts": "0.85.61",
-    "@types/node": "24.10.7",
+    "@book000/eslint-config": "1.12.13",
+    "@book000/node-utils": "1.18.174",
+    "@the-convocation/twitter-scraper": "^0.21.1",
+    "@types/node": "24.10.4",
+    "@types/tough-cookie": "^4.0.5",
+    "cycletls": "^2.0.5",
+    "dotenv": "^17.2.3",
     "eslint": "9.39.2",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.32.0",
@@ -35,7 +38,7 @@
     "prettier": "3.7.4",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
-    "twitter-d": "0.6.0",
+    "twitter-openapi-typescript": "^0.0.55",
     "typescript": "5.9.3",
     "yarn-run-all": "3.1.1"
   },
