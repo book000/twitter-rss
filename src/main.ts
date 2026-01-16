@@ -12,6 +12,15 @@ import { Headers } from 'headers-polyfill'
 
 type SearchesModel = Record<string, string>
 
+/**
+ * Headers ライクなオブジェクトのインターフェース
+ * undici の _Headers クラスや標準の Headers クラスに対応
+ */
+interface HeadersLike {
+  entries?: () => IterableIterator<[string, string]>
+  [Symbol.iterator]?: () => Iterator<[string, string]>
+}
+
 // CycleTLS インスタンス（プロキシサポート付き）
 // Promise ベースのシングルトンパターンで並行初期化を防止
 let cycleTLSInstancePromise: Promise<CycleTLSClient> | null = null
@@ -39,17 +48,29 @@ async function cycleTLSFetchWithProxy(
   const method = (init?.method ?? 'GET').toUpperCase()
 
   const headers: Record<string, string> = {}
+  // ヘッダーを抽出（_Headers クラス対応）
   if (init?.headers) {
-    if (init.headers instanceof Headers) {
-      for (const [key, value] of init.headers.entries()) {
+    const h = init.headers as HeadersLike
+    if (h.entries && typeof h.entries === 'function') {
+      // entries() メソッドを使用（_Headers クラス対応）
+      for (const [key, value] of h.entries()) {
         headers[key] = value
       }
     } else if (Array.isArray(init.headers)) {
+      // 配列形式
       for (const [key, value] of init.headers) {
         headers[key] = value
       }
+    } else if (h[Symbol.iterator] && typeof h[Symbol.iterator] === 'function') {
+      // イテラブル（Symbol.iterator を持つオブジェクト）
+      for (const [key, value] of init.headers as unknown as Iterable<
+        [string, string]
+      >) {
+        headers[key] = value
+      }
     } else {
-      Object.assign(headers, init.headers)
+      // プレーンオブジェクト
+      Object.assign(headers, init.headers as Record<string, string>)
     }
   }
 
@@ -93,15 +114,20 @@ async function cycleTLSFetchWithProxy(
     }
   }
 
-  const options = {
+  // proxy が undefined の場合はオプションに含めない（CycleTLS の動作に影響する可能性があるため）
+  const options: Record<string, unknown> = {
     body,
     headers,
-    proxy,
-    // Chrome 120 on Windows 10
+    // JA3 フィンガープリント: Chrome 120 on Windows 10 (ライブラリと同じ値を使用)
+    // 注: JA3 は TLS ハンドシェイクの特徴を示すもので、UserAgent とは独立
     ja3: '771,4865-4866-4867-49195-49199-49196-49200-52393-52392-49171-49172-156-157-47-53,0-23-65281-10-11-35-16-5-13-18-51-45-43-27-17513,29-23-24,0',
+    // UserAgent: Chrome 135 (最新の Chrome バージョンを使用)
     userAgent:
       headers['user-agent'] ||
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
+  }
+  if (proxy) {
+    options.proxy = proxy
   }
 
   const response = await instance(
@@ -130,14 +156,15 @@ async function cycleTLSFetchWithProxy(
     }
   }
 
-  let responseBody = ''
-  if (typeof response.text === 'function') {
-    responseBody = await response.text()
-  } else if (response.data) {
+  // CycleTLS のレスポンスから本文を取得
+  let responseBody: string
+  if (response.data !== undefined && response.data !== null) {
     responseBody =
       typeof response.data === 'string'
         ? response.data
         : JSON.stringify(response.data)
+  } else {
+    responseBody = ''
   }
 
   return new Response(responseBody, {
@@ -256,6 +283,7 @@ async function getAuthCookies(): Promise<{ authToken: string; ct0: string }> {
   }
 
   logger.info('Logging in with twitter-scraper + CycleTLS...')
+  // 常にカスタム実装を使用（プロキシサポート付き）
   const scraper = new Scraper({
     fetch: cycleTLSFetchWithProxy,
   })
