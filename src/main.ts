@@ -43,21 +43,24 @@ async function cycleTLSFetchWithProxy(
   if (init?.headers) {
     const h = init.headers as {
       entries?: () => IterableIterator<[string, string]>
-      forEach?: (fn: (value: string, key: string) => void) => void
+      [Symbol.iterator]?: () => Iterator<[string, string]>
     }
     if (h.entries && typeof h.entries === 'function') {
       // entries() メソッドを使用（_Headers クラス対応）
       for (const [key, value] of h.entries()) {
         headers[key] = value
       }
-    } else if (h.forEach && typeof h.forEach === 'function') {
-      // forEach を使用
-      h.forEach((value: string, key: string) => {
-        headers[key] = value
-      })
     } else if (Array.isArray(init.headers)) {
       // 配列形式
       for (const [key, value] of init.headers) {
+        headers[key] = value
+      }
+    } else if (
+      h[Symbol.iterator] &&
+      typeof h[Symbol.iterator] === 'function'
+    ) {
+      // イテラブル（Symbol.iterator を持つオブジェクト）
+      for (const [key, value] of init.headers as Iterable<[string, string]>) {
         headers[key] = value
       }
     } else {
