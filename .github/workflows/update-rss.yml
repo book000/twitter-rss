@@ -39,6 +39,12 @@ jobs:
       - name: Install nodejs dependencies
         run: yarn
 
+      - name: Restore Twitter cookies cache
+        uses: actions/cache@v4
+        with:
+          path: data/twitter-cookies.json
+          key: twitter-cookies-v1-${{ github.repository }}
+
       - name: Update RSS
         id: update-rss
         run: |
