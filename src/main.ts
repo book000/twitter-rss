@@ -72,10 +72,16 @@ async function cycleTLSFetchWithProxy(
     const proxyPassword = process.env.PROXY_PASSWORD
     if (proxyUsername && proxyPassword) {
       // http://username:password@host:port 形式
-      const proxyUrl = new URL(proxyServer)
-      proxyUrl.username = proxyUsername
-      proxyUrl.password = proxyPassword
-      proxy = proxyUrl.toString()
+      try {
+        const proxyUrl = new URL(proxyServer)
+        proxyUrl.username = proxyUsername
+        proxyUrl.password = proxyPassword
+        proxy = proxyUrl.toString()
+      } catch {
+        throw new Error(
+          `Invalid PROXY_SERVER URL: ${proxyServer}. Expected format: http://host:port or https://host:port`,
+        )
+      }
     } else {
       proxy = proxyServer
     }
@@ -534,34 +540,44 @@ function generateList() {
   logger.info(`Generated`)
 }
 
+async function cleanup(): Promise<void> {
+  // CycleTLS インスタンスのクリーンアップ（初期化されている場合のみ）
+  if (cycleTLSInstancePromise) {
+    try {
+      const instance = await cycleTLSInstancePromise
+      await instance.exit()
+    } catch {
+      // インスタンスの終了に失敗しても無視
+    }
+  }
+  // twitter-scraper の内部 CycleTLS インスタンスも終了
+  try {
+    cycleTLSExit()
+  } catch {
+    // 初期化されていない場合のエラーを無視
+  }
+}
+
 async function main() {
+  const logger = Logger.configure('main')
+
   if (!fs.existsSync('output')) {
     fs.mkdirSync('output')
   }
 
+  let exitCode = 0
   try {
     await generateRSS()
     generateList()
+  } catch (error) {
+    logger.error('Fatal error occurred', error as Error)
+    exitCode = 1
   } finally {
-    // CycleTLS インスタンスのクリーンアップ（初期化されている場合のみ）
-    if (cycleTLSInstancePromise) {
-      try {
-        const instance = await cycleTLSInstancePromise
-        await instance.exit()
-      } catch {
-        // インスタンスの終了に失敗しても無視
-      }
-    }
-    // twitter-scraper の内部 CycleTLS インスタンスも終了
-    try {
-      cycleTLSExit()
-    } catch {
-      // 初期化されていない場合のエラーを無視
-    }
+    await cleanup()
   }
 
   // eslint-disable-next-line unicorn/no-process-exit
-  process.exit(0)
+  process.exit(exitCode)
 }
 
 ;(async () => {
