@@ -231,7 +231,9 @@ function loadCachedCookies(): CachedCookies | null {
     }
     return data
   } catch (error) {
-    logger.warn('Failed to load cached cookies', error as Error)
+    const errorMessage =
+      error instanceof Error ? error : new Error(String(error))
+    logger.warn('Failed to load cached cookies', errorMessage)
     return null
   }
 }
@@ -430,11 +432,13 @@ async function generateRSS() {
     }
     searchWords = JSON.parse(fs.readFileSync(searchWordPath, 'utf8'))
   } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error : new Error(String(error))
     logger.error(
       `Failed to load search words from ${searchWordPath}`,
-      error as Error,
+      errorMessage,
     )
-    throw error
+    throw errorMessage
   }
 
   for (const key in searchWords) {
@@ -561,7 +565,9 @@ async function generateRSS() {
         }ms)`,
       )
     } catch (error) {
-      logger.error(`Error searching for "${searchWord}"`, error as Error)
+      const errorMessage =
+        error instanceof Error ? error : new Error(String(error))
+      logger.error(`Error searching for "${searchWord}"`, errorMessage)
     }
   }
 }
@@ -633,7 +639,9 @@ async function main() {
     await generateRSS()
     generateList()
   } catch (error) {
-    logger.error('Fatal error occurred', error as Error)
+    const errorMessage =
+      error instanceof Error ? error : new Error(String(error))
+    logger.error('Fatal error occurred', errorMessage)
     exitCode = 1
   } finally {
     await cleanup()
