@@ -323,14 +323,29 @@ interface TweetData {
   mediaUrls: string[]
 }
 
+/**
+ * HTML 特殊文字をエスケープする
+ * XSS 攻撃を防ぐために、ユーザー入力を HTML に埋め込む前にエスケープする
+ */
+function escapeHtml(text: string): string {
+  return text
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;')
+}
+
 function getContent(tweet: TweetData): string {
-  const tweetText = tweet.fullText
+  // XSS 対策: ツイートテキストをエスケープする
+  const tweetText = escapeHtml(tweet.fullText)
   const mediaUrls = tweet.mediaUrls
 
   return [
     tweetText.trim(),
     mediaUrls.length > 0 ? '<hr>' : '',
-    mediaUrls.map((url) => `<img src="${url}"><br>`).join('\n'),
+    // メディア URL はエスケープして安全に埋め込む
+    mediaUrls.map((url) => `<img src="${escapeHtml(url)}"><br>`).join('\n'),
   ].join('\n')
 }
 
@@ -562,9 +577,10 @@ function generateList() {
       } = parser.parse(fs.readFileSync('output/' + file, 'utf8'))
       const title = feed.rss.channel.title
       const description = feed.rss.channel.description
+      // XSS 対策: title と description をエスケープする
       return `<li><a href='${encodeURIComponent(
         file,
-      )}'>${title}</a>: <code>${description}</code></li>`
+      )}'>${escapeHtml(title)}</a>: <code>${escapeHtml(description)}</code></li>`
     })
     .filter((s) => s !== null)
   fs.writeFileSync(
