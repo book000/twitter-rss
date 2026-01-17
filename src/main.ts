@@ -243,6 +243,7 @@ async function loadCachedCookies(): Promise<CachedCookies | null> {
 }
 
 async function saveCookies(authToken: string, ct0: string): Promise<void> {
+  const logger = Logger.configure('saveCookies')
   const dir = './data'
   try {
     await fsPromises.access(dir)
@@ -254,7 +255,14 @@ async function saveCookies(authToken: string, ct0: string): Promise<void> {
     ct0,
     savedAt: Date.now(),
   }
-  await fsPromises.writeFile(COOKIE_CACHE_FILE, JSON.stringify(data, null, 2))
+  try {
+    await fsPromises.writeFile(COOKIE_CACHE_FILE, JSON.stringify(data, null, 2))
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error : new Error(String(error))
+    logger.error('Failed to save cookies to cache file', errorMessage)
+    throw errorMessage
+  }
 }
 
 async function loginWithRetry(
@@ -590,24 +598,31 @@ async function generateList() {
     if (!file.endsWith('.xml')) {
       continue
     }
-    const parser = new XMLParser({
-      ignoreAttributes: false,
-    })
+    try {
+      const parser = new XMLParser({
+        ignoreAttributes: false,
+      })
 
-    const feed: {
-      rss: {
-        channel: {
-          title: string
-          description: string
+      const feed: {
+        rss: {
+          channel: {
+            title: string
+            description: string
+          }
         }
-      }
-    } = parser.parse(await fsPromises.readFile('output/' + file, 'utf8'))
-    const title = feed.rss.channel.title
-    const description = feed.rss.channel.description
-    // XSS 対策: title と description をエスケープする
-    list.push(
-      `<li><a href='${encodeURIComponent(file)}'>${escapeHtml(title)}</a>: <code>${escapeHtml(description)}</code></li>`,
-    )
+      } = parser.parse(await fsPromises.readFile('output/' + file, 'utf8'))
+      const title = feed.rss.channel.title
+      const description = feed.rss.channel.description
+      // XSS 対策: title と description をエスケープする
+      list.push(
+        `<li><a href='${encodeURIComponent(file)}'>${escapeHtml(title)}</a>: <code>${escapeHtml(description)}</code></li>`,
+      )
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error : new Error(String(error))
+      logger.warn(`Failed to parse XML file: ${file}`, errorMessage)
+      // 不正な XML ファイルはスキップして処理を継続
+    }
   }
   await fsPromises.writeFile(
     'output/index.html',
