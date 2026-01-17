@@ -469,10 +469,10 @@ async function generateRSS() {
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       const tweets = results.data.data ?? []
       // Filter out promoted tweets (advertisements)
-      const nonPromotedTweets = tweets.filter(
+      const organicTweets = tweets.filter(
         (tweetResult) => !tweetResult.promotedMetadata,
       )
-      const items: Item[] = nonPromotedTweets.map((tweetResult) => {
+      const items: Item[] = organicTweets.map((tweetResult) => {
         const tweet = tweetResult.tweet
         const user = tweetResult.user
         const legacy = tweet.legacy
