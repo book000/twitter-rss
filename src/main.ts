@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import { XMLBuilder, XMLParser } from 'fast-xml-parser'
-import fs from 'node:fs'
+import { promises as fsPromises } from 'node:fs'
 import { Item } from './model/collect-result'
 import { Logger } from '@book000/node-utils'
 import { Scraper } from '@the-convocation/twitter-scraper'
@@ -214,13 +214,17 @@ function isValidCachedCookies(data: unknown): data is CachedCookies {
   )
 }
 
-function loadCachedCookies(): CachedCookies | null {
+async function loadCachedCookies(): Promise<CachedCookies | null> {
   const logger = Logger.configure('loadCachedCookies')
   try {
-    if (!fs.existsSync(COOKIE_CACHE_FILE)) {
+    try {
+      await fsPromises.access(COOKIE_CACHE_FILE)
+    } catch {
       return null
     }
-    const data: unknown = JSON.parse(fs.readFileSync(COOKIE_CACHE_FILE, 'utf8'))
+    const data: unknown = JSON.parse(
+      await fsPromises.readFile(COOKIE_CACHE_FILE, 'utf8'),
+    )
     if (!isValidCachedCookies(data)) {
       logger.warn('Invalid cookie cache structure')
       return null
@@ -238,17 +242,19 @@ function loadCachedCookies(): CachedCookies | null {
   }
 }
 
-function saveCookies(authToken: string, ct0: string): void {
+async function saveCookies(authToken: string, ct0: string): Promise<void> {
   const dir = './data'
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true })
+  try {
+    await fsPromises.access(dir)
+  } catch {
+    await fsPromises.mkdir(dir, { recursive: true })
   }
   const data: CachedCookies = {
     auth_token: authToken,
     ct0,
     savedAt: Date.now(),
   }
-  fs.writeFileSync(COOKIE_CACHE_FILE, JSON.stringify(data, null, 2))
+  await fsPromises.writeFile(COOKIE_CACHE_FILE, JSON.stringify(data, null, 2))
 }
 
 async function loginWithRetry(
@@ -285,7 +291,7 @@ async function loginWithRetry(
 async function getAuthCookies(): Promise<{ authToken: string; ct0: string }> {
   const logger = Logger.configure('getAuthCookies')
 
-  const cached = loadCachedCookies()
+  const cached = await loadCachedCookies()
   if (cached) {
     logger.info('Using cached cookies')
     return { authToken: cached.auth_token, ct0: cached.ct0 }
@@ -323,7 +329,7 @@ async function getAuthCookies(): Promise<{ authToken: string; ct0: string }> {
     throw new Error('Failed to get auth_token or ct0 from cookies')
   }
 
-  saveCookies(authToken, ct0)
+  await saveCookies(authToken, ct0)
   logger.info('Login successful, cookies saved')
 
   return { authToken, ct0 }
@@ -427,10 +433,12 @@ async function generateRSS() {
   const searchWordPath = process.env.SEARCH_WORD_PATH ?? 'data/searches.json'
   let searchWords: SearchesModel
   try {
-    if (!fs.existsSync(searchWordPath)) {
+    try {
+      await fsPromises.access(searchWordPath)
+    } catch {
       throw new Error(`Search word file not found: ${searchWordPath}`)
     }
-    searchWords = JSON.parse(fs.readFileSync(searchWordPath, 'utf8'))
+    searchWords = JSON.parse(await fsPromises.readFile(searchWordPath, 'utf8'))
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error : new Error(String(error))
@@ -557,7 +565,7 @@ async function generateRSS() {
       } = builder.build(obj)
 
       const filename = sanitizeFileName(key)
-      fs.writeFileSync('output/' + filename + '.xml', feed.toString())
+      await fsPromises.writeFile('output/' + filename + '.xml', feed.toString())
       const endAt = new Date()
       logger.info(
         `Generated: ${filename}.xml. Found ${items.length} items (${
@@ -572,39 +580,43 @@ async function generateRSS() {
   }
 }
 
-function generateList() {
+async function generateList() {
   const logger = Logger.configure('generateList')
   logger.info('Generating list...')
-  const files = fs.readdirSync('output')
-  const template = fs.readFileSync('template.html', 'utf8')
-  const list = files
-    .map((file) => {
-      if (!file.endsWith('.xml')) {
-        return null
-      }
-      const parser = new XMLParser({
-        ignoreAttributes: false,
-      })
-
-      const feed: {
-        rss: {
-          channel: {
-            title: string
-            description: string
-          }
-        }
-      } = parser.parse(fs.readFileSync('output/' + file, 'utf8'))
-      const title = feed.rss.channel.title
-      const description = feed.rss.channel.description
-      // XSS 対策: title と description をエスケープする
-      return `<li><a href='${encodeURIComponent(
-        file,
-      )}'>${escapeHtml(title)}</a>: <code>${escapeHtml(description)}</code></li>`
+  const files = await fsPromises.readdir('output')
+  const template = await fsPromises.readFile('template.html', 'utf8')
+  const list: (string | null)[] = []
+  for (const file of files) {
+    if (!file.endsWith('.xml')) {
+      list.push(null)
+      continue
+    }
+    const parser = new XMLParser({
+      ignoreAttributes: false,
     })
-    .filter((s) => s !== null)
-  fs.writeFileSync(
+
+    const feed: {
+      rss: {
+        channel: {
+          title: string
+          description: string
+        }
+      }
+    } = parser.parse(await fsPromises.readFile('output/' + file, 'utf8'))
+    const title = feed.rss.channel.title
+    const description = feed.rss.channel.description
+    // XSS 対策: title と description をエスケープする
+    list.push(
+      `<li><a href='${encodeURIComponent(file)}'>${escapeHtml(title)}</a>: <code>${escapeHtml(description)}</code></li>`,
+    )
+  }
+  const filteredList = list.filter((s) => s !== null)
+  await fsPromises.writeFile(
     'output/index.html',
-    template.replace('{{ RSS-FILES }}', '<ul>' + list.join('\n') + '</ul>'),
+    template.replace(
+      '{{ RSS-FILES }}',
+      '<ul>' + filteredList.join('\n') + '</ul>',
+    ),
   )
   logger.info(`Generated`)
 }
@@ -630,14 +642,16 @@ async function cleanup(): Promise<void> {
 async function main() {
   const logger = Logger.configure('main')
 
-  if (!fs.existsSync('output')) {
-    fs.mkdirSync('output')
+  try {
+    await fsPromises.access('output')
+  } catch {
+    await fsPromises.mkdir('output')
   }
 
   let exitCode = 0
   try {
     await generateRSS()
-    generateList()
+    await generateList()
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error : new Error(String(error))
