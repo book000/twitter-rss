@@ -106,7 +106,7 @@ async function cycleTLSFetchWithProxy(
         proxy = proxyUrl.toString()
       } catch {
         throw new Error(
-          `Invalid PROXY_SERVER URL: ${proxyServer}. Expected format: host:port, http://host:port or https://host:port`,
+          'Invalid PROXY_SERVER URL. Expected format: host:port, http://host:port or https://host:port',
         )
       }
     } else {
