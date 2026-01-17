@@ -438,7 +438,7 @@ async function generateRSS() {
       `Failed to load search words from ${searchWordPath}`,
       errorMessage,
     )
-    throw error
+    throw errorMessage
   }
 
   for (const key in searchWords) {
