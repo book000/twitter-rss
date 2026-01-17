@@ -15,8 +15,3 @@ export interface Item {
   pubDate?: string
   source?: string
 }
-
-export default interface CollectResult {
-  status: boolean
-  items: Item[]
-}
