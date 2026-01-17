@@ -186,14 +186,16 @@ interface CachedCookies {
 function sanitizeFileName(fileName: string): string {
   // Windows / Linux で使えない文字列を削除
   // スペースを削除
-  // パストラバーサル攻撃を防ぐため、 ".." を削除
-  const sanitized = fileName
-    .replaceAll(/[ "*/:<>?\\|]/g, '')
-    .replaceAll('..', '')
-    .trim()
+  // パストラバーサル攻撃を防ぐため、 ".." やパス区切り文字を削除
+  let sanitized = fileName.replaceAll(/[ "*/:<>?\\|/]/g, '').trim()
 
-  // 空文字列の場合はエラー
-  if (!sanitized) {
+  // ".." を繰り返し削除（"....." → ".." のバイパスを防止）
+  while (sanitized.includes('..')) {
+    sanitized = sanitized.replaceAll('..', '')
+  }
+
+  // 空文字列、"."、".." の場合はエラー
+  if (!sanitized || sanitized === '.' || sanitized === '..') {
     throw new Error('Invalid file name after sanitization')
   }
 
