@@ -585,10 +585,9 @@ async function generateList() {
   logger.info('Generating list...')
   const files = await fsPromises.readdir('output')
   const template = await fsPromises.readFile('template.html', 'utf8')
-  const list: (string | null)[] = []
+  const list: string[] = []
   for (const file of files) {
     if (!file.endsWith('.xml')) {
-      list.push(null)
       continue
     }
     const parser = new XMLParser({
@@ -610,13 +609,9 @@ async function generateList() {
       `<li><a href='${encodeURIComponent(file)}'>${escapeHtml(title)}</a>: <code>${escapeHtml(description)}</code></li>`,
     )
   }
-  const filteredList = list.filter((s) => s !== null)
   await fsPromises.writeFile(
     'output/index.html',
-    template.replace(
-      '{{ RSS-FILES }}',
-      '<ul>' + filteredList.join('\n') + '</ul>',
-    ),
+    template.replace('{{ RSS-FILES }}', '<ul>' + list.join('\n') + '</ul>'),
   )
   logger.info(`Generated`)
 }
