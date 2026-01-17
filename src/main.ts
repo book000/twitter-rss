@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import { XMLBuilder, XMLParser } from 'fast-xml-parser'
-import fs from 'node:fs'
+import fs from 'node:fs/promises'
 import { Item } from './model/collect-result'
 import { Logger } from '@book000/node-utils'
 import { Scraper } from '@the-convocation/twitter-scraper'
@@ -214,13 +214,14 @@ function isValidCachedCookies(data: unknown): data is CachedCookies {
   )
 }
 
-function loadCachedCookies(): CachedCookies | null {
+async function loadCachedCookies(): Promise<CachedCookies | null> {
   const logger = Logger.configure('loadCachedCookies')
   try {
-    if (!fs.existsSync(COOKIE_CACHE_FILE)) {
-      return null
-    }
-    const data: unknown = JSON.parse(fs.readFileSync(COOKIE_CACHE_FILE, 'utf8'))
+    // ファイルの存在確認を access で行う
+    await fs.access(COOKIE_CACHE_FILE)
+    const data: unknown = JSON.parse(
+      await fs.readFile(COOKIE_CACHE_FILE, 'utf8'),
+    )
     if (!isValidCachedCookies(data)) {
       logger.warn('Invalid cookie cache structure')
       return null
@@ -231,6 +232,10 @@ function loadCachedCookies(): CachedCookies | null {
     }
     return data
   } catch (error) {
+    // ファイルが存在しない場合（ENOENT）は正常なケースとして null を返す
+    if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
+      return null
+    }
     const errorMessage =
       error instanceof Error ? error : new Error(String(error))
     logger.warn('Failed to load cached cookies', errorMessage)
@@ -238,17 +243,16 @@ function loadCachedCookies(): CachedCookies | null {
   }
 }
 
-function saveCookies(authToken: string, ct0: string): void {
+async function saveCookies(authToken: string, ct0: string): Promise<void> {
   const dir = './data'
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true })
-  }
+  // recursive: true を使うと、ディレクトリが存在しても安全に動作する
+  await fs.mkdir(dir, { recursive: true })
   const data: CachedCookies = {
     auth_token: authToken,
     ct0,
     savedAt: Date.now(),
   }
-  fs.writeFileSync(COOKIE_CACHE_FILE, JSON.stringify(data, null, 2))
+  await fs.writeFile(COOKIE_CACHE_FILE, JSON.stringify(data, null, 2))
 }
 
 async function loginWithRetry(
@@ -285,7 +289,7 @@ async function loginWithRetry(
 async function getAuthCookies(): Promise<{ authToken: string; ct0: string }> {
   const logger = Logger.configure('getAuthCookies')
 
-  const cached = loadCachedCookies()
+  const cached = await loadCachedCookies()
   if (cached) {
     logger.info('Using cached cookies')
     return { authToken: cached.auth_token, ct0: cached.ct0 }
@@ -323,7 +327,7 @@ async function getAuthCookies(): Promise<{ authToken: string; ct0: string }> {
     throw new Error('Failed to get auth_token or ct0 from cookies')
   }
 
-  saveCookies(authToken, ct0)
+  await saveCookies(authToken, ct0)
   logger.info('Login successful, cookies saved')
 
   return { authToken, ct0 }
@@ -427,11 +431,18 @@ async function generateRSS() {
   const searchWordPath = process.env.SEARCH_WORD_PATH ?? 'data/searches.json'
   let searchWords: SearchesModel
   try {
-    if (!fs.existsSync(searchWordPath)) {
-      throw new Error(`Search word file not found: ${searchWordPath}`)
-    }
-    searchWords = JSON.parse(fs.readFileSync(searchWordPath, 'utf8'))
+    // ファイルの存在確認を access で行う
+    await fs.access(searchWordPath)
+    searchWords = JSON.parse(await fs.readFile(searchWordPath, 'utf8'))
   } catch (error) {
+    // ファイルが存在しない場合（ENOENT）は明確なエラーメッセージを出す
+    if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
+      const notFoundError = new Error(
+        `Search word file not found: ${searchWordPath}`,
+      )
+      logger.error(notFoundError.message)
+      throw notFoundError
+    }
     const errorMessage =
       error instanceof Error ? error : new Error(String(error))
     logger.error(
@@ -561,7 +572,7 @@ async function generateRSS() {
       } = builder.build(obj)
 
       const filename = sanitizeFileName(key)
-      fs.writeFileSync('output/' + filename + '.xml', feed.toString())
+      await fs.writeFile('output/' + filename + '.xml', feed.toString())
       const endAt = new Date()
       logger.info(
         `Generated: ${filename}.xml. Found ${items.length} items (${
@@ -576,37 +587,37 @@ async function generateRSS() {
   }
 }
 
-function generateList() {
+async function generateList(): Promise<void> {
   const logger = Logger.configure('generateList')
   logger.info('Generating list...')
-  const files = fs.readdirSync('output')
-  const template = fs.readFileSync('template.html', 'utf8')
-  const list = files
-    .map((file) => {
-      if (!file.endsWith('.xml')) {
-        return null
-      }
-      const parser = new XMLParser({
-        ignoreAttributes: false,
-      })
-
-      const feed: {
-        rss: {
-          channel: {
-            title: string
-            description: string
-          }
-        }
-      } = parser.parse(fs.readFileSync('output/' + file, 'utf8'))
-      const title = feed.rss.channel.title
-      const description = feed.rss.channel.description
-      // XSS 対策: title と description をエスケープする
-      return `<li><a href='${encodeURIComponent(
-        file,
-      )}'>${escapeHtml(title)}</a>: <code>${escapeHtml(description)}</code></li>`
+  const files = await fs.readdir('output')
+  const template = await fs.readFile('template.html', 'utf8')
+  const listPromises = files.map(async (file) => {
+    if (!file.endsWith('.xml')) {
+      return null
+    }
+    const parser = new XMLParser({
+      ignoreAttributes: false,
     })
-    .filter((s) => s !== null)
-  fs.writeFileSync(
+
+    const feed: {
+      rss: {
+        channel: {
+          title: string
+          description: string
+        }
+      }
+    } = parser.parse(await fs.readFile('output/' + file, 'utf8'))
+    const title = feed.rss.channel.title
+    const description = feed.rss.channel.description
+    // XSS 対策: title と description をエスケープする
+    return `<li><a href='${encodeURIComponent(
+      file,
+    )}'>${escapeHtml(title)}</a>: <code>${escapeHtml(description)}</code></li>`
+  })
+  const listResults = await Promise.all(listPromises)
+  const list = listResults.filter((s) => s !== null)
+  await fs.writeFile(
     'output/index.html',
     template.replace('{{ RSS-FILES }}', '<ul>' + list.join('\n') + '</ul>'),
   )
@@ -634,14 +645,13 @@ async function cleanup(): Promise<void> {
 async function main() {
   const logger = Logger.configure('main')
 
-  if (!fs.existsSync('output')) {
-    fs.mkdirSync('output')
-  }
+  // recursive: true を使うと、ディレクトリが存在しても安全に動作する
+  await fs.mkdir('output', { recursive: true })
 
   let exitCode = 0
   try {
     await generateRSS()
-    generateList()
+    await generateList()
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error : new Error(String(error))
