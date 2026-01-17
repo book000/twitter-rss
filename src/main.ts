@@ -183,10 +183,21 @@ interface CachedCookies {
   savedAt: number
 }
 
-function sanitizeFileName(fileName: string) {
-  // Windows / Linuxで使えない文字列をアンダーバーに置き換える
-  // スペースをアンダーバーに置き換える
-  return fileName.replaceAll(/[ "*/:<>?\\|]/g, '').trim()
+function sanitizeFileName(fileName: string): string {
+  // Windows / Linux で使えない文字列を削除
+  // スペースを削除
+  // パストラバーサル攻撃を防ぐため、 ".." を削除
+  const sanitized = fileName
+    .replaceAll(/[ "*/:<>?\\|]/g, '')
+    .replaceAll('..', '')
+    .trim()
+
+  // 空文字列の場合はエラー
+  if (!sanitized) {
+    throw new Error('Invalid file name after sanitization')
+  }
+
+  return sanitized
 }
 
 function isValidCachedCookies(data: unknown): data is CachedCookies {
