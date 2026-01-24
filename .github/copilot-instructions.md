@@ -1,8 +1,7 @@
 # GitHub Copilot Instructions
 
 ## プロジェクト概要
-- 目的: **Twitter RSS** is a tool for generating RSS feeds based on Twitter search results. It supports custom search queries to provide real-time updates in a standardized feed format. The project is develop...
-- 主な機能: Generate RSS feeds from Twitter searches. / Supports keyword-based and advanced query searches. / Provides Docker configuration for simplified deployment.
+Generate RSS feeds from Twitter/X search results with keyword and advanced query support. Docker-ready for deployment.
 
 ## 共通ルール
 - 会話は日本語で行う。
@@ -12,8 +11,8 @@
 - 既存のプロジェクトルールがある場合はそれを優先する。
 
 ## 技術スタック
-- 言語: JavaScript
-- パッケージマネージャー: pnpm 優先（ロックファイルに従う）。
+- 言語: TypeScript
+- パッケージマネージャー: yarn
 
 ## コーディング規約
 - フォーマット: 既存設定（ESLint / Prettier / formatter）に従う。
@@ -24,12 +23,26 @@
 - TypeScript 使用時は strict 前提とし、`skipLibCheck` で回避しない。
 - 関数やインターフェースには docstring（JSDoc など）を記載する。
 
-## 開発コマンド
+### 開発コマンド
 ```bash
-# 依存関係のインストール
+# install
 yarn install
 
-# 開発 / テスト / Lint は README を確認してください
+# dev
+ts-node-dev -r tsconfig-paths/register ./src/main.ts
+
+# build
+ts-node -r tsconfig-paths/register ./src/main.ts
+
+# compile
+tsc -p .
+
+# lint
+run-p -c lint:prettier lint:eslint lint:tsc
+
+# fix
+run-s fix:prettier fix:eslint
+
 ```
 
 ## テスト方針
@@ -40,5 +53,12 @@ yarn install
 - ログに機密情報を出力しない。
 
 ## ドキュメント更新
+- 実装確定後、同一コミットまたは追加コミットで更新する。
+- README、API ドキュメント、コメント等は常に最新状態を保つ。
 
 ## リポジトリ固有
+- **twitter_auth**: Username/password based (no SSO support)
+- **configuration**: data/searches.json for target accounts
+- **output**: RSS feeds in output/ directory
+- **browser_interaction**: Uses default browser for login
+- **docker_support**: Dockerfile ready but TBD documentation

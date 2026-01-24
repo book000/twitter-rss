@@ -13,8 +13,18 @@
 - 前提・仮定・不確実性を明示し、仮定を事実のように扱わない。
 
 ## プロジェクト概要
-- 目的: **Twitter RSS** is a tool for generating RSS feeds based on Twitter search results. It supports custom search queries to provide real-time updates in a standardized feed format. The project is develop...
-- 主な機能: Generate RSS feeds from Twitter searches. / Supports keyword-based and advanced query searches. / Provides Docker configuration for simplified deployment.
+Generate RSS feeds from Twitter/X search results with keyword and advanced query support. Docker-ready for deployment.
+
+### 技術スタック
+- **言語**: TypeScript
+- **フレームワーク**: Node.js, fast-xml-parser
+- **パッケージマネージャー**: yarn
+- **主要な依存関係**:
+  - @the-convocation/twitter-scraper@0.21.1
+  - cycletls@2.0.5
+  - fast-xml-parser@5.3.3
+  - twitter-openapi-typescript@0.0.55
+  - @book000/node-utils@1.24.32
 
 ## 重要ルール
 - 会話言語: 日本語
@@ -43,28 +53,65 @@
 - TypeScript 使用時は `skipLibCheck` で回避しない。
 - 関数やインターフェースには docstring（JSDoc など）を記載する。
 
+### コーディング規約
+- **eslint**: @book000/eslint-config v1.12.40
+- **prettier**: Enabled
+**typescript:**
+  - target: esnext
+  - moduleResolution: Bundler
+  - strict: True
+  - lib: ['ESNext', 'ESNext.AsyncIterable', 'DOM']
+- **path_aliases**: @/* → ./src/*
+
 ## 相談ルール
 - Codex CLI: 実装レビュー、局所設計、整合性確認に使う。
 - Gemini CLI: 外部仕様や最新情報の確認に使う。
 - 他エージェントの指摘は黙殺せず、採用または理由を明記して不採用とする。
 
-## 開発コマンド
+### 開発コマンド
 ```bash
-# 依存関係のインストール
+# install
 yarn install
 
-# 開発 / テスト / Lint は README を確認してください
+# dev
+ts-node-dev -r tsconfig-paths/register ./src/main.ts
+
+# build
+ts-node -r tsconfig-paths/register ./src/main.ts
+
+# compile
+tsc -p .
+
+# lint
+run-p -c lint:prettier lint:eslint lint:tsc
+
+# fix
+run-s fix:prettier fix:eslint
+
 ```
 
-## アーキテクチャと主要ファイル
+### プロジェクト構造
+
+**主要ディレクトリ:**
+- `src (TypeScript source)`
+- `.github/workflows`
+
+**重要ファイル:**
+- `package.json`
+- `tsconfig.json`
+- `eslint.config.mjs`
+- `data/searches.json (configuration)`
 
 ## 実装パターン
+- 既存のコードパターンに従う。
+- プロジェクト固有の実装ガイドラインがある場合はそれに従う。
 
 ## テスト
 - 方針: 変更内容に応じてテストを追加する。
 
 ## ドキュメント更新ルール
 - 更新タイミング: 実装確定後、同一コミットまたは追加コミットで更新する。
+- README、API ドキュメント、コメント等は常に最新状態を保つ。
 
 ## 作業チェックリスト
 
@@ -95,3 +142,8 @@ yarn install
 6. PR 本文の崩れがないことを確認する。
 
 ## リポジトリ固有
+- **twitter_auth**: Username/password based (no SSO support)
+- **configuration**: data/searches.json for target accounts
+- **output**: RSS feeds in output/ directory
+- **browser_interaction**: Uses default browser for login
+- **docker_support**: Dockerfile ready but TBD documentation

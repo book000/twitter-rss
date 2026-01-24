@@ -25,3 +25,8 @@
 - ログに機密情報を出力しない。
 
 ## リポジトリ固有
+- **twitter_auth**: Username/password based (no SSO support)
+- **configuration**: data/searches.json for target accounts
+- **output**: RSS feeds in output/ directory
+- **browser_interaction**: Uses default browser for login
+- **docker_support**: Dockerfile ready but TBD documentation
