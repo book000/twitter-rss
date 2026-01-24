@@ -36,7 +36,7 @@
     "eslint-plugin-promise": "7.2.1",
     "fast-xml-parser": "5.3.3",
     "headers-polyfill": "4.0.3",
-    "prettier": "3.8.0",
+    "prettier": "3.8.1",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
     "twitter-openapi-typescript": "0.0.55",
