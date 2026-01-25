@@ -368,4 +368,4 @@ if (fs.existsSync(cookiesPath)) {
 - **コンテナ実行**: `zenika/alpine-chrome` ベースイメージが必須（Chrome + Xvfb 込み）
 - **Renovate**: `book000/templates` ベース設定を使用
 - **メインブランチ**: `main` と `master` 両対応（CI/CD）
-- **並列処理**: yarn-run-all で Lint チェック並列実行
+- **並列処理**: yarn-run-all（`run-p` / `run-s`）で Lint チェック並列実行

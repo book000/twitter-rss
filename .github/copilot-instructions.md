@@ -91,7 +91,7 @@ yarn fix
 - **Renovate**: `book000/templates` ベース設定を使用。Renovate が作成した既存の PR に対して追加コミットや更新を行わない
 - **メインブランチ**: `main` と `master` 両対応（CI/CD）
 - **プロキシ対応**: CycleTLS により IP ブロック回避可能
-- **並列処理**: yarn-run-all で Lint チェック並列実行
+- **並列処理**: `yarn-run-all`（`run-p` / `run-s`）で Lint チェック並列実行
 - **検索設定**: `data/searches.json` にキー（RSS ファイル名）と値（Twitter 高度な検索クエリ）を定義
 - **RSS 生成**: `output/` ディレクトリに出力、`template.html` で RSS ファイルリスト表示
 - **GitHub Actions**: 定期実行（毎時 0 分）、手動実行、TypeScript ファイル変更時にトリガー
