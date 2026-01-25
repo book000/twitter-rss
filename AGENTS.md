@@ -161,4 +161,4 @@
 
 - Renovate が作成した既存の PR に対して追加コミットや更新を行わない
 - メインブランチは `main` と `master` 両対応（CI/CD）
-- 並列処理は npm-run-all で Lint チェック並列実行
+- 並列処理は yarn-run-all で Lint チェック並列実行
