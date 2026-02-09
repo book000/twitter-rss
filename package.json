@@ -28,7 +28,7 @@
     "@types/node": "24.10.11",
     "@types/tough-cookie": "4.0.5",
     "cycletls": "2.0.5",
-    "dotenv": "17.2.3",
+    "dotenv": "17.2.4",
     "eslint": "9.39.2",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.32.0",
