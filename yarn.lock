@@ -188,10 +188,10 @@
     color "^5.0.2"
     text-hex "1.0.x"
 
-"@the-convocation/twitter-scraper@0.21.1":
-  version "0.21.1"
-  resolved "https://registry.yarnpkg.com/@the-convocation/twitter-scraper/-/twitter-scraper-0.21.1.tgz#7612154ab9196e76c507ccee90d515f2f5abc95b"
-  integrity sha512-q8HjTWQyrNMEitJli4/cG1ht0sV67bwWQKv4jWhQnq1OuFNBepdU/kCsbnf43UUk6BgmHdmH3uvHeIjGowqrVQ==
+"@the-convocation/twitter-scraper@0.22.0":
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/@the-convocation/twitter-scraper/-/twitter-scraper-0.22.0.tgz#dcdb1f3216c34a4feccb324579a51625348685d7"
+  integrity sha512-joXQwsembSDS1L6OphI8AZXNrSHs93+sk7bPhy+zxKIl9aJB7qmVEsCd5jljrBVJR6TYFqzfqO/ChGHcchfh1Q==
   dependencies:
     "@sinclair/typebox" "^0.32.20"
     cross-fetch "^4.0.0-alpha.5"
