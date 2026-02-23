@@ -34,7 +34,7 @@
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-n": "17.24.0",
     "eslint-plugin-promise": "7.2.1",
-    "fast-xml-parser": "5.3.6",
+    "fast-xml-parser": "5.3.7",
     "headers-polyfill": "4.0.3",
     "prettier": "3.8.1",
     "ts-node": "10.9.2",
