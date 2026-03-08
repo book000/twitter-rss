@@ -48,6 +48,32 @@ jobs:
           restore-keys: |
             twitter-cookies-v2-${{ github.repository }}-
 
+      - name: Bootstrap cookies from secret (if no cache)
+        run: |
+          if [ ! -f data/twitter-cookies.json ] && [ -n "$TWITTER_COOKIES_JSON" ]; then
+            mkdir -p data
+            # savedAt を現在時刻に更新してファイルに書き込む
+            echo "$TWITTER_COOKIES_JSON" | node -e "
+              const chunks = [];
+              process.stdin.on('data', c => chunks.push(c));
+              process.stdin.on('end', () => {
+                const d = JSON.parse(chunks.join(''));
+                d.savedAt = Date.now();
+                process.stdout.write(JSON.stringify(d, null, 2));
+              });
+            " > data/twitter-cookies.json
+            echo "Cookies bootstrapped from secret (savedAt updated)"
+          elif [ -f data/twitter-cookies.json ]; then
+            echo "Cookies restored from cache"
+          else
+            echo "No cookies available (will attempt fresh login)"
+          fi
+        env:
+          TWITTER_COOKIES_JSON: ${{ secrets.TWITTER_COOKIES_JSON }}
+
+      - name: Check runner IP (debug)
+        run: curl -s https://ipinfo.io/ip || curl -s https://api.ipify.org || echo "IP check failed"
+
       - name: Update RSS
         id: update-rss
         run: |

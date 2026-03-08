@@ -175,7 +175,8 @@ async function cycleTLSFetchWithProxy(
 }
 
 const COOKIE_CACHE_FILE = './data/twitter-cookies.json'
-const COOKIE_EXPIRY_DAYS = 7
+// 30 日間キャッシュを有効とする（Twitter のセッションは通常数ヶ月有効）
+const COOKIE_EXPIRY_DAYS = 30
 
 interface CachedCookies {
   auth_token: string
@@ -271,9 +272,21 @@ async function loginWithRetry(
         (error.message.includes('503') ||
           error.message.includes('Service Unavailable'))
 
+      // error 399: Twitter が不審なアクティビティとしてブロック。一定時間待機後にリトライ
+      const is399 =
+        error instanceof Error &&
+        (error.message.includes('399') || error.message.includes('error 399'))
+
       if (is503 && attempt < maxRetries) {
         const delay = Math.min(1000 * Math.pow(2, attempt - 1), 30_000)
         logger.warn(`503 error, retrying in ${delay / 1000}s...`)
+        await new Promise((resolve) => setTimeout(resolve, delay))
+      } else if (is399 && attempt < maxRetries) {
+        // Twitter の推奨待機時間は 15 分だが、ワークフロー都合上 2 分で 2 回まで試みる
+        const delay = 120_000
+        logger.warn(
+          `🚫 error 399 (suspicious activity), retrying in ${delay / 1000}s... (attempt ${attempt}/${maxRetries})`,
+        )
         await new Promise((resolve) => setTimeout(resolve, delay))
       } else {
         throw error
