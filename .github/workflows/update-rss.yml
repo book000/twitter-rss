@@ -67,22 +67,12 @@ jobs:
 
       - name: Error handling
         if: failure() && github.event_name != 'pull_request'
-        uses: Ilshidur/action-discord@0.4.0
-        with:
-          args: ''
+        run: |
+          curl -s -X POST "$DISCORD_WEBHOOK" \
+            -H "Content-Type: application/json" \
+            -d "{\"embeds\":[{\"title\":\"RSS Update Failed\",\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"color\":16711680,\"footer\":{\"text\":\"${{ github.repository }}\"}}]}"
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_EMBEDS: |
-            [
-              {
-                "title": "RSS Update Failed",
-                "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
-                "color": 16711680,
-                "footer": {
-                  "text": "${{ github.repository }}"
-                }
-              }
-            ]
 
       - name: Upload Pages-artifact
         uses: actions/upload-pages-artifact@v4
