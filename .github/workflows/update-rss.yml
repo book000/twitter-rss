@@ -13,7 +13,7 @@ on:
 
 jobs:
   update-rss:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: 🛎 Checkout
@@ -43,48 +43,9 @@ jobs:
         uses: actions/cache@v5
         with:
           path: data/twitter-cookies.json
-          key: twitter-cookies-v1-${{ github.repository }}
-
-      - name: Check proxy connectivity (debug)
-        run: |
-          node -e "
-          const initCycleTLS = require('cycletls').default;
-          (async () => {
-            const cycleTLS = await initCycleTLS();
-            console.log('=== Without proxy ===');
-            try {
-              const r1 = await cycleTLS('https://httpbin.org/ip', {
-                ja3: '771,4865-4866-4867-49195-49199-49196-49200-52393-52392-49171-49172-156-157-47-53,0-23-65281-10-11-35-16-5-13-18-51-45-43-27-17513,29-23-24,0',
-                userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
-              }, 'get');
-              console.log('Direct IP:', r1.data);
-            } catch(e) { console.error('Direct failed:', e.message); }
-
-            console.log('=== With proxy ===');
-            try {
-              const proxyServer = process.env.PROXY_SERVER;
-              const proxyUser = process.env.PROXY_USERNAME;
-              const proxyPass = process.env.PROXY_PASSWORD;
-              const proxyUrl = (proxyServer.startsWith('http') ? proxyServer : 'http://' + proxyServer);
-              const u = new URL(proxyUrl);
-              if (proxyUser) { u.username = proxyUser; u.password = proxyPass; }
-              const proxy = u.toString();
-              console.log('Proxy host:', u.host);
-              const r2 = await cycleTLS('https://httpbin.org/ip', {
-                proxy,
-                ja3: '771,4865-4866-4867-49195-49199-49196-49200-52393-52392-49171-49172-156-157-47-53,0-23-65281-10-11-35-16-5-13-18-51-45-43-27-17513,29-23-24,0',
-                userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
-              }, 'get');
-              console.log('Proxy IP:', r2.data);
-            } catch(e) { console.error('Proxy failed:', e.message); }
-
-            await cycleTLS.exit();
-          })().catch(e => { console.error(e); process.exit(1); });
-          "
-        env:
-          PROXY_SERVER: ${{ secrets.PROXY_SERVER }}
-          PROXY_USERNAME: ${{ secrets.PROXY_USERNAME }}
-          PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }}
+          key: twitter-cookies-v2-${{ github.repository }}-${{ github.run_id }}
+          restore-keys: |
+            twitter-cookies-v2-${{ github.repository }}-
 
       - name: Update RSS
         id: update-rss
