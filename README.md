@@ -144,11 +144,11 @@ Supported Twitter search operators include:
 
 ### Using Docker Compose (recommended)
 
-1. Create a `data/` directory and add your `searches.json`:
+1. Create a `data/` directory and add your `searches.json` (see [Search Configuration](#search-configuration-datasearchesjson)):
 
    ```bash
    mkdir -p data
-   cp data/searches.json.example data/searches.json  # or create your own
+   # Create data/searches.json with your queries (see Search Configuration section)
    ```
 
 2. Create a `.env` file with your credentials (see [Environment Variables](#environment-variables)).
