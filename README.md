@@ -14,7 +14,7 @@
 - **RSS 2.0 feeds from Twitter searches** — Converts Twitter search results into standard RSS XML files readable by any RSS reader.
 - **Advanced Twitter query support** — Supports all Twitter advanced search operators (`from:`, `filter:images`, `exclude:retweets`, etc.).
 - **Cookie caching** — Caches authentication cookies for up to 30 days to avoid repeated logins.
-- **Login retry with backoff** — Automatically retries logins on transient failures (HTTP 503, error 399) with exponential backoff.
+- **Login retry with backoff** — Automatically retries logins on transient failures (HTTP 503 with exponential backoff, error 399 with a fixed 120-second delay).
 - **Two-factor authentication (TOTP)** — Supports TOTP-based 2FA via a secret key.
 - **Proxy and TLS fingerprint spoofing** — Uses [CycleTLS](https://github.com/Danny-Dasilva/CycleTLS) to spoof TLS fingerprints (JA3) and route requests through an HTTP proxy.
 - **Ad filtering** — Automatically removes promoted tweets from results.
