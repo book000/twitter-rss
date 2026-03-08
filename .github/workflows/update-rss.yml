@@ -24,6 +24,9 @@ jobs:
         with:
           node-version-file: .node-version
 
+      - name: Enable corepack (yarn)
+        run: corepack enable
+
       - name: Install apt dependencies
         uses: nick-fields/retry@v3
         with:
