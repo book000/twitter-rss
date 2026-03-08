@@ -13,7 +13,7 @@ on:
 
 jobs:
   update-rss:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: 🛎 Checkout
@@ -23,8 +23,9 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
-          cache: yarn
-          cache-dependency-path: yarn.lock
+
+      - name: Enable corepack (yarn)
+        run: corepack enable
 
       - name: Install apt dependencies
         uses: nick-fields/retry@v3
@@ -43,7 +44,32 @@ jobs:
         uses: actions/cache@v5
         with:
           path: data/twitter-cookies.json
-          key: twitter-cookies-v1-${{ github.repository }}
+          key: twitter-cookies-v2-${{ github.repository }}-${{ github.run_id }}
+          restore-keys: |
+            twitter-cookies-v2-${{ github.repository }}-
+
+      - name: Bootstrap cookies from secret (if no cache)
+        run: |
+          if [ ! -f data/twitter-cookies.json ] && [ -n "$TWITTER_COOKIES_JSON" ]; then
+            mkdir -p data
+            # savedAt を現在時刻に更新してファイルに書き込む
+            echo "$TWITTER_COOKIES_JSON" | node -e "
+              const chunks = [];
+              process.stdin.on('data', c => chunks.push(c));
+              process.stdin.on('end', () => {
+                const d = JSON.parse(chunks.join(''));
+                d.savedAt = Date.now();
+                process.stdout.write(JSON.stringify(d, null, 2));
+              });
+            " > data/twitter-cookies.json
+            echo "Cookies bootstrapped from secret (savedAt updated)"
+          elif [ -f data/twitter-cookies.json ]; then
+            echo "Cookies restored from cache"
+          else
+            echo "No cookies available (will attempt fresh login)"
+          fi
+        env:
+          TWITTER_COOKIES_JSON: ${{ secrets.TWITTER_COOKIES_JSON }}
 
       - name: Update RSS
         id: update-rss
@@ -65,22 +91,12 @@ jobs:
 
       - name: Error handling
         if: failure() && github.event_name != 'pull_request'
-        uses: Ilshidur/action-discord@0.4.0
-        with:
-          args: ''
+        run: |
+          curl -s -X POST "$DISCORD_WEBHOOK" \
+            -H "Content-Type: application/json" \
+            -d "{\"embeds\":[{\"title\":\"RSS Update Failed\",\"url\":\"${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\",\"color\":16711680,\"footer\":{\"text\":\"${GITHUB_REPOSITORY}\"}}]}"
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_EMBEDS: |
-            [
-              {
-                "title": "RSS Update Failed",
-                "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
-                "color": 16711680,
-                "footer": {
-                  "text": "${{ github.repository }}"
-                }
-              }
-            ]
 
       - name: Upload Pages-artifact
         uses: actions/upload-pages-artifact@v4
