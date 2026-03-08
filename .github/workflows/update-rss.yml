@@ -71,9 +71,6 @@ jobs:
         env:
           TWITTER_COOKIES_JSON: ${{ secrets.TWITTER_COOKIES_JSON }}
 
-      - name: Check runner IP (debug)
-        run: curl -s https://ipinfo.io/ip || curl -s https://api.ipify.org || echo "IP check failed"
-
       - name: Update RSS
         id: update-rss
         run: |
