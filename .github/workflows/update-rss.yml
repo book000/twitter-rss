@@ -94,7 +94,7 @@ jobs:
         run: |
           curl -s -X POST "$DISCORD_WEBHOOK" \
             -H "Content-Type: application/json" \
-            -d "{\"embeds\":[{\"title\":\"RSS Update Failed\",\"url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"color\":16711680,\"footer\":{\"text\":\"${{ github.repository }}\"}}]}"
+            -d "{\"embeds\":[{\"title\":\"RSS Update Failed\",\"url\":\"${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\",\"color\":16711680,\"footer\":{\"text\":\"${GITHUB_REPOSITORY}\"}}]}"
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 

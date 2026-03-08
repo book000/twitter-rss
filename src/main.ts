@@ -273,16 +273,15 @@ async function loginWithRetry(
           error.message.includes('Service Unavailable'))
 
       // error 399: Twitter が不審なアクティビティとしてブロック。一定時間待機後にリトライ
-      const is399 =
-        error instanceof Error &&
-        (error.message.includes('399') || error.message.includes('error 399'))
+      // /\b399\b/ で境界一致させ誤検知（"3990" など）を防ぐ
+      const is399 = error instanceof Error && /\b399\b/.test(error.message)
 
       if (is503 && attempt < maxRetries) {
         const delay = Math.min(1000 * Math.pow(2, attempt - 1), 30_000)
         logger.warn(`503 error, retrying in ${delay / 1000}s...`)
         await new Promise((resolve) => setTimeout(resolve, delay))
       } else if (is399 && attempt < maxRetries) {
-        // Twitter の推奨待機時間は 15 分だが、ワークフロー都合上 2 分で 2 回まで試みる
+        // Twitter の推奨待機時間は 15 分だが、ワークフロー都合上 2 分間隔でリトライする（最大試行回数は maxRetries に依存）
         const delay = 120_000
         logger.warn(
           `🚫 error 399 (suspicious activity), retrying in ${delay / 1000}s... (attempt ${attempt}/${maxRetries})`,
