@@ -9,7 +9,7 @@ export interface Item {
   comments?: string
   enclosure?: string
   guid?: {
-    '@_isPermaLink?': boolean
+    '@_isPermaLink'?: boolean
     '#text'?: string
   }
   pubDate?: string
