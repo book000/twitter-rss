@@ -10,6 +10,21 @@ import { TwitterOpenApi } from 'twitter-openapi-typescript'
 import initCycleTLS, { CycleTLSClient } from 'cycletls'
 import { Headers } from 'headers-polyfill'
 
+// EPIPE エラー（パイプ切断）が発生した場合は静かに終了する
+// @book000/node-utils の uncaughtException ハンドラーがログ書き込みで EPIPE を再発させ
+// 無限ループになる問題を防ぐ
+process.stdout.on('error', (err: NodeJS.ErrnoException) => {
+  // eslint-disable-next-line unicorn/no-process-exit
+  if (err.code === 'EPIPE') process.exit(0)
+})
+process.stderr.on('error', (err: NodeJS.ErrnoException) => {
+  // eslint-disable-next-line unicorn/no-process-exit
+  if (err.code === 'EPIPE') process.exit(0)
+})
+process.on('uncaughtException', (err: NodeJS.ErrnoException) => {
+  if (err.code === 'EPIPE') process.exit(0)
+})
+
 type SearchesModel = Record<string, string>
 
 /**
@@ -460,6 +475,7 @@ async function generateRSS() {
 
     const builder = new XMLBuilder({
       ignoreAttributes: false,
+      suppressBooleanAttributes: false,
       format: true,
     })
 
@@ -534,9 +550,14 @@ async function generateRSS() {
 
         const content = getContent(tweetData)
 
+        const tweetUrl = `https://twitter.com/${screenName}/status/${idStr}`
         return {
           title,
-          link: `https://twitter.com/${screenName}/status/${idStr}`,
+          link: tweetUrl,
+          guid: {
+            '@_isPermaLink': true,
+            '#text': tweetUrl,
+          },
           'content:encoded': content,
           author: `${userName} (@${screenName})`,
           pubDate: createdAt ? new Date(createdAt).toUTCString() : '',
