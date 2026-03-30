@@ -19,10 +19,10 @@
     neostandard "0.13.0"
     typescript-eslint "8.57.2"
 
-"@book000/node-utils@1.24.112":
-  version "1.24.112"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.24.112.tgz#9c2008ce33fc871da9689efa82bf746bad1beb1f"
-  integrity sha512-e5UzSzAdNJUryMbwkfr+0QQyZXMGZHi4eE7AL7SbhgUWbbOsKk/jPv3yenkhgRJR8prIHzDk2szZnYo7gdefdg==
+"@book000/node-utils@1.24.113":
+  version "1.24.113"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.24.113.tgz#fdd363a1d3eb3c9f7d708f8903f81c4ee489451a"
+  integrity sha512-Wnd2/HG4X3BNNLWCRp2XzB3VVLu3hsMyyMVBGp450FL8t3VaITti+7/mkTFf3YXEWY6KyfA2S4S9b1HYzF+PBA==
   dependencies:
     axios "1.13.6"
     cycle "1.0.3"
