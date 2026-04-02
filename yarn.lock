@@ -181,10 +181,10 @@
     estraverse "^5.3.0"
     picomatch "^4.0.2"
 
-"@the-convocation/twitter-scraper@0.22.1":
-  version "0.22.1"
-  resolved "https://registry.yarnpkg.com/@the-convocation/twitter-scraper/-/twitter-scraper-0.22.1.tgz#9e7ffc2228a82f85172ae6b4c895146205e1ca4a"
-  integrity sha512-eKQs55vvG97XdSEwicNKNGUf8VwcoRAwwgTdISAjE1VlyKh8ikiAvKA0SDMluW/boROL3S+9WPdXfhuivLrEFQ==
+"@the-convocation/twitter-scraper@0.22.2":
+  version "0.22.2"
+  resolved "https://registry.yarnpkg.com/@the-convocation/twitter-scraper/-/twitter-scraper-0.22.2.tgz#f82ad0c183f20d9c999356e82fdf1e8c03c4bbc9"
+  integrity sha512-bfwyqHsK8tq51xZ+8mRxLbEEUeawz6l1wF2WBoT580w22GYbEvyrOEBGUAzNTtK/7Up/bDAAExK+TOuMKAiurw==
   dependencies:
     "@sinclair/typebox" "^0.32.20"
     cross-fetch "^4.0.0-alpha.5"
@@ -196,7 +196,7 @@
     set-cookie-parser "^2.6.0"
     tough-cookie "^4.1.2"
     tslib "^2.5.2"
-    x-client-transaction-id "^0.1.9"
+    x-client-transaction-id "^0.2.0"
 
 "@tsconfig/node10@^1.0.7":
   version "1.0.12"
@@ -3466,10 +3466,10 @@ x-client-transaction-id-generater@^0.0.7:
   dependencies:
     node-html-parser "^7.0.1"
 
-x-client-transaction-id@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/x-client-transaction-id/-/x-client-transaction-id-0.1.9.tgz#3bb0359268a481f66edf39c0aaa195d73195e849"
-  integrity sha512-CES4zgkJ0wbfFWm0qgdKphthyb+L7lVHymgOY15v6ivcWSx5p9lp5kzAed+BuqJSP7bS0GbQyJ16ONkRthgsUw==
+x-client-transaction-id@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/x-client-transaction-id/-/x-client-transaction-id-0.2.0.tgz#5cff4439bdbcf07abb6d0806f3d40c9bd078a122"
+  integrity sha512-E2EgeyQpeOLOk4z7OS+IDpj7xwiKeUQHly6L1dTG2YYCEGtR6JLa6Ft5ra3pB7bY5esPb6Pqokt1DQeRm73i5g==
   dependencies:
     linkedom "^0.18.9"
 
