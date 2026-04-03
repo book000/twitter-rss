@@ -246,9 +246,8 @@ function loadCachedCookies(): CachedCookies | null {
       return null
     }
     return data
-  } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error : new Error(String(error))
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err : new Error(String(err))
     logger.warn('Failed to load cached cookies', errorMessage)
     return null
   }
@@ -281,15 +280,15 @@ async function loginWithRetry(
       logger.info(`Login attempt ${attempt}/${maxRetries}...`)
       await scraper.login(username, password, email, twoFactorSecret)
       return
-    } catch (error: unknown) {
+    } catch (err: unknown) {
       const is503 =
-        error instanceof Error &&
-        (error.message.includes('503') ||
-          error.message.includes('Service Unavailable'))
+        err instanceof Error &&
+        (err.message.includes('503') ||
+          err.message.includes('Service Unavailable'))
 
       // error 399: Twitter が不審なアクティビティとしてブロック。一定時間待機後にリトライ
       // /\b399\b/ で境界一致させ誤検知（"3990" など）を防ぐ
-      const is399 = error instanceof Error && /\b399\b/.test(error.message)
+      const is399 = err instanceof Error && /\b399\b/.test(err.message)
 
       if (is503 && attempt < maxRetries) {
         const delay = Math.min(1000 * Math.pow(2, attempt - 1), 30_000)
@@ -303,7 +302,7 @@ async function loginWithRetry(
         )
         await new Promise((resolve) => setTimeout(resolve, delay))
       } else {
-        throw error
+        throw err
       }
     }
   }
@@ -412,11 +411,11 @@ async function withRetry<T>(
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
       return await fn()
-    } catch (error: unknown) {
+    } catch (err: unknown) {
       const isLastAttempt = attempt >= maxRetries
 
       if (isLastAttempt) {
-        throw error
+        throw err
       }
 
       const delay = Math.min(baseDelayMs * Math.pow(2, attempt - 1), maxDelayMs)
@@ -458,9 +457,8 @@ async function generateRSS() {
       throw new Error(`Search word file not found: ${searchWordPath}`)
     }
     searchWords = JSON.parse(fs.readFileSync(searchWordPath, 'utf8'))
-  } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error : new Error(String(error))
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err : new Error(String(err))
     logger.error(
       `Failed to load search words from ${searchWordPath}`,
       errorMessage,
@@ -601,9 +599,8 @@ async function generateRSS() {
           endAt.getTime() - startAt.getTime()
         }ms)`,
       )
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error : new Error(String(error))
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err : new Error(String(err))
       logger.error(`Error searching for "${searchWord}"`, errorMessage)
     }
   }
@@ -675,9 +672,8 @@ async function main() {
   try {
     await generateRSS()
     generateList()
-  } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error : new Error(String(error))
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err : new Error(String(err))
     logger.error('Fatal error occurred', errorMessage)
     exitCode = 1
   } finally {
