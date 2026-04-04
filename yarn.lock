@@ -181,10 +181,10 @@
     estraverse "^5.3.0"
     picomatch "^4.0.2"
 
-"@the-convocation/twitter-scraper@0.22.2":
-  version "0.22.2"
-  resolved "https://registry.yarnpkg.com/@the-convocation/twitter-scraper/-/twitter-scraper-0.22.2.tgz#f82ad0c183f20d9c999356e82fdf1e8c03c4bbc9"
-  integrity sha512-bfwyqHsK8tq51xZ+8mRxLbEEUeawz6l1wF2WBoT580w22GYbEvyrOEBGUAzNTtK/7Up/bDAAExK+TOuMKAiurw==
+"@the-convocation/twitter-scraper@0.22.3":
+  version "0.22.3"
+  resolved "https://registry.yarnpkg.com/@the-convocation/twitter-scraper/-/twitter-scraper-0.22.3.tgz#0a61756d47615a05c9b4ef49e4f1ced6bc0684a9"
+  integrity sha512-ul5jTuzHAR+XpSm64dl5ke/llc3s43p3rNvVgLmLyy3XcQghAfAaBjZBfCgidrYRDeh1T84VYRAjZd1X9/qqdg==
   dependencies:
     "@sinclair/typebox" "^0.32.20"
     cross-fetch "^4.0.0-alpha.5"
