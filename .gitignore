@@ -7,3 +7,5 @@ logs/
 .env
 data/*
 !data/searches.json
+.serena/
+tsconfig.tsbuildinfo
