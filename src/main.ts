@@ -190,8 +190,10 @@ async function cycleTLSFetchWithProxy(
 }
 
 const COOKIE_CACHE_FILE = './data/twitter-cookies.json'
-// 30 日間キャッシュを有効とする（Twitter のセッションは通常数ヶ月有効）
-const COOKIE_EXPIRY_DAYS = 30
+// 90 日間キャッシュを有効とする（Twitter のセッションは通常数ヶ月有効）
+// NOTE: savedAt はワークフロー側で毎実行更新されるため、実質的な期限は「最後に CI が成功してから 90 日」となる。
+// Twitter がサーバー側でセッションを無効化した場合は API エラー (401 等) でジョブ失敗として検知する。
+const COOKIE_EXPIRY_DAYS = 90
 
 interface CachedCookies {
   auth_token: string
@@ -315,8 +317,6 @@ async function getAuthCookies(): Promise<{ authToken: string; ct0: string }> {
   const cached = loadCachedCookies()
   if (cached) {
     logger.info('Using cached cookies')
-    // キャッシュ使用時に savedAt を更新して次回実行時の期限切れを防ぐ
-    saveCookies(cached.auth_token, cached.ct0)
     return { authToken: cached.auth_token, ct0: cached.ct0 }
   }
 

@@ -65,13 +65,36 @@ jobs:
             echo "Cookies bootstrapped from secret (savedAt updated)"
           elif [ -f data/twitter-cookies.json ]; then
             # キャッシュが存在する場合も savedAt を現在時刻に更新して期限切れを防ぐ
-            node -e "
+            # JSON が壊れている場合はファイルを削除してシークレットからのブートストラップにフォールバックする
+            if node -e "
               const fs = require('fs');
-              const data = JSON.parse(fs.readFileSync('data/twitter-cookies.json', 'utf-8'));
-              data.savedAt = Date.now();
-              fs.writeFileSync('data/twitter-cookies.json', JSON.stringify(data, null, 2));
-            "
-            echo "Cookies restored from cache (savedAt updated)"
+              try {
+                const data = JSON.parse(fs.readFileSync('data/twitter-cookies.json', 'utf-8'));
+                data.savedAt = Date.now();
+                fs.writeFileSync('data/twitter-cookies.json', JSON.stringify(data, null, 2));
+              } catch (e) {
+                process.stderr.write('Failed to update savedAt: ' + e.message + '\n');
+                fs.unlinkSync('data/twitter-cookies.json');
+                process.exit(1);
+              }
+            "; then
+              echo "Cookies restored from cache (savedAt updated)"
+            else
+              echo "Malformed cache removed, falling back to secret..."
+              if [ -n "$TWITTER_COOKIES_JSON" ]; then
+                mkdir -p data
+                echo "$TWITTER_COOKIES_JSON" | node -e "
+                  const chunks = [];
+                  process.stdin.on('data', c => chunks.push(c));
+                  process.stdin.on('end', () => {
+                    const d = JSON.parse(chunks.join(''));
+                    d.savedAt = Date.now();
+                    process.stdout.write(JSON.stringify(d, null, 2));
+                  });
+                " > data/twitter-cookies.json
+                echo "Cookies bootstrapped from secret (savedAt updated)"
+              fi
+            fi
           else
             echo "No cookies available (will attempt fresh login)"
           fi
