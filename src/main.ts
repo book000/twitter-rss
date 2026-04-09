@@ -315,6 +315,8 @@ async function getAuthCookies(): Promise<{ authToken: string; ct0: string }> {
   const cached = loadCachedCookies()
   if (cached) {
     logger.info('Using cached cookies')
+    // キャッシュ使用時に savedAt を更新して次回実行時の期限切れを防ぐ
+    saveCookies(cached.auth_token, cached.ct0)
     return { authToken: cached.auth_token, ct0: cached.ct0 }
   }
 

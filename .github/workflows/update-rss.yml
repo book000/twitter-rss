@@ -64,7 +64,14 @@ jobs:
             " > data/twitter-cookies.json
             echo "Cookies bootstrapped from secret (savedAt updated)"
           elif [ -f data/twitter-cookies.json ]; then
-            echo "Cookies restored from cache"
+            # キャッシュが存在する場合も savedAt を現在時刻に更新して期限切れを防ぐ
+            node -e "
+              const fs = require('fs');
+              const data = JSON.parse(fs.readFileSync('data/twitter-cookies.json', 'utf-8'));
+              data.savedAt = Date.now();
+              fs.writeFileSync('data/twitter-cookies.json', JSON.stringify(data, null, 2));
+            "
+            echo "Cookies restored from cache (savedAt updated)"
           else
             echo "No cookies available (will attempt fresh login)"
           fi
