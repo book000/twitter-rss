@@ -19,14 +19,12 @@
     neostandard "0.13.0"
     typescript-eslint "8.59.0"
 
-"@book000/node-utils@1.24.123":
-  version "1.24.123"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.24.123.tgz#b446a15528ccc267fa0053867b301af5c96cfb6a"
-  integrity sha512-IefkdEUR7Vs907qap+TJmhY1b6ZbxAJPRJvqk+xq3qtJ+K5hS2UKxhzrGXLD4WUjfZbgMXN/ttx76ylHrqtGUg==
+"@book000/node-utils@1.24.140":
+  version "1.24.140"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.24.140.tgz#9385916bb5906ccfc11a2aac722a93f4e2d144dc"
+  integrity sha512-sjy2pKGKEQoPYzh1bgSDDhdhjYndYMZfOZN4oVjXHeCsD6Xpx30ix7wJbb1QHbvDJePY7h+YJNeFrmbTC1gnxA==
   dependencies:
-    axios "1.14.0"
     cycle "1.0.3"
-    form-data "4.0.5"
     jsonc-parser "3.3.1"
     moment-timezone "0.6.1"
     winston "3.19.0"
@@ -653,15 +651,6 @@ available-typed-arrays@^1.0.7:
   integrity sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==
   dependencies:
     possible-typed-array-names "^1.0.0"
-
-axios@1.14.0:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.14.0.tgz#7c29f4cf2ea91ef05018d5aa5399bf23ed3120eb"
-  integrity sha512-3Y8yrqLSwjuzpXuZ0oIYZ/XGgLwUIBU3uLvbcpb0pidD9ctpShJd43KSlEEkVQg6DS0G9NKyzOvBfUtDKEyHvQ==
-  dependencies:
-    follow-redirects "^1.15.11"
-    form-data "^4.0.5"
-    proxy-from-env "^2.1.0"
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -1588,11 +1577,6 @@ fn.name@1.x.x:
   resolved "https://registry.yarnpkg.com/fn.name/-/fn.name-1.1.0.tgz#26cad8017967aea8731bc42961d04a3d5988accc"
   integrity sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==
 
-follow-redirects@^1.15.11:
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.16.0.tgz#28474a159d3b9d11ef62050a14ed60e4df6d61bc"
-  integrity sha512-y5rN/uOsadFT/JfYwhxRS5R7Qce+g3zG97+JrtFZlC9klX/W5hD7iiLzScI4nZqUS7DNUdhPgw4xI8W2LuXlUw==
-
 for-each@^0.3.3, for-each@^0.3.5:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/for-each/-/for-each-0.3.5.tgz#d650688027826920feeb0af747ee7b9421a41d47"
@@ -1600,7 +1584,7 @@ for-each@^0.3.3, for-each@^0.3.5:
   dependencies:
     is-callable "^1.2.7"
 
-form-data@4.0.5, form-data@^4.0.0, form-data@^4.0.5:
+form-data@^4.0.0:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.5.tgz#b49e48858045ff4cbf6b03e1805cebcad3679053"
   integrity sha512-8RipRLol37bNs2bhoV67fiTEvdTrbMUYcFTiy3+wuuOnUog2QBHCZWXDRijWQfAkhBj2Uf5UnVaiWwA5vdd82w==
@@ -2658,11 +2642,6 @@ prop-types@^15.8.1:
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
     react-is "^16.13.1"
-
-proxy-from-env@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-2.1.0.tgz#a7487568adad577cfaaa7e88c49cab3ab3081aba"
-  integrity sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==
 
 ps-tree@^1.0.1:
   version "1.2.0"
