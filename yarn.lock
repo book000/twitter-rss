@@ -19,16 +19,14 @@
     neostandard "0.13.0"
     typescript-eslint "8.59.1"
 
-"@book000/node-utils@1.24.123":
-  version "1.24.123"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.24.123.tgz#b446a15528ccc267fa0053867b301af5c96cfb6a"
-  integrity sha512-IefkdEUR7Vs907qap+TJmhY1b6ZbxAJPRJvqk+xq3qtJ+K5hS2UKxhzrGXLD4WUjfZbgMXN/ttx76ylHrqtGUg==
+"@book000/node-utils@1.24.149":
+  version "1.24.149"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.24.149.tgz#e96d93e3c04c6929d0b39472f3239ab5cce03145"
+  integrity sha512-KqdM6yKZrYprgT9dKsa/1w46EVVYN4xXoimlWEHMTVRFj+681mAUFaYem8W/r9jcwO0TgbMODIgW9I7sVN+Kug==
   dependencies:
-    axios "1.14.0"
     cycle "1.0.3"
-    form-data "4.0.5"
     jsonc-parser "3.3.1"
-    moment-timezone "0.6.1"
+    moment-timezone "0.6.2"
     winston "3.19.0"
     winston-daily-rotate-file "5.0.0"
 
@@ -653,15 +651,6 @@ available-typed-arrays@^1.0.7:
   integrity sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==
   dependencies:
     possible-typed-array-names "^1.0.0"
-
-axios@1.14.0:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.14.0.tgz#7c29f4cf2ea91ef05018d5aa5399bf23ed3120eb"
-  integrity sha512-3Y8yrqLSwjuzpXuZ0oIYZ/XGgLwUIBU3uLvbcpb0pidD9ctpShJd43KSlEEkVQg6DS0G9NKyzOvBfUtDKEyHvQ==
-  dependencies:
-    follow-redirects "^1.15.11"
-    form-data "^4.0.5"
-    proxy-from-env "^2.1.0"
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -1595,11 +1584,6 @@ fn.name@1.x.x:
   resolved "https://registry.yarnpkg.com/fn.name/-/fn.name-1.1.0.tgz#26cad8017967aea8731bc42961d04a3d5988accc"
   integrity sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==
 
-follow-redirects@^1.15.11:
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.16.0.tgz#28474a159d3b9d11ef62050a14ed60e4df6d61bc"
-  integrity sha512-y5rN/uOsadFT/JfYwhxRS5R7Qce+g3zG97+JrtFZlC9klX/W5hD7iiLzScI4nZqUS7DNUdhPgw4xI8W2LuXlUw==
-
 for-each@^0.3.3, for-each@^0.3.5:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/for-each/-/for-each-0.3.5.tgz#d650688027826920feeb0af747ee7b9421a41d47"
@@ -1607,7 +1591,7 @@ for-each@^0.3.3, for-each@^0.3.5:
   dependencies:
     is-callable "^1.2.7"
 
-form-data@4.0.5, form-data@^4.0.0, form-data@^4.0.5:
+form-data@^4.0.0:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.5.tgz#b49e48858045ff4cbf6b03e1805cebcad3679053"
   integrity sha512-8RipRLol37bNs2bhoV67fiTEvdTrbMUYcFTiy3+wuuOnUog2QBHCZWXDRijWQfAkhBj2Uf5UnVaiWwA5vdd82w==
@@ -2315,10 +2299,10 @@ mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-moment-timezone@0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.6.1.tgz#c324a71a8285583eb679ced4ba3dcfa53fdce500"
-  integrity sha512-1B9lmAhB9D9/sHaPC1N7wLFEVUoFldxOpOO96lOD1PvJ43vCd0ozDPbu0FEL3++VvawOlDkq8YD373tJmP5JHw==
+moment-timezone@0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.6.2.tgz#a704cca03ee502f0df6edd42efcdcc61ee03190e"
+  integrity sha512-lDsQv8FoGdBUdf0+TjGsq2orxKuXdwFlQ6Zw6TX3xIcTwTfEpCLyKqvEauvCHJ8iu3KBV8+uPhlv70YsNGdUBQ==
   dependencies:
     moment "^2.29.4"
 
@@ -2665,11 +2649,6 @@ prop-types@^15.8.1:
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
     react-is "^16.13.1"
-
-proxy-from-env@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-2.1.0.tgz#a7487568adad577cfaaa7e88c49cab3ab3081aba"
-  integrity sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==
 
 ps-tree@^1.0.1:
   version "1.2.0"
