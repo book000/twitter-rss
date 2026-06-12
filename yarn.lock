@@ -19,10 +19,10 @@
     neostandard "0.13.0"
     typescript-eslint "8.60.1"
 
-"@book000/node-utils@1.24.221":
-  version "1.24.221"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.24.221.tgz#148005b0c7cf9a98908db4d2fcbb8a146a29cc31"
-  integrity sha512-Dy8VVZ9banu0inQR34GOFdzK/V1pRUle+cjRKKj4oGoSmBprIXaGReAgc8V3MaMO9oxiGBxzlFUi9k1WcSdggA==
+"@book000/node-utils@1.24.222":
+  version "1.24.222"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.24.222.tgz#27a2d38f3e9bf206df11ac4c099a98dd83f66b2a"
+  integrity sha512-3H5cSZa4f23ADzBpINIZUhruumXV9OvR781hRiPuMeNDpmA39BjKSQ7vBIHzCN+kLM7c6NB3OoOFTcldRVVyPA==
   dependencies:
     cycle "1.0.3"
     jsonc-parser "3.3.1"
