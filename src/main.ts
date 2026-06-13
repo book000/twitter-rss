@@ -361,7 +361,7 @@ async function getAuthCookies(): Promise<{ authToken: string; ct0: string }> {
 interface TweetData {
   fullText: string
   screenName: string
-  userName: string
+  username: string
   createdAt: string
   idStr: string
   mediaUrls: string[]
@@ -513,7 +513,7 @@ async function generateRSS() {
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         const screenName = userLegacy?.screenName ?? ''
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        const userName = userLegacy?.name ?? ''
+        const username = userLegacy?.name ?? ''
         const createdAt = legacy?.createdAt ?? ''
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         const idStr = legacy?.idStr ?? tweet.restId ?? ''
@@ -534,7 +534,7 @@ async function generateRSS() {
         const tweetData: TweetData = {
           fullText,
           screenName,
-          userName,
+          username,
           createdAt,
           idStr,
           mediaUrls,
@@ -561,7 +561,7 @@ async function generateRSS() {
             '#text': tweetUrl,
           },
           'content:encoded': content,
-          author: `${userName} (@${screenName})`,
+          author: `${username} (@${screenName})`,
           pubDate: createdAt ? new Date(createdAt).toUTCString() : '',
         }
       })
@@ -574,9 +574,9 @@ async function generateRSS() {
         },
         rss: {
           '@_version': '2.0',
-          '@_xmlns:dc': 'http://purl.org/dc/elements/1.1/',
-          '@_xmlns:content': 'http://purl.org/rss/1.0/modules/content/',
-          '@_xmlns:atom': 'http://www.w3.org/2005/Atom',
+          '@_xmlns:dc': 'https://purl.org/dc/elements/1.1/',
+          '@_xmlns:content': 'https://purl.org/rss/1.0/modules/content/',
+          '@_xmlns:atom': 'https://www.w3.org/2005/Atom',
           channel: {
             title: key,
             description: searchWord,
