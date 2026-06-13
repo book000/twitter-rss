@@ -3,6 +3,7 @@
     "target": "esnext",
     "moduleResolution": "Bundler",
     "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
+    "types": ["node"],
     "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": true,
@@ -21,8 +22,6 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "experimentalDecorators": true,
-    "ignoreDeprecations": "6.0",
-    "baseUrl": ".",
     "newLine": "LF",
     "paths": {
       "@/*": ["./src/*"]
