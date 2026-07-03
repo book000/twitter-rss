@@ -15,4 +15,4 @@ on:
 jobs:
   node-ci:
     name: Node CI
-    uses: book000/templates/.github/workflows/reusable-nodejs-ci.yml@f61066bfac67a45a325ea728191497763566dd23 # master
+    uses: book000/templates/.github/workflows/reusable-nodejs-ci.yml@master
