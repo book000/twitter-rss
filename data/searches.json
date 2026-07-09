@@ -4,5 +4,6 @@
   "まいにちめんだこ": "from:daily_mendako filter:images exclude:retweets",
   "さんぽんた": "今日のさんぽんた from:rikirosso filter:images exclude:retweets",
   "がい子くじん": "from:gaiko_kujin filter:images exclude:retweets",
-  "せかねこ": "from:sekaneko13 filter:images exclude:retweets"
+  "せかねこ": "from:sekaneko13 filter:images exclude:retweets",
+  "もよりの商店街": "from:twi_sirius もよりの商店街 filter:images exclude:retweets"
 }
