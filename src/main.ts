@@ -14,16 +14,16 @@ import { Headers } from 'headers-polyfill'
 // EPIPE エラー（パイプ切断）が発生した場合は静かに終了する
 // @book000/node-utils の uncaughtException ハンドラーがログ書き込みで EPIPE を再発させ
 // 無限ループになる問題を防ぐ
-process.stdout.on('error', (err: NodeJS.ErrnoException) => {
+process.stdout.on('error', (error: NodeJS.ErrnoException) => {
   // eslint-disable-next-line unicorn/no-process-exit
-  if (err.code === 'EPIPE') process.exit(0)
+  if (error.code === 'EPIPE') process.exit(0)
 })
-process.stderr.on('error', (err: NodeJS.ErrnoException) => {
+process.stderr.on('error', (error: NodeJS.ErrnoException) => {
   // eslint-disable-next-line unicorn/no-process-exit
-  if (err.code === 'EPIPE') process.exit(0)
+  if (error.code === 'EPIPE') process.exit(0)
 })
-process.on('uncaughtException', (err: NodeJS.ErrnoException) => {
-  if (err.code === 'EPIPE') process.exit(0)
+process.on('uncaughtException', (error: NodeJS.ErrnoException) => {
+  if (error.code === 'EPIPE') process.exit(0)
 })
 
 type SearchesModel = Record<string, string>
@@ -39,11 +39,14 @@ interface HeadersLike {
 
 // CycleTLS インスタンス（プロキシサポート付き）
 // Promise ベースのシングルトンパターンで並行初期化を防止
-let cycleTLSInstancePromise: Promise<CycleTLSClient> | null = null
+// オブジェクトのプロパティとして保持し、関数内からトップレベル変数を直接再代入しないようにする
+const cycleTLSState: { instancePromise: Promise<CycleTLSClient> | null } = {
+  instancePromise: null,
+}
 
 async function initCycleTLSWithProxy(): Promise<CycleTLSClient> {
-  cycleTLSInstancePromise ??= initCycleTLS()
-  return cycleTLSInstancePromise
+  cycleTLSState.instancePromise ??= initCycleTLS()
+  return cycleTLSState.instancePromise
 }
 
 /**
@@ -58,7 +61,7 @@ async function cycleTLSFetchWithProxy(
     typeof input === 'string'
       ? input
       : input instanceof URL
-        ? input.toString()
+        ? input.href
         : input.url
 
   const method = (init?.method ?? 'GET').toUpperCase()
@@ -77,7 +80,7 @@ async function cycleTLSFetchWithProxy(
       for (const [key, value] of init.headers) {
         headers[key] = value
       }
-    } else if (h[Symbol.iterator] && typeof h[Symbol.iterator] === 'function') {
+    } else if (typeof h[Symbol.iterator] === 'function') {
       // イテラブル（Symbol.iterator を持つオブジェクト）
       for (const [key, value] of init.headers as unknown as Iterable<
         [string, string]
@@ -119,7 +122,7 @@ async function cycleTLSFetchWithProxy(
         const proxyUrl = new URL(normalizedProxyServer)
         proxyUrl.username = proxyUsername
         proxyUrl.password = proxyPassword
-        proxy = proxyUrl.toString()
+        proxy = proxyUrl.href
       } catch {
         throw new Error(
           'Invalid PROXY_SERVER URL. Expected format: host:port, http://host:port or https://host:port',
@@ -225,11 +228,11 @@ function isValidCachedCookies(data: unknown): data is CachedCookies {
   if (typeof data !== 'object' || data === null) {
     return false
   }
-  const obj = data as Record<string, unknown>
+  const object = data as Record<string, unknown>
   return (
-    typeof obj.auth_token === 'string' &&
-    typeof obj.ct0 === 'string' &&
-    typeof obj.savedAt === 'number'
+    typeof object.auth_token === 'string' &&
+    typeof object.ct0 === 'string' &&
+    typeof object.savedAt === 'number'
   )
 }
 
@@ -258,9 +261,9 @@ function loadCachedCookies(): CachedCookies | null {
 }
 
 function saveCookies(authToken: string, ct0: string): void {
-  const dir = './data'
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true })
+  const directory = './data'
+  if (!fs.existsSync(directory)) {
+    fs.mkdirSync(directory, { recursive: true })
   }
   const data: CachedCookies = {
     auth_token: authToken,
@@ -395,7 +398,7 @@ function getContent(tweet: TweetData): string {
 }
 
 async function withRetry<T>(
-  fn: () => Promise<T>,
+  function_: () => Promise<T>,
   options: {
     maxRetries?: number
     baseDelayMs?: number
@@ -414,7 +417,7 @@ async function withRetry<T>(
 
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
-      return await fn()
+      return await function_()
     } catch (error: unknown) {
       const isLastAttempt = attempt >= maxRetries
 
@@ -517,7 +520,7 @@ async function generateRSS() {
         const username = userLegacy?.name ?? ''
         const createdAt = legacy?.createdAt ?? ''
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        const idStr = legacy?.idStr ?? tweet.restId ?? ''
+        const idString = legacy?.idStr ?? tweet.restId ?? ''
 
         const mediaUrls: string[] = []
         const extendedEntities = legacy?.extendedEntities
@@ -537,7 +540,7 @@ async function generateRSS() {
           screenName,
           username,
           createdAt,
-          idStr,
+          idStr: idString,
           mediaUrls,
         }
 
@@ -553,7 +556,7 @@ async function generateRSS() {
 
         const content = getContent(tweetData)
 
-        const tweetUrl = `https://twitter.com/${screenName}/status/${idStr}`
+        const tweetUrl = `https://twitter.com/${screenName}/status/${idString}`
         return {
           title,
           link: tweetUrl,
@@ -567,7 +570,7 @@ async function generateRSS() {
         }
       })
 
-      const obj = {
+      const object = {
         '?xml': {
           '@_version': '1.0',
           // eslint-disable-next-line unicorn/text-encoding-identifier-case
@@ -594,7 +597,7 @@ async function generateRSS() {
 
       const feed: {
         toString: () => string
-      } = builder.build(obj)
+      } = builder.build(object)
 
       const filename = sanitizeFileName(key)
       fs.writeFileSync('output/' + filename + '.xml', feed.toString())
@@ -644,16 +647,20 @@ function generateList() {
     .filter((s) => s !== null)
   fs.writeFileSync(
     'output/index.html',
-    template.replace('{{ RSS-FILES }}', '<ul>' + list.join('\n') + '</ul>'),
+    // 置換文字列に `$` が含まれていても特殊パターンとして解釈されないよう、関数版の replace を使う
+    template.replace(
+      '{{ RSS-FILES }}',
+      () => '<ul>' + list.join('\n') + '</ul>',
+    ),
   )
   logger.info(`Generated`)
 }
 
 async function cleanup(): Promise<void> {
   // CycleTLS インスタンスのクリーンアップ（初期化されている場合のみ）
-  if (cycleTLSInstancePromise) {
+  if (cycleTLSState.instancePromise) {
     try {
-      const instance = await cycleTLSInstancePromise
+      const instance = await cycleTLSState.instancePromise
       await instance.exit()
     } catch {
       // インスタンスの終了に失敗しても無視
