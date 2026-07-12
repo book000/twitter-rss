@@ -1,5 +1,6 @@
 import 'dotenv/config'
-import { XMLBuilder, XMLParser } from 'fast-xml-parser'
+import XMLBuilder from 'fast-xml-builder'
+import { XMLParser } from 'fast-xml-parser'
 import fs from 'node:fs'
 import { Item } from './model/collect-result'
 import { Logger } from '@book000/node-utils'
