@@ -58,7 +58,7 @@ async function cycleTLSFetchWithProxy(
     typeof input === 'string'
       ? input
       : input instanceof URL
-        ? input.toString()
+        ? input.href
         : input.url
 
   const method = (init?.method ?? 'GET').toUpperCase()
@@ -77,7 +77,7 @@ async function cycleTLSFetchWithProxy(
       for (const [key, value] of init.headers) {
         headers[key] = value
       }
-    } else if (h[Symbol.iterator] && typeof h[Symbol.iterator] === 'function') {
+    } else if (typeof h[Symbol.iterator] === 'function') {
       // イテラブル（Symbol.iterator を持つオブジェクト）
       for (const [key, value] of init.headers as unknown as Iterable<
         [string, string]
@@ -119,7 +119,7 @@ async function cycleTLSFetchWithProxy(
         const proxyUrl = new URL(normalizedProxyServer)
         proxyUrl.username = proxyUsername
         proxyUrl.password = proxyPassword
-        proxy = proxyUrl.toString()
+        proxy = proxyUrl.href
       } catch {
         throw new Error(
           'Invalid PROXY_SERVER URL. Expected format: host:port, http://host:port or https://host:port',
@@ -644,7 +644,10 @@ function generateList() {
     .filter((s) => s !== null)
   fs.writeFileSync(
     'output/index.html',
-    template.replace('{{ RSS-FILES }}', '<ul>' + list.join('\n') + '</ul>'),
+    template.replace(
+      '{{ RSS-FILES }}',
+      () => '<ul>' + list.join('\n') + '</ul>',
+    ),
   )
   logger.info(`Generated`)
 }
