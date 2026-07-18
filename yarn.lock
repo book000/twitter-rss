@@ -2,14 +2,14 @@
 # yarn lockfile v1
 
 
-"@book000/eslint-config@1.16.8":
-  version "1.16.8"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.16.8.tgz#f51ad9047721868608fd8a7da8c9647061105805"
-  integrity sha512-nuvOoKOddcR2aNcLpoL6MW2947qlssDsnv+tMq//mVlRqil9grKOo5iXFtGrqXDWvArfekG3lQaGBIDYLAUMcg==
+"@book000/eslint-config@1.16.9":
+  version "1.16.9"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.16.9.tgz#bbce2d50a77a39f285a08a5d88e9e0da29f5a1f9"
+  integrity sha512-7N23QCORHgPfe6guO+f2jWpf6YJLmOroek2fUzpm3VH2B9XF1og+nE2KV4ciLHomMp/CeKolB0IvdxDeX7zQdw==
   dependencies:
     "@typescript-eslint/parser" "8.64.0"
     eslint-config-prettier "10.1.8"
-    eslint-plugin-unicorn "71.1.0"
+    eslint-plugin-unicorn "72.0.0"
     globals "17.7.0"
     neostandard "0.13.0"
     typescript-eslint "8.64.0"
@@ -80,6 +80,14 @@
   integrity sha512-MwcE1P+AZ4C6DWlpin/OmOA54mmIZ/+xZuJiQd4SyB29oAJjN30UW9wkKNptW2ctp4cEsvhlLY/CsQ1uoHDloQ==
   dependencies:
     "@types/json-schema" "^7.0.15"
+
+"@eslint/css-tree@^4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@eslint/css-tree/-/css-tree-4.0.4.tgz#5400c64acf00468d262b5b08c938a3fa8f6a73c4"
+  integrity sha512-nxMparyhqVWQvadx9x8dIfubfIPOE+X2b2waua8fzdnM9vdp9rgVtwEZlG0TmCwEUz/d/f40fzvO/eqBwdxz0A==
+  dependencies:
+    mdn-data "2.28.1"
+    source-map-js "^1.2.1"
 
 "@eslint/object-schema@^3.0.5":
   version "3.0.5"
@@ -1088,7 +1096,7 @@ enhanced-resolve@^5.17.1:
     graceful-fs "^4.2.4"
     tapable "^2.3.3"
 
-entities@^4.2.0:
+entities@^4.2.0, entities@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/entities/-/entities-4.5.0.tgz#5d268ea5e7113ec74c4d033b79ea5a35a488fb48"
   integrity sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==
@@ -1385,17 +1393,19 @@ eslint-plugin-react@^7.37.5:
     string.prototype.matchall "^4.0.12"
     string.prototype.repeat "^1.0.0"
 
-eslint-plugin-unicorn@71.1.0:
-  version "71.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-71.1.0.tgz#ab593d72aa459f40be1698f086d7fa2b5ac28ce9"
-  integrity sha512-dn3YmR3qLLUeYyo/os3ubZ7UHQJ1WbBAgC9cIhnLTyMj9J6kivuc2U1fCmYetLexUlTDVYtBqhjSj/VaebTe6Q==
+eslint-plugin-unicorn@72.0.0:
+  version "72.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-72.0.0.tgz#3d8caf428fd84c02457e6f152128fd1944ce19a9"
+  integrity sha512-hqO6ksoOHO+ZhdseTuKRVQbx9U7PRO/cv8qAR1mctwzdVO2hYud8uS9luAhp43RJgziYgHAph8eHyipT8GL0ng==
   dependencies:
     "@eslint-community/eslint-utils" "^4.9.1"
+    "@eslint/css-tree" "^4.0.4"
     browserslist "^4.28.4"
     change-case "^5.4.4"
     ci-info "^4.4.0"
     core-js-compat "^3.49.0"
     detect-indent "^7.0.2"
+    entities "^4.5.0"
     find-up-simple "^1.0.1"
     globals "^17.7.0"
     indent-string "^5.0.0"
@@ -1407,6 +1417,7 @@ eslint-plugin-unicorn@71.1.0:
     reserved-identifiers "^1.2.0"
     semver "^7.8.5"
     strip-indent "^4.1.1"
+    yaml "^2.9.0"
 
 eslint-scope@^9.1.2:
   version "9.1.2"
@@ -2360,6 +2371,11 @@ math-intrinsics@^1.1.0:
   resolved "https://registry.yarnpkg.com/math-intrinsics/-/math-intrinsics-1.1.0.tgz#a0dd74be81e2aa5c2f27e65ce283605ee4e2b7f9"
   integrity sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==
 
+mdn-data@2.28.1:
+  version "2.28.1"
+  resolved "https://registry.yarnpkg.com/mdn-data/-/mdn-data-2.28.1.tgz#798ed0511d4097c22b091718435059fdb0a64ad9"
+  integrity sha512-U9w+PzSZ00Z5m9rZ5ARVFL5xOfuCHdKYi/1RRwDCJsboFgJDNT3zT6PIPD7mZQYaQLhsZM3GfDRgSMRHhSmVng==
+
 mime-db@1.52.0:
   version "1.52.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.52.0.tgz#bbabcdc02859f4987301c856e3387ce5ec43bf70"
@@ -3064,6 +3080,11 @@ side-channel@^1.1.0:
     side-channel-map "^1.0.1"
     side-channel-weakmap "^1.0.2"
 
+source-map-js@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.1.tgz#1ce5650fddd87abc099eda37dcff024c2667ae46"
+  integrity sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==
+
 source-map-support@^0.5.12:
   version "0.5.21"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.21.tgz#04fe7c7f9e1ed2d662233c28cb2b35b9f63f6e4f"
@@ -3736,6 +3757,11 @@ yallist@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
   integrity sha512-ncTzHV7NvsQZkYe1DW7cbDLm0YpzHmZF5r/iyP3ZnQtMiJ+pjzisCiMNI+Sj+xQF5pXhSHxSB3uDbsBTzY/c2A==
+
+yaml@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.9.0.tgz#78274afd93598a1dfdd6130df6a566defcbf9aa4"
+  integrity sha512-2AvhNX3mb8zd6Zy7INTtSpl1F15HW6Wnqj0srWlkKLcpYl/gMIMJiyuGq2KeI2YFxUPjdlB+3Lc10seMLtL4cA==
 
 yarn-run-all@3.1.1:
   version "3.1.1"
