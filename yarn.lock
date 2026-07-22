@@ -45,15 +45,15 @@
     neostandard "0.13.0"
     typescript-eslint "8.64.0"
 
-"@book000/node-utils@1.25.0":
-  version "1.25.0"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.25.0.tgz#dbf86dc7dfae87e8cea67baf467c45d4d184d070"
-  integrity sha512-5bnUqghF+PTFXOqELwTdZgFS2WrTjNAj27ye00IobmfruRnlbQiy+RsPCQgX3oEFfy4elq2ayKcfWyaFJjoC3g==
+"@book000/node-utils@1.25.1":
+  version "1.25.1"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.25.1.tgz#ef487e0d5cf61456539e2ddf92b4c366e732f3ee"
+  integrity sha512-gq6bP5ZBf/loGsnq4uORUZCTB3iCQQLtu43Eeg+THc4fj1OFeuuW9bAN0nPqScvkv1mVPdPEa8BJEOaozSX88A==
   dependencies:
     "@sentry/node" "10.67.0"
     cycle "1.0.3"
     jsonc-parser "3.3.1"
-    moment-timezone "0.6.2"
+    moment-timezone "0.6.3"
     winston "3.19.0"
     winston-daily-rotate-file "5.0.0"
     winston-transport "4.9.0"
@@ -2601,10 +2601,10 @@ module-details-from-path@^1.0.3, module-details-from-path@^1.0.4:
   resolved "https://registry.yarnpkg.com/module-details-from-path/-/module-details-from-path-1.0.4.tgz#b662fdcd93f6c83d3f25289da0ce81c8d9685b94"
   integrity sha512-EGWKgxALGMgzvxYF1UyGTy0HXX/2vHLkw6+NvDKW2jypWbHpjQuj4UMcqQWXHERJhVGKikolT06G3bcKe4fi7w==
 
-moment-timezone@0.6.2:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.6.2.tgz#a704cca03ee502f0df6edd42efcdcc61ee03190e"
-  integrity sha512-lDsQv8FoGdBUdf0+TjGsq2orxKuXdwFlQ6Zw6TX3xIcTwTfEpCLyKqvEauvCHJ8iu3KBV8+uPhlv70YsNGdUBQ==
+moment-timezone@0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.6.3.tgz#e386bad3116567a44477653ad6543b071bc153b7"
+  integrity sha512-pVEPA/HCFHHbwJ130ywnzYuZpkEGcP6Daa/OwNebpA18MybeFHmQilAGGovXgWijQ8vQtmud9jZrziUBgsykfg==
   dependencies:
     moment "^2.29.4"
 
