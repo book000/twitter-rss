@@ -33,15 +33,15 @@
     debug "^4.4.1"
     module-details-from-path "^1.0.4"
 
-"@book000/eslint-config@1.16.37":
-  version "1.16.37"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.16.37.tgz#4c3f18e028be3c3a038a2d93272ac13ce54ff2d7"
-  integrity sha512-7ETNfp4zHk9fOwyRY3gnAzADsP7pDdzFz7zxsAtAS8l5t75U9hF906+BsSQW3wfJGqpCRM1kKgxIRlkcMoZbng==
+"@book000/eslint-config@1.16.38":
+  version "1.16.38"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.16.38.tgz#5671dd80acd97f3bc5c899de0b3e6f8281f32ff8"
+  integrity sha512-Ze0STlfQYESfaW7WArEtyNP7GZwjmmizs2ceB72USagby/B8VA50kJyVuzUSgXf7cz6QMyr+929v+By9kKsABQ==
   dependencies:
     "@typescript-eslint/parser" "8.67.0"
     eslint-config-prettier "10.1.8"
     eslint-plugin-unicorn "73.0.0"
-    globals "17.10.0"
+    globals "17.11.0"
     neostandard "0.13.0"
     typescript-eslint "8.67.0"
 
@@ -1976,10 +1976,10 @@ glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-globals@17.10.0:
-  version "17.10.0"
-  resolved "https://registry.yarnpkg.com/globals/-/globals-17.10.0.tgz#f9dbd847ae99e236f98b13095e2426ac3b25a45c"
-  integrity sha512-V0kztuWST2k8A/VbxAY8+L+7+Rgo3fyA24IHRLrZp7HOzJjV0gHSaZUjK9lpP/IrBSNite2tZ1prhRkinRu1CA==
+globals@17.11.0:
+  version "17.11.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-17.11.0.tgz#d643485bb30220d7751e511cf4f68c73d3870d87"
+  integrity sha512-Z2I8hM+PbJDXQDq3Icgpzv+mPdwr68iZUU9d5WW4FuXfDUQfkZaZuvjMv42/5crNyw154+9+VWXbYrUgDXbxNw==
 
 globals@^15.11.0:
   version "15.15.0"
