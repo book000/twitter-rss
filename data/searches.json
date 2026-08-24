@@ -5,6 +5,6 @@
   "さんぽんた": "今日のさんぽんた from:rikirosso filter:images exclude:retweets",
   "がい子くじん": "from:gaiko_kujin filter:images exclude:retweets",
   "せかねこ": "from:sekaneko13 filter:images exclude:retweets",
-  "もよりの商店街": "from:twi_sirius もよりの商店街 filter:images exclude:retweets",
+  "もよりの商店街": "from:twi_sirius もよりの商店街 -毎週 filter:images exclude:retweets",
   "がんばってはたらく": "from:mozuku_zqu filter:images exclude:retweets"
 }
