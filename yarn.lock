@@ -33,10 +33,10 @@
     debug "^4.4.1"
     module-details-from-path "^1.0.4"
 
-"@book000/eslint-config@1.16.41":
-  version "1.16.41"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.16.41.tgz#ee15008e6b099cb1be226c613b4f68ed64fa3436"
-  integrity sha512-NG1r3JJtVxskQJCtETwV3xHllFChR6g70oWgYHvgwtH+vZQBhBfhFlXM3jJYS/DconLF7Tn8znnVT35s7GYeOA==
+"@book000/eslint-config@1.16.42":
+  version "1.16.42"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.16.42.tgz#03b9c007f9ff64317da585ae6f3fe0d1d9afca14"
+  integrity sha512-u4ocYm04Lg5i5Qg6b1qRJ04XF0P2moUDvq8v3Cd/WcO1qh+aufbxOt/l3gLM3TYwSEucMB0OdJY+L2xNn42ylw==
   dependencies:
     "@typescript-eslint/parser" "8.67.0"
     eslint-config-prettier "10.1.8"
