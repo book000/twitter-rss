@@ -22,7 +22,7 @@
     "fix:prettier": "prettier --write src"
   },
   "devDependencies": {
-    "@book000/eslint-config": "1.16.57",
+    "@book000/eslint-config": "1.16.59",
     "@book000/node-utils": "1.25.91",
     "@the-convocation/twitter-scraper": "0.22.3",
     "@types/node": "24.13.3",
