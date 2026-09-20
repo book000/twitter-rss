@@ -141,9 +141,7 @@ async function cycleTLSFetchWithProxy(
     userAgent:
       headers['user-agent'] ||
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
-  }
-  if (proxy) {
-    options.proxy = proxy
+    ...(proxy && { proxy }),
   }
 
   const response = await instance(
@@ -245,10 +243,7 @@ function loadCachedCookies(): CachedCookies | null {
       return null
     }
     const expiryMs = COOKIE_EXPIRY_DAYS * 24 * 60 * 60 * 1000
-    if (Date.now() - data.savedAt > expiryMs) {
-      return null
-    }
-    return data
+    return Date.now() - data.savedAt > expiryMs ? null : data
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error : new Error(String(error))
