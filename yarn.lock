@@ -141,10 +141,10 @@
     "@babel/helper-string-parser" "^7.29.7"
     "@babel/helper-validator-identifier" "^7.29.7"
 
-"@book000/eslint-config@1.16.74":
-  version "1.16.74"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.16.74.tgz#33f3a3cd66fbad05d694c0eb13bfbf03b309938c"
-  integrity sha512-ukYKuRiAbEDGCDtFTWvFEXvYU0/Bspk+SPHQPcLHcWroB9hYGLokUna41MgcWozJvnaWNM4p+V5m9ZsI9AYadg==
+"@book000/eslint-config@1.16.75":
+  version "1.16.75"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.16.75.tgz#8a0ca522423b6ad989fef8736aab9613c84e59a0"
+  integrity sha512-JgEgCRFxrpQNaeEj9rxiN0NK7sP+xXfIIYEC2yAZy158/Yqi+LcY1/z/O23xThURsKs42h54+qtB9Ej76zIUng==
   dependencies:
     "@typescript-eslint/parser" "8.70.1"
     eslint-config-prettier "10.1.8"
