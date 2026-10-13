@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@book000/eslint-config@1.16.91":
-  version "1.16.91"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.16.91.tgz#6c3403f03a46e050f5804946bf50e7d95cf50ed8"
-  integrity sha512-kUJeouFLtT94RV6wd0gj3uxSmRMCq4/sMYQQVOH8N08zMz6JsMyKcAngMKbZsTyjL390r2FNFOV4nyE97Ywetg==
+"@book000/eslint-config@1.16.93":
+  version "1.16.93"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.16.93.tgz#dcf11bf862fb10abac7e90215c52bb489a3adda3"
+  integrity sha512-A6J4bCvmgBfpXTgpDSDcaG4Ue8/fuGGWxoGnZVWhk0xF0EirZF5y1+5zNMCES0VL0rFx0sqBlE3fMEl4oKXe9Q==
   dependencies:
     "@typescript-eslint/parser" "8.71.1"
     eslint-config-prettier "10.1.8"
