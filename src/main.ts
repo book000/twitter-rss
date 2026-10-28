@@ -26,8 +26,6 @@ process.on('uncaughtException', (err: NodeJS.ErrnoException) => {
   if (err.code === 'EPIPE') process.exit(0)
 })
 
-type SearchesModel = Record<string, string>
-
 /**
  * Headers ライクなオブジェクトのインターフェース
  * undici の _Headers クラスや標準の Headers クラスに対応
@@ -172,13 +170,13 @@ async function cycleTLSFetchWithProxy(
 
   // CycleTLS のレスポンスから本文を取得
   let responseBody: string
-  if (response.data !== undefined && response.data !== null) {
+  if (response.data === undefined || response.data === null) {
+    responseBody = ''
+  } else {
     responseBody =
       typeof response.data === 'string'
         ? response.data
         : JSON.stringify(response.data)
-  } else {
-    responseBody = ''
   }
 
   return new Response(responseBody, {
@@ -450,6 +448,7 @@ async function generateRSS() {
   const rssLanguage = process.env.RSS_LANGUAGE ?? 'ja'
 
   const searchWordPath = process.env.SEARCH_WORD_PATH ?? 'data/searches.json'
+  type SearchesModel = Record<string, string>
   let searchWords: SearchesModel
   try {
     if (!fs.existsSync(searchWordPath)) {
@@ -506,9 +505,7 @@ async function generateRSS() {
         const userLegacy = user?.legacy
 
         const fullText = legacy?.fullText ?? ''
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         const screenName = userLegacy?.screenName ?? ''
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         const username = userLegacy?.name ?? ''
         const createdAt = legacy?.createdAt ?? ''
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
