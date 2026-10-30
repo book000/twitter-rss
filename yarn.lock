@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@acemir/cssom/-/cssom-0.9.32.tgz#057de69a39e7dd8f8a4a051a8e7491d9697233c7"
   integrity sha512-OijrAUu7rrJhSIoHNg6LMPS5e344nwUHA+1EFYYjrh64D+GmytUsfBQjci45TjT+rd5Spsp8B5xsZDT+TgyXXQ==
 
-"@book000/eslint-config@1.16.107":
-  version "1.16.107"
-  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.16.107.tgz#946a3b948e35654d0d80f829c20e224d10849890"
-  integrity sha512-egFGe8fr8WmOuW+zlo4zXpgJZx2HhBW92lUKg/nTPIvqZWHZZ3Ov7YiWsG4ALGCdPf/z2MatABfYpcEStJqGUg==
+"@book000/eslint-config@1.16.109":
+  version "1.16.109"
+  resolved "https://registry.yarnpkg.com/@book000/eslint-config/-/eslint-config-1.16.109.tgz#b033b98279f4991a255e42164ab969954576889b"
+  integrity sha512-CqG1OKZHSiQnjjRwDUy7kOLsCMYk5Cs8edKsC4k22AeVnq0sgLBJ5QDffqyQlq2AP+sacqkgtz22aRwfjFu3ng==
   dependencies:
     "@typescript-eslint/parser" "8.72.1"
     eslint-config-prettier "10.1.8"
