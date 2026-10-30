@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@book000/eslint-config": "1.16.109",
-    "@book000/node-utils": "1.25.182",
+    "@book000/node-utils": "1.25.183",
     "@the-convocation/twitter-scraper": "0.22.3",
     "@types/node": "26.6.5",
     "@types/tough-cookie": "4.0.5",
