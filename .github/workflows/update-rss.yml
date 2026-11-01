@@ -10,7 +10,6 @@ on:
       - '**/*.ts'
       - .node-version
       - .github/workflows/update-rss.yml
-      - .github/actions/setup-node-yarn/**
   schedule:
     - cron: '0 * * * *'
 
@@ -27,8 +26,11 @@ jobs:
         with:
           node-version-file: .node-version
 
-      - name: Setup yarn (corepack)
-        uses: ./.github/actions/setup-node-yarn
+      # Node.js 25 以降は Corepack が同梱されないため、明示インストールしてから有効化する
+      - name: Enable corepack (yarn)
+        run: |
+          npm install -g corepack@0.36.0
+          corepack enable
 
       - name: Install apt dependencies
         uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4

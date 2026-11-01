@@ -32,7 +32,6 @@ yarn fix        # prettier / eslint の自動修正
 - `.github/workflows/nodejs-ci.yml`: `book000/templates` の reusable CI（ビルド・Lint）を呼ぶ。
 - `.github/workflows/update-rss.yml`: RSS 更新・GitHub Pages デプロイ（詳細は後述）。
 - `.github/workflows/setup-check.yml`: PR で Node.js・Corepack・Yarn のセットアップ互換性を検証する（secrets と self-hosted runner は使わない）。
-- `.github/actions/setup-node-yarn/action.yml`: Corepack の明示インストールと有効化をまとめた composite action。`update-rss.yml` と `setup-check.yml` が共用する。
 
 ## コーディング規約
 
@@ -80,8 +79,8 @@ yarn fix        # prettier / eslint の自動修正
 
 ### GitHub Actions（update-rss.yml）
 
-- トリガー: `workflow_dispatch` / `**/*.ts`・`.node-version`・`update-rss.yml`・`.github/actions/setup-node-yarn/**` への push（main・master）/ 毎時 0 分の cron。
-- Node.js 25 以降は Corepack が同梱されないため、`.github/actions/setup-node-yarn` で Corepack をバージョン固定でインストールしてから `corepack enable` する。
+- トリガー: `workflow_dispatch` / `**/*.ts`・`.node-version`・`update-rss.yml` への push（main・master）/ 毎時 0 分の cron。
+- Node.js 25 以降は Corepack が同梱されないため、`update-rss.yml` と `setup-check.yml` の両方で `npm install -g corepack@0.36.0` により Corepack をバージョン固定でインストールしてから `corepack enable` する（バージョンを変更するときは 2 か所を揃える）。
 - `Upload Pages-artifact` は `output/` にファイルがあるときだけ実行する（生成失敗時の二次エラーを避ける）。
 - `update-rss` ジョブは **self-hosted runner** で実行。apt 依存（`.github/apt-packages.txt`）を導入し、Cookie を復元、Xvfb 起動後に `yarn build` で RSS を生成、`output/` を Pages アーティファクトとしてアップロード。失敗時は Discord Webhook に通知。
 - `deploy` ジョブが GitHub Pages へデプロイ（PR では実行しない）。
