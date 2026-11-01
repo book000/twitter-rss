@@ -19,15 +19,15 @@
     neostandard "0.14.1"
     typescript-eslint "8.72.1"
 
-"@book000/node-utils@1.25.189":
-  version "1.25.189"
-  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.25.189.tgz#f0fcc9b3c5147b835b4386928f8182027ea40016"
-  integrity sha512-GYFKYZOfFZgz4AINffEA8ciGuTJmc99aPWnDeE8c90hhhMtqB2I763zRVY54pSOZXXf5NKJ/sF3tflSLdITakw==
+"@book000/node-utils@1.25.190":
+  version "1.25.190"
+  resolved "https://registry.yarnpkg.com/@book000/node-utils/-/node-utils-1.25.190.tgz#bcfb07d9d4274befa2bae0f304c0fc0ba46b85a8"
+  integrity sha512-tJQNMVmvDI4AbOabDklxPOWuItoOteNF1EYehOMdgv/JvSw6Ze5e3i/GIPZni9LYpFNm6kpcuB7KF1gKYlw6eQ==
   dependencies:
     "@sentry/node" "11.10.0"
     cycle "1.0.3"
     jsonc-parser "3.3.1"
-    moment-timezone "0.6.5"
+    moment-timezone "0.6.6"
     winston "3.19.0"
     winston-daily-rotate-file "5.0.0"
     winston-transport "4.9.0"
@@ -2808,10 +2808,10 @@ mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-moment-timezone@0.6.5:
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.6.5.tgz#a8153ebe88199bd76f2d2ce329eb1d568eafbdee"
-  integrity sha512-KKzZAxGv2Qx4cnk6eSlvf4C+DLFW52vmMY5MN7UARY7GONbozkutylQG3DrrtmLCTXdQ5XZrqao9cI16bLFzXA==
+moment-timezone@0.6.6:
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.6.6.tgz#a2f6fe85002ef199645f96b1e94842897158bf8a"
+  integrity sha512-LF5AAYsMduXFW2ungr/D9JqNq9ykZyhWgYG6wFtdGZW5ZlBDTBgTUFqW8EC7Fa+Dvs3IMZxlWkSR09sW2D/+0w==
   dependencies:
     moment "^2.29.4"
 
