@@ -8,6 +8,9 @@ on:
       - master
     paths:
       - '**/*.ts'
+      - .node-version
+      - .github/workflows/update-rss.yml
+      - .github/actions/setup-node-yarn/**
   schedule:
     - cron: '0 * * * *'
 
@@ -24,8 +27,8 @@ jobs:
         with:
           node-version-file: .node-version
 
-      - name: Enable corepack (yarn)
-        run: corepack enable
+      - name: Setup yarn (corepack)
+        uses: ./.github/actions/setup-node-yarn
 
       - name: Install apt dependencies
         uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
@@ -130,7 +133,7 @@ jobs:
 
       - name: Upload Pages-artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
-        if: always()
+        if: ${{ !cancelled() && hashFiles('output/**') != '' }}
         with:
           path: output
 

@@ -31,6 +31,8 @@ yarn fix        # prettier / eslint の自動修正
 - `Dockerfile` / `docker-compose.yml`: `zenika/alpine-chrome:with-puppeteer-xvfb` ベース。VNC ポート 5910、タイムゾーン Asia/Tokyo。
 - `.github/workflows/nodejs-ci.yml`: `book000/templates` の reusable CI（ビルド・Lint）を呼ぶ。
 - `.github/workflows/update-rss.yml`: RSS 更新・GitHub Pages デプロイ（詳細は後述）。
+- `.github/workflows/setup-check.yml`: PR で Node.js・Corepack・Yarn のセットアップ互換性を検証する（secrets と self-hosted runner は使わない）。
+- `.github/actions/setup-node-yarn/action.yml`: Corepack の明示インストールと有効化をまとめた composite action。`update-rss.yml` と `setup-check.yml` が共用する。
 
 ## コーディング規約
 
@@ -74,11 +76,13 @@ yarn fix        # prettier / eslint の自動修正
 - **SSO 認証は非対応**。ユーザー名・パスワード（＋任意で 2FA）のみ。
 - **Headless Chrome は不可**。GUI（Xvfb）が必須。
 - コンテナ実行は `zenika/alpine-chrome` ベースイメージ前提。
-- Node.js バージョンは `.node-version`（現在 24.18.0）を正とする。
+- Node.js バージョンは `.node-version` を正とする。
 
 ### GitHub Actions（update-rss.yml）
 
-- トリガー: `workflow_dispatch` / `**/*.ts` への push（main・master）/ 毎時 0 分の cron。
+- トリガー: `workflow_dispatch` / `**/*.ts`・`.node-version`・`update-rss.yml`・`.github/actions/setup-node-yarn/**` への push（main・master）/ 毎時 0 分の cron。
+- Node.js 25 以降は Corepack が同梱されないため、`.github/actions/setup-node-yarn` で Corepack をバージョン固定でインストールしてから `corepack enable` する。
+- `Upload Pages-artifact` は `output/` にファイルがあるときだけ実行する（生成失敗時の二次エラーを避ける）。
 - `update-rss` ジョブは **self-hosted runner** で実行。apt 依存（`.github/apt-packages.txt`）を導入し、Cookie を復元、Xvfb 起動後に `yarn build` で RSS を生成、`output/` を Pages アーティファクトとしてアップロード。失敗時は Discord Webhook に通知。
 - `deploy` ジョブが GitHub Pages へデプロイ（PR では実行しない）。
 - メインブランチは `main` / `master` の両方に対応。
