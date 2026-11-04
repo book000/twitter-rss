@@ -3712,10 +3712,10 @@ twitter-openapi-typescript-generated@^0.1.4:
   resolved "https://registry.yarnpkg.com/twitter-openapi-typescript-generated/-/twitter-openapi-typescript-generated-0.1.4.tgz#a827e9f6d829b85433e8274c6fcdf6661725727f"
   integrity sha512-9AESaCfQhhcA1VAjVANLvWPODzAmjGwwHx0vQv8WZYFbJCHcj/V6Kw2xT0iznUfDSq40Egc481lQ4GUCcVNqUg==
 
-twitter-openapi-typescript@0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/twitter-openapi-typescript/-/twitter-openapi-typescript-0.1.4.tgz#c20db8446fae6f729c643e1fe49159cfe2a4960b"
-  integrity sha512-GYveHGtkzXkUQN/lKuOH8KFQDKQz6Mq80381HhDFLcCqkC2rCH7ThFcaLEYsZcJV82e1Ga4i5VnzyT+xud+RIQ==
+twitter-openapi-typescript@0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/twitter-openapi-typescript/-/twitter-openapi-typescript-0.1.5.tgz#d69a50ba06de8d737b06f465b358a4749d42960f"
+  integrity sha512-wuvXU56LsrWoABjwQU/Nowk7K5ElSbr0KFhu4aL5T5NMP9n+0i2PE7H/srYeGbdlKrug5tMDOcJE5u93QA1sBg==
   dependencies:
     twitter-openapi-typescript-generated "^0.1.4"
     x-client-transaction-id-generater "^0.0.7"
