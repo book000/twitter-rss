@@ -13,7 +13,7 @@
 
 - **RSS 2.0 feeds from Twitter searches** — Converts Twitter search results into standard RSS XML files readable by any RSS reader.
 - **Advanced Twitter query support** — Supports all Twitter advanced search operators (`from:`, `filter:images`, `exclude:retweets`, etc.).
-- **Cookie caching** — Caches authentication cookies for up to 30 days to avoid repeated logins.
+- **Cookie caching** — Caches authentication cookies for up to 90 days to avoid repeated logins.
 - **Login retry with backoff** — Automatically retries logins on transient failures (HTTP 503 with exponential backoff, error 399 with a fixed 120-second delay).
 - **Two-factor authentication (TOTP)** — Supports TOTP-based 2FA via a secret key.
 - **Proxy and TLS fingerprint spoofing** — Uses [CycleTLS](https://github.com/Danny-Dasilva/CycleTLS) to spoof TLS fingerprints (JA3) and route requests through an HTTP proxy.
@@ -24,9 +24,9 @@
 
 ## Requirements
 
-- **Node.js** 24.x
+- **Node.js** (the version in [`.node-version`](.node-version))
 - **Yarn** 1.22.x
-- **Xvfb** (required at runtime; the underlying scraper requires a virtual display)
+- **Xvfb** (the Docker image and the GitHub Actions workflow start it before running; the current code does not launch a browser itself)
 - A Twitter (X.com) account with username/password credentials
 
 > [!WARNING]
@@ -88,7 +88,7 @@ See [Twitter Advanced Search](https://twitter.com/search-advanced) for supported
 
 ### 5. Run
 
-Start Xvfb and then build/run the tool:
+Start Xvfb and then run the tool (`yarn build` executes `src/main.ts` with ts-node and generates the feeds; it does not compile to `dist/`):
 
 ```bash
 Xvfb :99 -ac -screen 0 600x1000x16 &
@@ -106,12 +106,11 @@ RSS XML files are saved to the `output/` directory. An `output/index.html` listi
 | `TWITTER_PASSWORD` | ✅ | — | Twitter account password |
 | `TWITTER_EMAIL_ADDRESS` | — | — | Email address (required if Twitter prompts for email verification during login) |
 | `TWITTER_AUTH_CODE_SECRET` | — | — | TOTP secret key for two-factor authentication |
-| `PROXY_SERVER` | — | — | Proxy server URL (`host:port`, `http://host:port`, or `https://host:port`) |
-| `PROXY_USERNAME` | — | — | Proxy authentication username |
-| `PROXY_PASSWORD` | — | — | Proxy authentication password |
+| `PROXY_SERVER` | — | — | Proxy server URL (`host:port`, `http://host:port`, or `https://host:port`). Used for the login requests only |
+| `PROXY_USERNAME` | — | — | Proxy authentication username (applied only when `PROXY_PASSWORD` is also set) |
+| `PROXY_PASSWORD` | — | — | Proxy authentication password (applied only when `PROXY_USERNAME` is also set) |
 | `RSS_LANGUAGE` | — | `ja` | Language tag embedded in the RSS feed (e.g., `en`, `ja`) |
 | `SEARCH_WORD_PATH` | — | `data/searches.json` | Path to the search query configuration file |
-| `DISPLAY` | — | `:99` | X display for Xvfb |
 
 ## Search Configuration (`data/searches.json`)
 
@@ -159,7 +158,9 @@ Supported Twitter search operators include:
    docker compose up
    ```
 
-   The container mounts `./data` into `/data` and runs Xvfb + x11vnc internally. A VNC server is exposed on port `5910` for debugging.
+   The container mounts `./data` into `/data` (the image sets `SEARCH_WORD_PATH=/data/searches.json`) and runs Xvfb + x11vnc internally. A VNC server is exposed on port `5910` for debugging.
+
+   The working directory in the image is `/app`, so `output/` and `data/twitter-cookies.json` are written inside the container and are not persisted by the `./data` mount.
 
 ### Building the image manually
 
@@ -172,11 +173,11 @@ The Docker image is based on [`zenika/alpine-chrome:with-puppeteer-xvfb`](https:
 
 ## GitHub Actions (Automated RSS Generation)
 
-The repository includes two GitHub Actions workflows:
+The repository includes three GitHub Actions workflows:
 
 ### `nodejs-ci.yml` — Continuous Integration
 
-Runs on every push to `main`/`master` and on pull requests. Executes build and lint checks using a [reusable workflow template](https://github.com/book000/templates).
+Runs on every push to `main`/`master` and on pull requests targeting them. Executes build and lint checks using a [reusable workflow template](https://github.com/book000/templates).
 
 ### `update-rss.yml` — RSS Update and Deployment
 
@@ -184,7 +185,7 @@ Runs on every push to `main`/`master` and on pull requests. Executes build and l
 |---|---|
 | `schedule: '0 * * * *'` | Runs every hour at minute 0 |
 | `workflow_dispatch` | Manual trigger via GitHub UI |
-| `push` to `main`/`master` (`.ts` files) | Triggered when TypeScript source changes |
+| `push` to `main`/`master` (`**/*.ts`, `.node-version`, or `update-rss.yml` changed) | Triggered when the sources, the Node.js version, or the workflow change |
 
 **Setup steps:**
 
@@ -202,13 +203,15 @@ Runs on every push to `main`/`master` and on pull requests. Executes build and l
    | `TWITTER_COOKIES_JSON` | — | Pre-existing cookies JSON (bootstraps the cache) |
    | `DISCORD_WEBHOOK` | — | Discord webhook URL for failure notifications |
 
+   `RSS_LANGUAGE` and `SEARCH_WORD_PATH` are not passed by the workflow, so the defaults apply (`ja` and the committed `data/searches.json`).
+
 2. **Enable GitHub Pages** in repository Settings → Pages → Source: GitHub Actions.
 
 3. The workflow runs on a **self-hosted runner**. Ensure your runner has the following packages installed (listed in `.github/apt-packages.txt`): `chromium-browser`, `xvfb`, `xauth`, `fonts-noto-cjk`, `libnss3`, and others.
 
 **Cookie caching:**
 
-The workflow caches `data/twitter-cookies.json` using `actions/cache` with a per-run cache key (`twitter-cookies-v2-{repo}-{run_id}`). On cache miss, it falls back to the `TWITTER_COOKIES_JSON` secret to bootstrap the session. Cookies are valid for **30 days**.
+The workflow caches `data/twitter-cookies.json` using `actions/cache` with a per-run cache key (`twitter-cookies-v2-{repo}-{run_id}`). On cache miss, it falls back to the `TWITTER_COOKIES_JSON` secret to bootstrap the session. Cookies are valid for **90 days**, and the workflow refreshes `savedAt` on every run, so the effective expiry is 90 days after the last successful run.
 
 To manually update the `TWITTER_COOKIES_JSON` secret after a fresh login:
 
@@ -219,6 +222,10 @@ gh secret set TWITTER_COOKIES_JSON --body "$(cat data/twitter-cookies.json)"
 **Failure notifications:**
 
 On failure, the workflow sends a Discord embed message to the configured webhook URL.
+
+### `setup-check.yml` — Setup Check
+
+Runs on pull requests (targeting `main`/`master`) that touch `.node-version`, `package.json`, `yarn.lock`, `.github/workflows/update-rss.yml`, or `.github/workflows/setup-check.yml`. Verifies that Node.js, Corepack and Yarn can be set up the same way as in `update-rss.yml` and that `yarn install --frozen-lockfile` succeeds. It uses neither secrets nor the self-hosted runner.
 
 ## Architecture
 
@@ -234,11 +241,13 @@ twitter-rss/
 │   ├── apt-packages.txt        # apt dependencies for self-hosted runner
 │   └── workflows/
 │       ├── nodejs-ci.yml       # CI: build + lint check
+│       ├── setup-check.yml     # PR check: Node.js / Corepack / Yarn setup
 │       └── update-rss.yml      # RSS update + GitHub Pages deployment
 ├── Dockerfile                  # Docker image (zenika/alpine-chrome based)
 ├── docker-compose.yml          # Docker Compose for local container usage
 ├── entrypoint.sh               # Docker entrypoint (Xvfb + x11vnc + yarn build)
 ├── template.html               # HTML template for output/index.html
+├── .node-version               # Node.js version used locally and in CI
 ├── tsconfig.json               # TypeScript compiler settings
 ├── eslint.config.mjs           # ESLint configuration
 └── .prettierrc.yml             # Prettier configuration
@@ -268,6 +277,9 @@ yarn build
 # Compile TypeScript to dist/ (no execution)
 yarn compile
 
+# Type-check only (no emit)
+yarn compile:test
+
 # Run compiled output from dist/
 yarn start
 
@@ -281,8 +293,8 @@ yarn fix
 **TypeScript configuration:**
 
 - Strict mode enabled (`strict: true`)
-- `noUnusedLocals` and `noUnusedParameters` enforced
-- `skipLibCheck` is explicitly forbidden
+- `noUnusedLocals`, `noUnusedParameters` and `noImplicitReturns` enforced
+- `skipLibCheck` is not enabled and must not be added to work around type errors
 
 ## Security
 
@@ -290,7 +302,7 @@ yarn fix
 - **Credentials**: All secrets are managed via environment variables or `.env` files. Never commit `.env` or `data/twitter-cookies.json`.
 - **XSS prevention**: All tweet text and media URLs are HTML-escaped before being embedded in RSS output.
 - **Path traversal prevention**: RSS filenames derived from `data/searches.json` keys are sanitized (removes `..`, `/`, `\`, and other dangerous characters).
-- **Cookie safety**: Authentication cookies are stored only in `data/twitter-cookies.json` (excluded from Git) and cached in GitHub Actions secrets/cache.
+- **Cookie safety**: Authentication cookies are stored only in `data/twitter-cookies.json` (excluded from Git) and cached in GitHub Actions cache (bootstrapped from the `TWITTER_COOKIES_JSON` secret).
 
 ## License
 

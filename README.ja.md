@@ -13,7 +13,7 @@
 
 - **Twitter 検索からの RSS 2.0 フィード生成** — Twitter の検索結果を、任意の RSS リーダーで読める標準的な RSS XML ファイルに変換します。
 - **Twitter 高度な検索クエリ対応** — `from:`、`filter:images`、`exclude:retweets` などの Twitter 高度な検索演算子をすべてサポートします。
-- **Cookie キャッシング** — 認証 Cookie を最大 30 日間キャッシュし、ログインの繰り返しを回避します。
+- **Cookie キャッシング** — 認証 Cookie を最大 90 日間キャッシュし、ログインの繰り返しを回避します。
 - **ログインリトライ制御** — HTTP 503 は指数バックオフで、エラー 399 は固定 120 秒待機でログインを自動リトライします。
 - **二段階認証 (TOTP) 対応** — TOTP シークレットキーを用いた 2FA をサポートします。
 - **プロキシ・TLS フィンガープリント偽装** — [CycleTLS](https://github.com/Danny-Dasilva/CycleTLS) を使用して TLS フィンガープリント (JA3) を偽装し、HTTP プロキシ経由でリクエストをルーティングします。
@@ -24,9 +24,9 @@
 
 ## 動作要件
 
-- **Node.js** 24.x
+- **Node.js**（[`.node-version`](.node-version) に記載のバージョン）
 - **Yarn** 1.22.x
-- **Xvfb**（実行時に必要。内部スクレイパーが仮想ディスプレイを要求するため）
+- **Xvfb**（Docker イメージと GitHub Actions ワークフローが実行前に起動します。現在のコード自体はブラウザを起動しません）
 - ユーザー名・パスワードでログインできる Twitter (X.com) アカウント
 
 > [!WARNING]
@@ -88,7 +88,7 @@ SEARCH_WORD_PATH=data/searches.json
 
 ### 5. 実行
 
-Xvfb を起動してからビルド・実行します：
+Xvfb を起動してからツールを実行します（`yarn build` は ts-node で `src/main.ts` を実行してフィードを生成します。`dist/` へのコンパイルは行いません）：
 
 ```bash
 Xvfb :99 -ac -screen 0 600x1000x16 &
@@ -106,12 +106,11 @@ RSS XML ファイルは `output/` ディレクトリに保存されます。全�
 | `TWITTER_PASSWORD` | ✅ | — | Twitter アカウントのパスワード |
 | `TWITTER_EMAIL_ADDRESS` | — | — | メールアドレス（ログイン時に Twitter がメール認証を求める場合に必要） |
 | `TWITTER_AUTH_CODE_SECRET` | — | — | 二段階認証の TOTP シークレットキー |
-| `PROXY_SERVER` | — | — | プロキシサーバー URL（`host:port`、`http://host:port`、`https://host:port` 形式） |
-| `PROXY_USERNAME` | — | — | プロキシ認証のユーザー名 |
-| `PROXY_PASSWORD` | — | — | プロキシ認証のパスワード |
+| `PROXY_SERVER` | — | — | プロキシサーバー URL（`host:port`、`http://host:port`、`https://host:port` 形式）。ログインリクエストにのみ使用されます |
+| `PROXY_USERNAME` | — | — | プロキシ認証のユーザー名（`PROXY_PASSWORD` も設定されている場合のみ適用） |
+| `PROXY_PASSWORD` | — | — | プロキシ認証のパスワード（`PROXY_USERNAME` も設定されている場合のみ適用） |
 | `RSS_LANGUAGE` | — | `ja` | RSS フィードに埋め込む言語タグ（例：`en`、`ja`） |
 | `SEARCH_WORD_PATH` | — | `data/searches.json` | 検索クエリ設定ファイルのパス |
-| `DISPLAY` | — | `:99` | Xvfb の X ディスプレイ番号 |
 
 ## 検索設定（`data/searches.json`）
 
@@ -159,7 +158,9 @@ RSS XML ファイルは `output/` ディレクトリに保存されます。全�
    docker compose up
    ```
 
-   コンテナは `./data` を `/data` にマウントし、内部で Xvfb と x11vnc を起動します。デバッグ用に VNC サーバーがポート `5910` で公開されます。
+   コンテナは `./data` を `/data` にマウントし（イメージは `SEARCH_WORD_PATH=/data/searches.json` を設定済み）、内部で Xvfb と x11vnc を起動します。デバッグ用に VNC サーバーがポート `5910` で公開されます。
+
+   イメージ内の作業ディレクトリは `/app` のため、`output/` と `data/twitter-cookies.json` はコンテナ内に書き出され、`./data` のマウントでは永続化されません。
 
 ### Docker イメージを手動でビルドする
 
@@ -172,11 +173,11 @@ Docker イメージは [`zenika/alpine-chrome:with-puppeteer-xvfb`](https://gith
 
 ## GitHub Actions（RSS の自動生成）
 
-リポジトリには 2 つの GitHub Actions ワークフローが含まれています。
+リポジトリには 3 つの GitHub Actions ワークフローが含まれています。
 
 ### `nodejs-ci.yml` — 継続的インテグレーション
 
-`main`/`master` へのプッシュおよびプルリクエスト時に実行されます。[再利用可能なワークフローテンプレート](https://github.com/book000/templates) を使用してビルドと Lint チェックを実施します。
+`main`/`master` へのプッシュおよびそれらを対象とするプルリクエスト時に実行されます。[再利用可能なワークフローテンプレート](https://github.com/book000/templates) を使用してビルドと Lint チェックを実施します。
 
 ### `update-rss.yml` — RSS 更新とデプロイ
 
@@ -184,7 +185,7 @@ Docker イメージは [`zenika/alpine-chrome:with-puppeteer-xvfb`](https://gith
 |---|---|
 | `schedule: '0 * * * *'` | 毎時 0 分に実行 |
 | `workflow_dispatch` | GitHub UI から手動実行 |
-| `main`/`master` への `push`（`.ts` ファイル変更時） | TypeScript ソース変更時に実行 |
+| `main`/`master` への `push`（`**/*.ts`、`.node-version`、`update-rss.yml` の変更時） | ソース、Node.js バージョン、ワークフローの変更時に実行 |
 
 **セットアップ手順：**
 
@@ -202,13 +203,15 @@ Docker イメージは [`zenika/alpine-chrome:with-puppeteer-xvfb`](https://gith
    | `TWITTER_COOKIES_JSON` | — | 既存の Cookie JSON（キャッシュのブートストラップ用） |
    | `DISCORD_WEBHOOK` | — | 失敗通知用 Discord Webhook URL |
 
+   `RSS_LANGUAGE` と `SEARCH_WORD_PATH` はワークフローから渡されないため、デフォルト値（`ja` とコミット済みの `data/searches.json`）が使われます。
+
 2. **GitHub Pages の有効化**（Repository Settings → Pages → Source: GitHub Actions）。
 
 3. ワークフローは**セルフホストランナー**で実行されます。ランナーには `.github/apt-packages.txt` に記載されたパッケージ（`chromium-browser`、`xvfb`、`xauth`、`fonts-noto-cjk`、`libnss3` など）がインストールされている必要があります。
 
 **Cookie キャッシングについて：**
 
-ワークフローは `actions/cache` を使用して `data/twitter-cookies.json` をキャッシュします（キャッシュキー：`twitter-cookies-v2-{repo}-{run_id}`）。キャッシュが存在しない場合、`TWITTER_COOKIES_JSON` シークレットからブートストラップします。Cookie の有効期間は **30 日**です。
+ワークフローは `actions/cache` を使用して `data/twitter-cookies.json` をキャッシュします（キャッシュキー：`twitter-cookies-v2-{repo}-{run_id}`）。キャッシュが存在しない場合、`TWITTER_COOKIES_JSON` シークレットからブートストラップします。Cookie の有効期間は **90 日**で、ワークフローは実行のたびに `savedAt` を更新するため、実質的な期限は最後に成功した実行から 90 日です。
 
 手動ログイン後に `TWITTER_COOKIES_JSON` シークレットを更新するには：
 
@@ -219,6 +222,10 @@ gh secret set TWITTER_COOKIES_JSON --body "$(cat data/twitter-cookies.json)"
 **失敗通知：**
 
 ワークフローが失敗した場合、設定された Webhook URL に Discord の埋め込みメッセージを送信します。
+
+### `setup-check.yml` — セットアップチェック
+
+`main`/`master` を対象とし、`.node-version`、`package.json`、`yarn.lock`、`.github/workflows/update-rss.yml`、`.github/workflows/setup-check.yml` を変更するプルリクエストで実行されます。`update-rss.yml` と同じ方法で Node.js・Corepack・Yarn をセットアップでき、`yarn install --frozen-lockfile` が成功することを検証します。シークレットもセルフホストランナーも使用しません。
 
 ## アーキテクチャ
 
@@ -234,11 +241,13 @@ twitter-rss/
 │   ├── apt-packages.txt        # セルフホストランナー用 apt 依存パッケージ
 │   └── workflows/
 │       ├── nodejs-ci.yml       # CI：ビルド・Lint チェック
+│       ├── setup-check.yml     # PR チェック：Node.js / Corepack / Yarn のセットアップ
 │       └── update-rss.yml      # RSS 更新・GitHub Pages デプロイ
 ├── Dockerfile                  # Docker イメージ（zenika/alpine-chrome ベース）
 ├── docker-compose.yml          # ローカルコンテナ実行用 Docker Compose
 ├── entrypoint.sh               # Docker エントリポイント（Xvfb + x11vnc + yarn build）
 ├── template.html               # output/index.html 用 HTML テンプレート
+├── .node-version               # ローカルと CI で使用する Node.js バージョン
 ├── tsconfig.json               # TypeScript コンパイラ設定
 ├── eslint.config.mjs           # ESLint 設定
 └── .prettierrc.yml             # Prettier 設定
@@ -268,6 +277,9 @@ yarn build
 # TypeScript を dist/ にコンパイルのみ（実行しない）
 yarn compile
 
+# 型チェックのみ（出力なし）
+yarn compile:test
+
 # dist/ のコンパイル済み出力を実行
 yarn start
 
@@ -281,8 +293,8 @@ yarn fix
 **TypeScript 設定：**
 
 - 厳密モード有効（`strict: true`）
-- `noUnusedLocals` および `noUnusedParameters` を強制
-- `skipLibCheck` による回避は明示的に禁止
+- `noUnusedLocals`、`noUnusedParameters`、`noImplicitReturns` を強制
+- `skipLibCheck` は有効化しておらず、型エラー回避のために追加してはいけません
 
 ## セキュリティ
 
@@ -290,7 +302,7 @@ yarn fix
 - **認証情報管理**：すべてのシークレットは環境変数または `.env` ファイルで管理します。`.env` および `data/twitter-cookies.json` は絶対にコミットしないでください。
 - **XSS 対策**：RSS 出力に埋め込む前に、ツイートテキストとメディア URL をすべて HTML エスケープします。
 - **パストラバーサル対策**：`data/searches.json` のキーから生成される RSS ファイル名をサニタイズします（`..`、`/`、`\` およびその他の危険な文字を除去）。
-- **Cookie の安全管理**：認証 Cookie は `data/twitter-cookies.json`（Git 除外済み）にのみ保存され、GitHub Actions のシークレット・キャッシュ経由で安全に管理されます。
+- **Cookie の安全管理**：認証 Cookie は `data/twitter-cookies.json`（Git 除外済み）にのみ保存され、GitHub Actions のキャッシュ（`TWITTER_COOKIES_JSON` シークレットから初期化）経由で管理されます。
 
 ## ライセンス
 

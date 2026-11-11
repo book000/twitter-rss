@@ -1,31 +1,24 @@
-# GitHub Copilot コードレビュー指示
+# Copilot review instructions
 
-Twitter (X.com) の検索結果から RSS フィードを生成し GitHub Pages へデプロイするツール（TypeScript / Node.js）。以下の観点でプルリクエストをレビューすること。指摘・レビューコメントは日本語で記載する。
+See `AGENTS.md` for the project overview, commands, structure and conventions. Review pull requests against it, and check the following.
 
-## 重点的に確認する点
+## What to check
 
-- **型安全性**: `strict` モード前提。`any` の新規使用、不要な型アサーション（`as`）、`skipLibCheck` の追加は指摘する。
-- **エラーハンドリング**: スクレイピング・ネットワーク・ファイル I/O は失敗しうる。握りつぶし（空 catch）や未処理の Promise を指摘する。エラーメッセージは英語であること。
-- **認証情報の扱い**: Twitter 認証情報・プロキシ設定・Cookie は環境変数／`.env`／`data/` で管理する。これらをコードやログに出力・ハードコードしていないか確認する。`data/twitter-cookies.json` や `.env` をコミットに含めていないか確認する。
-- **ファイル名サニタイズ**: RSS ファイル名は `sanitizeFileName()` でパストラバーサル対策を行っている。ファイル名生成やパス結合を変更する PR では、この防御が維持されているか（`..` やパス区切り文字の除去）を確認する。
-- **JSDoc**: 関数・インターフェースには日本語 JSDoc を付ける規約。新規追加時の欠落を指摘する。
+- Type safety: no new `any`, unnecessary `as` assertions, or `skipLibCheck`.
+- Error handling: no swallowed errors (empty `catch`) or unhandled Promises around scraping, network and file I/O. Error messages are English.
+- Secrets: no credentials, cookies, proxy settings or webhook URLs in code, logs or commits (`.env`, `data/twitter-cookies.json`).
+- File names: changes to file-name generation or path joining must keep `sanitizeFileName()` intact (no `..` or path separators).
+- HTML output: tweet text, URLs, titles and descriptions must be escaped with `escapeHtml()`.
+- Docs: environment variable, command, query format, workflow or layout changes must update the matching `README.md` and `README.ja.md` sections; command, workflow and layout changes must also update `AGENTS.md`.
 
-## プロジェクト規約（lint/formatter で強制）
+## Do not flag (intentional)
 
-- Prettier: **セミコロンなし・シングルクォート**（`semi: false`, `singleQuote: true`）。これに反するスタイルを指摘する。
-- ESLint: `@book000/eslint-config` に準拠。
-- 日本語と英数字の間に半角スペースを入れる（コメント・ドキュメント）。
-- コミットは Conventional Commits、description は日本語。
+- Missing tests: no test framework is used; quality relies on types, lint and CI.
+- `yarn build` not compiling: it runs `src/main.ts` with ts-node to generate the RSS; compiling is `yarn compile`.
+- The 90-day cookie cache (`COOKIE_EXPIRY_DAYS`), and the JA3 / User-Agent coming from different Chrome versions.
+- CI targeting both `main` and `master`.
+- The contents of `data/searches.json` and Renovate dependency PRs.
 
-## フラグすべきでない既知パターン（誤検知回避）
+## Language
 
-- **テストの不在**: このリポジトリにテストフレームワークは導入されていない。「テストが無い」という指摘は不要。品質は型・Lint と CI で担保する。
-- **`yarn build` がコンパイルしない**: `build` は `ts-node` で `src/main.ts` を直接実行する（＝RSS 生成の実行）。「build なのに tsc を呼んでいない」という指摘は誤り。コンパイルは `yarn compile`。
-- **Cookie の 90 日キャッシュ**: `COOKIE_EXPIRY_DAYS = 90` は意図的な設計（Twitter セッションは数ヶ月有効、CI が毎実行 `savedAt` を更新）。短すぎる／長すぎるという指摘は不要。
-- **JA3 と UserAgent のバージョン差**: JA3（Chrome 120 相当）と UserAgent（Chrome 135 相当）が一致しないのは既知かつ意図的。TLS フィンガープリントと UA は独立しているため不一致を不具合として指摘しない。
-- **`main` / `master` 両対応**: CI が両ブランチを対象にするのは意図的。
-
-## 対象外
-
-- `data/searches.json` の検索クエリ内容（運用データであり、レビュー対象のコード品質ではない）。
-- Renovate が作成した依存更新 PR への追加コミット提案。
+Write review comments in English. Deliverables (code comments, docs, commit messages, PR text) are English; runtime messages are English; `README.ja.md` is the only Japanese translation kept (`data/searches.json` is Japanese operational data).
