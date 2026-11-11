@@ -5,15 +5,14 @@ import fs from 'node:fs'
 import { Item } from './model/collect-result'
 import { Logger } from '@book000/node-utils'
 import { Scraper } from '@the-convocation/twitter-scraper'
-// cycleTLSExit は twitter-scraper の内部インスタンスを終了させるために使用
 import { cycleTLSExit } from '@the-convocation/twitter-scraper/cycletls'
 import { TwitterOpenApi } from 'twitter-openapi-typescript'
 import initCycleTLS, { CycleTLSClient } from 'cycletls'
 import { Headers } from 'headers-polyfill'
 
-// EPIPE エラー（パイプ切断）が発生した場合は静かに終了する
-// @book000/node-utils の uncaughtException ハンドラーがログ書き込みで EPIPE を再発させ
-// 無限ループになる問題を防ぐ
+// Exit quietly on EPIPE (broken pipe).
+// The uncaughtException handler of @book000/node-utils writes a log line, which raises
+// EPIPE again and loops forever; handling it here prevents that.
 process.stdout.on('error', (err: NodeJS.ErrnoException) => {
   // eslint-disable-next-line unicorn/no-process-exit
   if (err.code === 'EPIPE') process.exit(0)
@@ -26,17 +25,12 @@ process.on('uncaughtException', (err: NodeJS.ErrnoException) => {
   if (err.code === 'EPIPE') process.exit(0)
 })
 
-/**
- * Headers ライクなオブジェクトのインターフェース
- * undici の _Headers クラスや標準の Headers クラスに対応
- */
 interface HeadersLike {
   entries?: () => IterableIterator<[string, string]>
   [Symbol.iterator]?: () => Iterator<[string, string]>
 }
 
-// CycleTLS インスタンス（プロキシサポート付き）
-// Promise ベースのシングルトンパターンで並行初期化を防止
+// Shared CycleTLS instance. Holding the Promise (not the resolved client) prevents concurrent initialization.
 let cycleTLSInstancePromise: Promise<CycleTLSClient> | null = null
 
 async function initCycleTLSWithProxy(): Promise<CycleTLSClient> {
@@ -45,7 +39,11 @@ async function initCycleTLSWithProxy(): Promise<CycleTLSClient> {
 }
 
 /**
- * プロキシサポート付きの CycleTLS fetch 関数
+ * `fetch` replacement for twitter-scraper that sends requests through CycleTLS
+ * to spoof the TLS fingerprint. Uses the proxy from the `PROXY_*` environment
+ * variables when set (see README).
+ *
+ * @throws {Error} If `PROXY_SERVER` is not a valid URL while `PROXY_USERNAME` and `PROXY_PASSWORD` are set
  */
 async function cycleTLSFetchWithProxy(
   input: RequestInfo | URL,
@@ -62,28 +60,23 @@ async function cycleTLSFetchWithProxy(
   const method = (init?.method ?? 'GET').toUpperCase()
 
   const headers: Record<string, string> = {}
-  // ヘッダーを抽出（_Headers クラス対応）
   if (init?.headers) {
     const h = init.headers as HeadersLike
     if (h.entries && typeof h.entries === 'function') {
-      // entries() メソッドを使用（_Headers クラス対応）
       for (const [key, value] of h.entries()) {
         headers[key] = value
       }
     } else if (Array.isArray(init.headers)) {
-      // 配列形式
       for (const [key, value] of init.headers) {
         headers[key] = value
       }
     } else if (typeof h[Symbol.iterator] === 'function') {
-      // イテラブル（Symbol.iterator を持つオブジェクト）
       for (const [key, value] of init.headers as unknown as Iterable<
         [string, string]
       >) {
         headers[key] = value
       }
     } else {
-      // プレーンオブジェクト
       Object.assign(headers, init.headers as Record<string, string>)
     }
   }
@@ -99,11 +92,9 @@ async function cycleTLSFetchWithProxy(
     }
   }
 
-  // プロキシ設定を構築
   let proxy: string | undefined
   const proxyServer = process.env.PROXY_SERVER
   if (proxyServer) {
-    // プロトコルがない場合、または HTTP(S) 以外の場合は http:// を追加
     const normalizedProxyServer =
       proxyServer.startsWith('http://') || proxyServer.startsWith('https://')
         ? proxyServer
@@ -112,7 +103,6 @@ async function cycleTLSFetchWithProxy(
     const proxyUsername = process.env.PROXY_USERNAME
     const proxyPassword = process.env.PROXY_PASSWORD
     if (proxyUsername && proxyPassword) {
-      // http://username:password@host:port 形式
       try {
         const proxyUrl = new URL(normalizedProxyServer)
         proxyUrl.username = proxyUsername
@@ -128,14 +118,13 @@ async function cycleTLSFetchWithProxy(
     }
   }
 
-  // proxy が undefined の場合はオプションに含めない（CycleTLS の動作に影響する可能性があるため）
+  // Omit `proxy` when unset: passing `proxy: undefined` may change CycleTLS behavior
   const options: Record<string, unknown> = {
     body,
     headers,
-    // JA3 フィンガープリント: Chrome 120 on Windows 10 (ライブラリと同じ値を使用)
-    // 注: JA3 は TLS ハンドシェイクの特徴を示すもので、UserAgent とは独立
+    // ja3 and userAgent intentionally come from different Chrome versions:
+    // JA3 describes the TLS handshake, not the User-Agent.
     ja3: '771,4865-4866-4867-49195-49199-49196-49200-52393-52392-49171-49172-156-157-47-53,0-23-65281-10-11-35-16-5-13-18-51-45-43-27-17513,29-23-24,0',
-    // UserAgent: Chrome 135 (最新の Chrome バージョンを使用)
     userAgent:
       headers['user-agent'] ||
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
@@ -168,7 +157,6 @@ async function cycleTLSFetchWithProxy(
     }
   }
 
-  // CycleTLS のレスポンスから本文を取得
   let responseBody: string
   if (response.data === undefined || response.data === null) {
     responseBody = ''
@@ -187,9 +175,9 @@ async function cycleTLSFetchWithProxy(
 }
 
 const COOKIE_CACHE_FILE = './data/twitter-cookies.json'
-// 90 日間キャッシュを有効とする（Twitter のセッションは通常数ヶ月有効）
-// NOTE: savedAt はワークフロー側で毎実行更新されるため、実質的な期限は「最後に CI が成功してから 90 日」となる。
-// Twitter がサーバー側でセッションを無効化した場合は API エラー (401 等) でジョブ失敗として検知する。
+// The workflow refreshes savedAt on every run, so the effective expiry is 90 days after the last successful run.
+// A session invalidated server-side is not detected here: the cache is kept, and each search
+// fails with an API error (401 etc.) that is only logged, so the job still exits 0.
 const COOKIE_EXPIRY_DAYS = 90
 
 interface CachedCookies {
@@ -198,18 +186,19 @@ interface CachedCookies {
   savedAt: number
 }
 
+/**
+ * Turns a `data/searches.json` key into a file name that cannot escape `output/`.
+ *
+ * @throws {Error} If nothing usable remains after sanitization
+ */
 function sanitizeFileName(fileName: string): string {
-  // Windows / Linux で使えない文字列を削除
-  // スペースを削除
-  // パストラバーサル攻撃を防ぐため、 ".." やパス区切り文字を削除
   let sanitized = fileName.replaceAll(/[ "*/:<>?\\|/]/g, '').trim()
 
-  // ".." を繰り返し削除（"....." → ".." のバイパスを防止）
+  // One pass is enough (a run of n dots becomes n % 2 dots, and surviving dots are never adjacent); the loop is defensive.
   while (sanitized.includes('..')) {
     sanitized = sanitized.replaceAll('..', '')
   }
 
-  // 空文字列、"."、".." の場合はエラー
   if (!sanitized || sanitized === '.' || sanitized === '..') {
     throw new Error('Invalid file name after sanitization')
   }
@@ -283,8 +272,8 @@ async function loginWithRetry(
         (error.message.includes('503') ||
           error.message.includes('Service Unavailable'))
 
-      // error 399: Twitter が不審なアクティビティとしてブロック。一定時間待機後にリトライ
-      // /\b399\b/ で境界一致させ誤検知（"3990" など）を防ぐ
+      // error 399: Twitter blocked the login as suspicious activity; wait, then retry.
+      // The word-boundary match avoids false positives such as "3990".
       const is399 = error instanceof Error && /\b399\b/.test(error.message)
 
       if (is503 && attempt < maxRetries) {
@@ -292,7 +281,7 @@ async function loginWithRetry(
         logger.warn(`503 error, retrying in ${delay / 1000}s...`)
         await new Promise((resolve) => setTimeout(resolve, delay))
       } else if (is399 && attempt < maxRetries) {
-        // Twitter の推奨待機時間は 15 分だが、ワークフロー都合上 2 分間隔でリトライする（最大試行回数は maxRetries に依存）
+        // Twitter recommends waiting 15 minutes, but retry every 2 minutes to fit the workflow (bounded by maxRetries)
         const delay = 120_000
         logger.warn(
           `🚫 error 399 (suspicious activity), retrying in ${delay / 1000}s... (attempt ${attempt}/${maxRetries})`,
@@ -321,7 +310,6 @@ async function getAuthCookies(): Promise<{ authToken: string; ct0: string }> {
   }
 
   logger.info('Logging in with twitter-scraper + CycleTLS...')
-  // 常にカスタム実装を使用（プロキシサポート付き）
   const scraper = new Scraper({
     fetch: cycleTLSFetchWithProxy,
   })
@@ -361,10 +349,7 @@ interface TweetData {
   mediaUrls: string[]
 }
 
-/**
- * HTML 特殊文字をエスケープする
- * XSS 攻撃を防ぐために、ユーザー入力を HTML に埋め込む前にエスケープする
- */
+/** Escapes `& < > " '` so the result is safe in HTML text and quoted attribute values. */
 function escapeHtml(text: string): string {
   return text
     .replaceAll('&', '&amp;')
@@ -375,14 +360,12 @@ function escapeHtml(text: string): string {
 }
 
 function getContent(tweet: TweetData): string {
-  // XSS 対策: ツイートテキストをエスケープする
   const tweetText = escapeHtml(tweet.fullText)
   const mediaUrls = tweet.mediaUrls
 
   return [
     tweetText.trim(),
     mediaUrls.length > 0 ? '<hr>' : '',
-    // メディア URL はエスケープして安全に埋め込む
     mediaUrls.map((url) => `<img src="${escapeHtml(url)}"><br>`).join('\n'),
   ].join('\n')
 }
@@ -517,7 +500,6 @@ async function generateRSS() {
           for (const media of extendedEntities.media) {
             // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             const mediaUrl = media.mediaUrlHttps ?? ''
-            // 空文字列のURLはスキップする
             if (mediaUrl) {
               mediaUrls.push(mediaUrl)
             }
@@ -533,8 +515,7 @@ async function generateRSS() {
           mediaUrls,
         }
 
-        // タイトルは投稿日にする
-        // 微妙だけど、とりあえず9時間足す（JST変換）
+        // The title is the post time in JST (fixed UTC+9 offset, no DST handling)
         const title = createdAt
           ? new Date(new Date(createdAt).getTime() + 9 * 60 * 60 * 1000)
               .toISOString()
@@ -628,7 +609,6 @@ function generateList() {
       } = parser.parse(fs.readFileSync('output/' + file, 'utf8'))
       const title = feed.rss.channel.title
       const description = feed.rss.channel.description
-      // XSS 対策: title と description をエスケープする
       return `<li><a href='${encodeURIComponent(
         file,
       )}'>${escapeHtml(title)}</a>: <code>${escapeHtml(description)}</code></li>`
@@ -645,20 +625,19 @@ function generateList() {
 }
 
 async function cleanup(): Promise<void> {
-  // CycleTLS インスタンスのクリーンアップ（初期化されている場合のみ）
   if (cycleTLSInstancePromise) {
     try {
       const instance = await cycleTLSInstancePromise
       await instance.exit()
     } catch {
-      // インスタンスの終了に失敗しても無視
+      // Best-effort cleanup; the process exits right after
     }
   }
-  // twitter-scraper の内部 CycleTLS インスタンスも終了
+  // twitter-scraper keeps its own CycleTLS instance
   try {
     cycleTLSExit()
   } catch {
-    // 初期化されていない場合のエラーを無視
+    // Ignore the error when it was never initialized
   }
 }
 

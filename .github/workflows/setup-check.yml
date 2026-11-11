@@ -1,5 +1,5 @@
-# Node.js / Corepack / Yarn のセットアップ互換性を PR 時に検証する。
-# update-rss.yml と同じセットアップ手順を使う。secrets と self-hosted runner は使わない。
+# Verifies Node.js / Corepack / Yarn setup compatibility on pull requests.
+# Uses the same setup steps as update-rss.yml, without secrets or the self-hosted runner.
 
 name: Setup Check
 
@@ -35,7 +35,7 @@ jobs:
         with:
           node-version-file: .node-version
 
-      # update-rss.yml と同じ手順
+      # Same steps as update-rss.yml
       - name: Enable corepack (yarn)
         run: |
           npm install -g corepack@0.36.0

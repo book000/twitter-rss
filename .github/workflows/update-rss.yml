@@ -26,7 +26,7 @@ jobs:
         with:
           node-version-file: .node-version
 
-      # Node.js 25 以降は Corepack が同梱されないため、明示インストールしてから有効化する
+      # Corepack is not bundled with Node.js 25 and later, so install it explicitly before enabling it
       - name: Enable corepack (yarn)
         run: |
           npm install -g corepack@0.36.0
@@ -57,7 +57,7 @@ jobs:
         run: |
           if [ ! -f data/twitter-cookies.json ] && [ -n "$TWITTER_COOKIES_JSON" ]; then
             mkdir -p data
-            # savedAt を現在時刻に更新してファイルに書き込む
+            # Write the file with savedAt set to the current time
             echo "$TWITTER_COOKIES_JSON" | node -e "
               const chunks = [];
               process.stdin.on('data', c => chunks.push(c));
@@ -69,8 +69,8 @@ jobs:
             " > data/twitter-cookies.json
             echo "Cookies bootstrapped from secret (savedAt updated)"
           elif [ -f data/twitter-cookies.json ]; then
-            # キャッシュが存在する場合も savedAt を現在時刻に更新して期限切れを防ぐ
-            # JSON が壊れている場合はファイルを削除してシークレットからのブートストラップにフォールバックする
+            # Also refresh savedAt on a cache hit to prevent expiry.
+            # If the JSON is malformed, delete the file and fall back to bootstrapping from the secret
             if node -e "
               const fs = require('fs');
               try {
