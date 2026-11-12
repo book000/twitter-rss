@@ -180,9 +180,8 @@ async function cycleTLSFetchWithProxy(
 
 const COOKIE_CACHE_FILE = './data/twitter-cookies.json'
 // The workflow refreshes savedAt on every run, so the effective expiry is 90 days after the last successful run.
-// A session invalidated server-side is not detected here: the cache is kept, and each search
-// fails with an API error (401 etc.) that is only logged, so the job still exits 0.
 const COOKIE_EXPIRY_DAYS = 90
+const PROBE_QUERY = 'twitter'
 
 interface CachedCookies {
   auth_token: string
@@ -298,14 +297,11 @@ async function loginWithRetry(
   }
 }
 
-async function getAuthCookies(): Promise<{ authToken: string; ct0: string }> {
-  const logger = Logger.configure('getAuthCookies')
-
-  const cached = loadCachedCookies()
-  if (cached) {
-    logger.info('Using cached cookies')
-    return { authToken: cached.auth_token, ct0: cached.ct0 }
-  }
+async function loginAndSaveCookies(): Promise<{
+  authToken: string
+  ct0: string
+}> {
+  const logger = Logger.configure('loginAndSaveCookies')
 
   const username = process.env.TWITTER_USERNAME
   const password = process.env.TWITTER_PASSWORD
@@ -342,6 +338,22 @@ async function getAuthCookies(): Promise<{ authToken: string; ct0: string }> {
   logger.info('Login successful, cookies saved')
 
   return { authToken, ct0 }
+}
+
+async function getAuthCookies(): Promise<{
+  authToken: string
+  ct0: string
+  fromCache: boolean
+}> {
+  const logger = Logger.configure('getAuthCookies')
+
+  const cached = loadCachedCookies()
+  if (cached) {
+    logger.info('Using cached cookies')
+    return { authToken: cached.auth_token, ct0: cached.ct0, fromCache: true }
+  }
+
+  return { ...(await loginAndSaveCookies()), fromCache: false }
 }
 
 interface TweetData {
@@ -415,6 +427,47 @@ async function withRetry<T>(
   throw new Error(`${operationName} failed after ${maxRetries} attempts`)
 }
 
+type TwitterClient = Awaited<ReturnType<TwitterOpenApi['getClientFromCookies']>>
+
+function isUnauthorizedError(error: unknown): boolean {
+  // ResponseError is not exported from the package entry point, so match it by name.
+  return (
+    error instanceof Error &&
+    error.name === 'ResponseError' &&
+    (error as { response?: { status?: number } }).response?.status === 401
+  )
+}
+
+/**
+ * Probes the session with the same search endpoint the run depends on.
+ * Only HTTP 401 means the session is invalid; any other error is retried and then propagates.
+ */
+async function isCachedSessionValid(client: TwitterClient): Promise<boolean> {
+  const logger = Logger.configure('isCachedSessionValid')
+  return withRetry(
+    async () => {
+      try {
+        await client.getTweetApi().getSearchTimeline({
+          rawQuery: PROBE_QUERY,
+          product: 'Latest',
+        })
+        return true
+      } catch (error: unknown) {
+        if (isUnauthorizedError(error)) {
+          return false
+        }
+        throw error
+      }
+    },
+    {
+      maxRetries: 3,
+      baseDelayMs: 2000,
+      logger,
+      operationName: 'Cookie validation',
+    },
+  )
+}
+
 async function generateRSS() {
   const logger = Logger.configure('generateRSS')
   logger.info('Generating RSS...')
@@ -423,14 +476,28 @@ async function generateRSS() {
     throw new Error('TWITTER_USERNAME, TWITTER_PASSWORD is not set')
   }
 
-  const { authToken, ct0 } = await getAuthCookies()
+  const cookies = await getAuthCookies()
 
   logger.info('Creating twitter-openapi client...')
   const api = new TwitterOpenApi()
-  const client = await api.getClientFromCookies({
-    auth_token: authToken,
-    ct0,
+  let client = await api.getClientFromCookies({
+    auth_token: cookies.authToken,
+    ct0: cookies.ct0,
   })
+
+  if (cookies.fromCache) {
+    if (await isCachedSessionValid(client)) {
+      logger.info('Cached cookies are valid')
+    } else {
+      logger.warn('Cached cookies were rejected (HTTP 401), logging in again')
+      fs.rmSync(COOKIE_CACHE_FILE, { force: true })
+      const fresh = await loginAndSaveCookies()
+      client = await api.getClientFromCookies({
+        auth_token: fresh.authToken,
+        ct0: fresh.ct0,
+      })
+    }
+  }
 
   const rssLanguage = process.env.RSS_LANGUAGE ?? 'ja'
 
