@@ -35,7 +35,7 @@ There is no test framework. Run `yarn lint` and `yarn compile` before committing
 
 - `src/main.ts`: the whole application (login with cookie cache, search, RSS generation, `output/` index).
   - `sanitizeFileName()` turns a `data/searches.json` key into a safe file name (path traversal defense). Do not weaken it.
-  - Cookie cache expiry is `COOKIE_EXPIRY_DAYS` (90). CI refreshes `savedAt` on every run, so the effective expiry is 90 days after the last successful run. A session invalidated server-side is not detected: per-search errors are only logged and the job still exits 0.
+  - Cookie cache expiry is `COOKIE_EXPIRY_DAYS` (90). CI refreshes `savedAt` on every run, so the effective expiry is 90 days after the last successful run. A session invalidated server-side is detected only as failing searches: any failed search makes the run exit 1, so the workflow notifies Discord and skips deployment.
   - The JA3 fingerprint and the User-Agent are hard-coded in `cycleTLSFetchWithProxy` and intentionally come from different Chrome versions.
 - `src/model/collect-result.ts`: RSS `Item` interface.
 - `data/searches.json`: search queries (tracked in Git); other files under `data/` are git-ignored.
