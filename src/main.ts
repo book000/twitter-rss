@@ -515,6 +515,7 @@ async function generateRSS() {
     throw errorMessage
   }
 
+  const failedKeys: string[] = []
   for (const key in searchWords) {
     const searchWord = searchWords[key]
     const startAt = new Date()
@@ -648,7 +649,14 @@ async function generateRSS() {
       const errorMessage =
         error instanceof Error ? error : new Error(String(error))
       logger.error(`Error searching for "${searchWord}"`, errorMessage)
+      failedKeys.push(key)
     }
+  }
+
+  if (failedKeys.length > 0) {
+    throw new Error(
+      `Failed to generate ${failedKeys.length} of ${Object.keys(searchWords).length} feeds: ${failedKeys.join(', ')}`,
+    )
   }
 }
 
