@@ -211,7 +211,7 @@ Runs on every push to `main`/`master` and on pull requests targeting them. Execu
 
 **Cookie caching:**
 
-The workflow caches `data/twitter-cookies.json` using `actions/cache` with a per-run cache key (`twitter-cookies-v2-{repo}-{run_id}`). On cache miss, it falls back to the `TWITTER_COOKIES_JSON` secret to bootstrap the session. Cookies are valid for **90 days**, and the workflow refreshes `savedAt` on every run, so the effective expiry is 90 days after the last successful run.
+The workflow caches `data/twitter-cookies.json` using `actions/cache` with a per-run cache key (`twitter-cookies-v2-{repo}-{run_id}`). On cache miss, it falls back to the `TWITTER_COOKIES_JSON` secret to bootstrap the session. Cookies are valid for **90 days**, and the workflow refreshes `savedAt` on every run, so the effective expiry is 90 days after the last successful run. Cached cookies are also probed once per run with a search request: an HTTP 401 discards the cache and triggers a fresh login, while any other probe error fails the run.
 
 To manually update the `TWITTER_COOKIES_JSON` secret after a fresh login:
 

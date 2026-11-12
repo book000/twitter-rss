@@ -211,7 +211,7 @@ Docker イメージは [`zenika/alpine-chrome:with-puppeteer-xvfb`](https://gith
 
 **Cookie キャッシングについて：**
 
-ワークフローは `actions/cache` を使用して `data/twitter-cookies.json` をキャッシュします（キャッシュキー：`twitter-cookies-v2-{repo}-{run_id}`）。キャッシュが存在しない場合、`TWITTER_COOKIES_JSON` シークレットからブートストラップします。Cookie の有効期間は **90 日**で、ワークフローは実行のたびに `savedAt` を更新するため、実質的な期限は最後に成功した実行から 90 日です。
+ワークフローは `actions/cache` を使用して `data/twitter-cookies.json` をキャッシュします（キャッシュキー：`twitter-cookies-v2-{repo}-{run_id}`）。キャッシュが存在しない場合、`TWITTER_COOKIES_JSON` シークレットからブートストラップします。Cookie の有効期間は **90 日**で、ワークフローは実行のたびに `savedAt` を更新するため、実質的な期限は最後に成功した実行から 90 日です。また、キャッシュ済み Cookie は 1 回の実行につき 1 回、検索リクエストで検証されます。HTTP 401 の場合はキャッシュを破棄して再ログインし、それ以外のエラーでは実行が失敗します。
 
 手動ログイン後に `TWITTER_COOKIES_JSON` シークレットを更新するには：
 
