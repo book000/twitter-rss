@@ -13,7 +13,7 @@
 
 - **RSS 2.0 feeds from Twitter searches** — Converts Twitter search results into standard RSS XML files readable by any RSS reader.
 - **Advanced Twitter query support** — Supports all Twitter advanced search operators (`from:`, `filter:images`, `exclude:retweets`, etc.).
-- **Cookie caching** — Caches authentication cookies for up to 90 days to avoid repeated logins.
+- **Cookie caching** — Keeps authentication cookies for up to 90 days to avoid repeated logins (in CI, in a runner-local state directory, not the Actions cache).
 - **Login retry with backoff** — Automatically retries logins on transient failures (HTTP 503 with exponential backoff, error 399 with a fixed 120-second delay).
 - **Two-factor authentication (TOTP)** — Supports TOTP-based 2FA via a secret key.
 - **Proxy and TLS fingerprint spoofing** — Uses [CycleTLS](https://github.com/Danny-Dasilva/CycleTLS) to spoof TLS fingerprints (JA3) and route requests through an HTTP proxy.
@@ -200,7 +200,7 @@ Runs on every push to `main`/`master` and on pull requests targeting them. Execu
    | `PROXY_SERVER` | — | Proxy server URL |
    | `PROXY_USERNAME` | — | Proxy username |
    | `PROXY_PASSWORD` | — | Proxy password |
-   | `TWITTER_COOKIES_JSON` | — | Pre-existing cookies JSON (bootstraps the cache) |
+   | `TWITTER_COOKIES_JSON` | — | Pre-existing cookies JSON (bootstraps the saved session) |
    | `DISCORD_WEBHOOK` | — | Discord webhook URL for failure notifications |
 
    `RSS_LANGUAGE` and `SEARCH_WORD_PATH` are not passed by the workflow, so the defaults apply (`ja` and the committed `data/searches.json`).
@@ -211,7 +211,16 @@ Runs on every push to `main`/`master` and on pull requests targeting them. Execu
 
 **Cookie caching:**
 
-The workflow caches `data/twitter-cookies.json` using `actions/cache` with a per-run cache key (`twitter-cookies-v2-{repo}-{run_id}`). On cache miss, it falls back to the `TWITTER_COOKIES_JSON` secret to bootstrap the session. Cookies are valid for **90 days**, and the workflow refreshes `savedAt` on every run, so the effective expiry is 90 days after the last successful run. Cached cookies are also probed once per run with a search request: an HTTP 401 discards the cache and triggers a fresh login, while any other probe error fails the run.
+The session is not stored in the GitHub Actions cache: the cache of a public repository's default branch is readable from fork pull request workflows, so it must not hold credentials. Instead, the workflow copies `data/twitter-cookies.json` to a state directory on the self-hosted runner after each run (even when a later search fails) and restores it before the next one. The directory is `${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss` of the runner user, with mode `0700` and the file mode `0600`. This assumes a non-ephemeral runner whose home directory persists and that always runs this workflow. If no saved session exists, it falls back to the `TWITTER_COOKIES_JSON` secret to bootstrap the session, then to a fresh login. Cookies are valid for **90 days**, and the workflow refreshes `savedAt` on every run, so the effective expiry is 90 days after the last run that saved the session (successful or not). Saved cookies are also probed once per run with a search request: an HTTP 401 discards them and triggers a fresh login, while any other probe error fails the run.
+
+**Migrating from the Actions cache:**
+
+Merging the workflow change triggers a run immediately, and the first run bootstraps from the secret because no saved session exists yet. Therefore:
+
+1. Revoke the previously cached Twitter session (for example by changing the password or revoking sessions), log in again, and update the `TWITTER_COOKIES_JSON` secret with the new cookies (command below) before or right when merging.
+2. Delete the existing caches: `gh cache delete --all --repo <owner>/<repo>`.
+
+A saved session on the runner takes precedence over the `TWITTER_COOKIES_JSON` secret. After rotating the secret, also delete `${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss/twitter-cookies.json` on the runner, otherwise the new secret is ignored.
 
 To manually update the `TWITTER_COOKIES_JSON` secret after a fresh login:
 
@@ -256,7 +265,7 @@ twitter-rss/
 **Data flow:**
 
 1. `main.ts` reads `data/searches.json` to get search queries.
-2. It authenticates with Twitter using cached cookies or fresh login via `@the-convocation/twitter-scraper` (with CycleTLS for TLS fingerprint spoofing).
+2. It authenticates with Twitter using saved cookies or fresh login via `@the-convocation/twitter-scraper` (with CycleTLS for TLS fingerprint spoofing).
 3. For each query, it calls the Twitter search API via `twitter-openapi-typescript`.
 4. Results are mapped to RSS 2.0 `<item>` elements (title = JST timestamp, content = tweet text + media images).
 5. XML is written to `output/<filename>.xml` using `fast-xml-parser`.
@@ -302,7 +311,7 @@ yarn fix
 - **Credentials**: All secrets are managed via environment variables or `.env` files. Never commit `.env` or `data/twitter-cookies.json`.
 - **XSS prevention**: All tweet text and media URLs are HTML-escaped before being embedded in RSS output.
 - **Path traversal prevention**: RSS filenames derived from `data/searches.json` keys are sanitized (removes `..`, `/`, `\`, and other dangerous characters).
-- **Cookie safety**: Authentication cookies are stored only in `data/twitter-cookies.json` (excluded from Git) and cached in GitHub Actions cache (bootstrapped from the `TWITTER_COOKIES_JSON` secret).
+- **Cookie safety**: Authentication cookies are stored only in `data/twitter-cookies.json` (excluded from Git) and, in CI, in a `0700` state directory on the self-hosted runner (bootstrapped from the `TWITTER_COOKIES_JSON` secret). They are never stored in GitHub Actions caches or artifacts.
 
 ## License
 
