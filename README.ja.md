@@ -13,7 +13,7 @@
 
 - **Twitter 検索からの RSS 2.0 フィード生成** — Twitter の検索結果を、任意の RSS リーダーで読める標準的な RSS XML ファイルに変換します。
 - **Twitter 高度な検索クエリ対応** — `from:`、`filter:images`、`exclude:retweets` などの Twitter 高度な検索演算子をすべてサポートします。
-- **Cookie キャッシング** — 認証 Cookie を最大 90 日間キャッシュし、ログインの繰り返しを回避します。
+- **Cookie キャッシング** — 認証 Cookie を最大 90 日間保持し、ログインの繰り返しを回避します（CI では Actions キャッシュではなく、ランナー上のローカルな状態ディレクトリに保存します）。
 - **ログインリトライ制御** — HTTP 503 は指数バックオフで、エラー 399 は固定 120 秒待機でログインを自動リトライします。
 - **二段階認証 (TOTP) 対応** — TOTP シークレットキーを用いた 2FA をサポートします。
 - **プロキシ・TLS フィンガープリント偽装** — [CycleTLS](https://github.com/Danny-Dasilva/CycleTLS) を使用して TLS フィンガープリント (JA3) を偽装し、HTTP プロキシ経由でリクエストをルーティングします。
@@ -200,7 +200,7 @@ Docker イメージは [`zenika/alpine-chrome:with-puppeteer-xvfb`](https://gith
    | `PROXY_SERVER` | — | プロキシサーバー URL |
    | `PROXY_USERNAME` | — | プロキシユーザー名 |
    | `PROXY_PASSWORD` | — | プロキシパスワード |
-   | `TWITTER_COOKIES_JSON` | — | 既存の Cookie JSON（キャッシュのブートストラップ用） |
+   | `TWITTER_COOKIES_JSON` | — | 既存の Cookie JSON（保存済みセッションのブートストラップ用） |
    | `DISCORD_WEBHOOK` | — | 失敗通知用 Discord Webhook URL |
 
    `RSS_LANGUAGE` と `SEARCH_WORD_PATH` はワークフローから渡されないため、デフォルト値（`ja` とコミット済みの `data/searches.json`）が使われます。
@@ -211,7 +211,16 @@ Docker イメージは [`zenika/alpine-chrome:with-puppeteer-xvfb`](https://gith
 
 **Cookie キャッシングについて：**
 
-ワークフローは `actions/cache` を使用して `data/twitter-cookies.json` をキャッシュします（キャッシュキー：`twitter-cookies-v2-{repo}-{run_id}`）。キャッシュが存在しない場合、`TWITTER_COOKIES_JSON` シークレットからブートストラップします。Cookie の有効期間は **90 日**で、ワークフローは実行のたびに `savedAt` を更新するため、実質的な期限は最後に成功した実行から 90 日です。また、キャッシュ済み Cookie は 1 回の実行につき 1 回、検索リクエストで検証されます。HTTP 401 の場合はキャッシュを破棄して再ログインし、それ以外のエラーでは実行が失敗します。
+セッションは GitHub Actions のキャッシュには保存しません。パブリックリポジトリの既定ブランチのキャッシュは fork からの Pull Request のワークフローでも読み取れるため、認証情報を置くべきではないからです。代わりにワークフローは、実行のたびに（後続の検索が失敗した場合も）`data/twitter-cookies.json` をセルフホストランナー上の状態ディレクトリへコピーし、次回の実行前に復元します。ディレクトリはランナーユーザーの `${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss` で、ディレクトリのモードは `0700`、ファイルのモードは `0600` です。ランナーは使い捨てではなく、ホームディレクトリが保持され、このワークフローが常に同じランナーで実行されることを前提とします。保存済みセッションがない場合は `TWITTER_COOKIES_JSON` シークレットからブートストラップし、それもなければ新規ログインします。Cookie の有効期間は **90 日**で、ワークフローは実行のたびに `savedAt` を更新するため、実質的な期限は、セッションを保存した最後の実行（成功・失敗を問わない）から 90 日です。また、保存済み Cookie は 1 回の実行につき 1 回、検索リクエストで検証されます。HTTP 401 の場合は破棄して再ログインし、それ以外のエラーでは実行が失敗します。
+
+**Actions キャッシュからの移行：**
+
+ワークフローの変更をマージすると直ちに実行が始まり、保存済みセッションがまだないため最初の実行はシークレットからブートストラップします。そのため次の手順が必要です。
+
+1. これまでキャッシュされていた Twitter のセッションを失効させ（パスワードの変更やセッションの取り消しなど）、再ログインして、マージの前または同時に `TWITTER_COOKIES_JSON` シークレットを新しい Cookie で更新します（コマンドは下記）。
+2. 既存のキャッシュを削除します：`gh cache delete --all --repo <owner>/<repo>`。
+
+ランナー上の保存済みセッションは `TWITTER_COOKIES_JSON` シークレットより優先されます。シークレットを更新したときは、ランナー上の `${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss/twitter-cookies.json` も削除してください。削除しないと新しいシークレットは使われません。
 
 手動ログイン後に `TWITTER_COOKIES_JSON` シークレットを更新するには：
 
@@ -256,7 +265,7 @@ twitter-rss/
 **データの流れ：**
 
 1. `main.ts` が `data/searches.json` を読み込み、検索クエリを取得します。
-2. キャッシュ済み Cookie または `@the-convocation/twitter-scraper`（CycleTLS による TLS フィンガープリント偽装付き）を使用して Twitter に認証します。
+2. 保存済み Cookie または `@the-convocation/twitter-scraper`（CycleTLS による TLS フィンガープリント偽装付き）を使用して Twitter に認証します。
 3. 各クエリについて、`twitter-openapi-typescript` 経由で Twitter 検索 API を呼び出します。
 4. 結果を RSS 2.0 の `<item>` 要素にマッピングします（タイトル = JST タイムスタンプ、コンテンツ = ツイートテキスト + メディア画像）。
 5. `fast-xml-parser` を使用して XML を `output/<ファイル名>.xml` に書き出します。
@@ -302,7 +311,7 @@ yarn fix
 - **認証情報管理**：すべてのシークレットは環境変数または `.env` ファイルで管理します。`.env` および `data/twitter-cookies.json` は絶対にコミットしないでください。
 - **XSS 対策**：RSS 出力に埋め込む前に、ツイートテキストとメディア URL をすべて HTML エスケープします。
 - **パストラバーサル対策**：`data/searches.json` のキーから生成される RSS ファイル名をサニタイズします（`..`、`/`、`\` およびその他の危険な文字を除去）。
-- **Cookie の安全管理**：認証 Cookie は `data/twitter-cookies.json`（Git 除外済み）にのみ保存され、GitHub Actions のキャッシュ（`TWITTER_COOKIES_JSON` シークレットから初期化）経由で管理されます。
+- **Cookie の安全管理**：認証 Cookie は `data/twitter-cookies.json`（Git 除外済み）に保存されます。CI ではセルフホストランナー上のモード `0700` の状態ディレクトリに保存され（`TWITTER_COOKIES_JSON` シークレットから初期化）、GitHub Actions のキャッシュやアーティファクトには保存しません。
 
 ## ライセンス
 

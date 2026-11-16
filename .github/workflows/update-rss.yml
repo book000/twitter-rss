@@ -45,15 +45,18 @@ jobs:
       - name: Install nodejs dependencies
         run: yarn
 
-      - name: Restore Twitter cookies cache
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: data/twitter-cookies.json
-          key: twitter-cookies-v2-${{ github.repository }}-${{ github.run_id }}
-          restore-keys: |
-            twitter-cookies-v2-${{ github.repository }}-
+      # The session lives only on the runner: Actions caches of a public repository are readable from fork PR workflows
+      - name: Restore Twitter cookies from runner state
+        run: |
+          STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss"
+          if [ -f "$STATE_DIR/twitter-cookies.json" ]; then
+            umask 077
+            mkdir -p data
+            cp "$STATE_DIR/twitter-cookies.json" data/twitter-cookies.json
+            echo "Cookies restored from runner state"
+          fi
 
-      - name: Bootstrap cookies from secret (if no cache)
+      - name: Bootstrap cookies from secret (if no saved session)
         run: |
           if [ ! -f data/twitter-cookies.json ] && [ -n "$TWITTER_COOKIES_JSON" ]; then
             mkdir -p data
@@ -69,7 +72,7 @@ jobs:
             " > data/twitter-cookies.json
             echo "Cookies bootstrapped from secret (savedAt updated)"
           elif [ -f data/twitter-cookies.json ]; then
-            # Also refresh savedAt on a cache hit to prevent expiry.
+            # Also refresh savedAt on a restored session to prevent expiry.
             # If the JSON is malformed, delete the file and fall back to bootstrapping from the secret
             if node -e "
               const fs = require('fs');
@@ -83,9 +86,9 @@ jobs:
                 process.exit(1);
               }
             "; then
-              echo "Cookies restored from cache (savedAt updated)"
+              echo "Cookies restored from saved session (savedAt updated)"
             else
-              echo "Malformed cache removed, falling back to secret..."
+              echo "Malformed saved session removed, falling back to secret..."
               if [ -n "$TWITTER_COOKIES_JSON" ]; then
                 mkdir -p data
                 echo "$TWITTER_COOKIES_JSON" | node -e "
@@ -123,6 +126,20 @@ jobs:
           PROXY_SERVER: ${{ secrets.PROXY_SERVER }}
           PROXY_USERNAME: ${{ secrets.PROXY_USERNAME }}
           PROXY_PASSWORD: ${{ secrets.PROXY_PASSWORD }}
+
+      # Runs even when a later search failed, so a session refreshed by a fresh login is kept
+      - name: Save Twitter cookies to runner state
+        if: ${{ !cancelled() }}
+        run: |
+          STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss"
+          if [ -f data/twitter-cookies.json ]; then
+            umask 077
+            mkdir -p "$STATE_DIR"
+            chmod 700 "$STATE_DIR"
+            cp data/twitter-cookies.json "$STATE_DIR/twitter-cookies.json.tmp"
+            chmod 600 "$STATE_DIR/twitter-cookies.json.tmp"
+            mv "$STATE_DIR/twitter-cookies.json.tmp" "$STATE_DIR/twitter-cookies.json"
+          fi
 
       - name: Error handling
         if: failure() && github.event_name != 'pull_request'
