@@ -472,6 +472,36 @@ async function generateRSS() {
   const logger = Logger.configure('generateRSS')
   logger.info('Generating RSS...')
 
+  const searchWordPath = process.env.SEARCH_WORD_PATH ?? 'data/searches.json'
+  type SearchesModel = Record<string, string>
+  let searchWords: SearchesModel
+  try {
+    if (!fs.existsSync(searchWordPath)) {
+      throw new Error(`Search word file not found: ${searchWordPath}`)
+    }
+    searchWords = JSON.parse(fs.readFileSync(searchWordPath, 'utf8'))
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error : new Error(String(error))
+    logger.error(
+      `Failed to load search words from ${searchWordPath}`,
+      errorMessage,
+    )
+    throw errorMessage
+  }
+
+  const filenames = new Map<string, string>()
+  for (const key of Object.keys(searchWords)) {
+    const filename = sanitizeFileName(key)
+    const existingKey = filenames.get(filename)
+    if (existingKey !== undefined) {
+      throw new Error(
+        `Search keys "${existingKey}" and "${key}" map to the same output file "${filename}.xml"`,
+      )
+    }
+    filenames.set(filename, key)
+  }
+
   if (!process.env.TWITTER_USERNAME || !process.env.TWITTER_PASSWORD) {
     throw new Error('TWITTER_USERNAME, TWITTER_PASSWORD is not set')
   }
@@ -500,24 +530,6 @@ async function generateRSS() {
   }
 
   const rssLanguage = process.env.RSS_LANGUAGE ?? 'ja'
-
-  const searchWordPath = process.env.SEARCH_WORD_PATH ?? 'data/searches.json'
-  type SearchesModel = Record<string, string>
-  let searchWords: SearchesModel
-  try {
-    if (!fs.existsSync(searchWordPath)) {
-      throw new Error(`Search word file not found: ${searchWordPath}`)
-    }
-    searchWords = JSON.parse(fs.readFileSync(searchWordPath, 'utf8'))
-  } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error : new Error(String(error))
-    logger.error(
-      `Failed to load search words from ${searchWordPath}`,
-      errorMessage,
-    )
-    throw errorMessage
-  }
 
   const failedKeys: string[] = []
   for (const key in searchWords) {
