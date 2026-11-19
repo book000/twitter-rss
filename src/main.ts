@@ -620,9 +620,10 @@ async function generateRSS() {
         },
         rss: {
           '@_version': '2.0',
-          '@_xmlns:dc': 'https://purl.org/dc/elements/1.1/',
-          '@_xmlns:content': 'https://purl.org/rss/1.0/modules/content/',
-          '@_xmlns:atom': 'https://www.w3.org/2005/Atom',
+          '@_xmlns:dc': 'http://purl.org/dc/elements/1.1/',
+          // eslint-disable-next-line unicorn/prefer-https -- Namespace names are exact identifiers.
+          '@_xmlns:content': 'http://purl.org/rss/1.0/modules/content/',
+          '@_xmlns:atom': 'http://www.w3.org/2005/Atom',
           channel: {
             title: key,
             description: searchWord,
