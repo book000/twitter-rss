@@ -115,9 +115,11 @@ jobs:
           rm /tmp/.X*-lock || true
           rm -rf data/userdata/Singleton* || true
           Xvfb :99 -ac -screen 0 600x1000x16 -listen tcp &
+          XVFB_PID=$!
+          # The shell runs with -e, so cleanup must be a trap to run after a failed build
+          trap 'kill "$XVFB_PID" 2>/dev/null || true; wait "$XVFB_PID" 2>/dev/null || true' EXIT
           export DISPLAY=:99
           yarn build
-          kill -9 "$(pgrep -f "Xvfb" | awk '{print $2}')" || true
         env:
           TWITTER_USERNAME: ${{ secrets.TWITTER_USERNAME }}
           TWITTER_PASSWORD: ${{ secrets.TWITTER_PASSWORD }}
