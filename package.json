@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@book000/eslint-config": "1.17.3",
-    "@book000/node-utils": "1.26.31",
+    "@book000/node-utils": "1.26.33",
     "@the-convocation/twitter-scraper": "0.22.3",
     "@types/node": "26.6.6",
     "@types/tough-cookie": "4.0.5",
@@ -40,7 +40,7 @@
     "prettier": "3.10.1",
     "ts-node": "10.9.2",
     "ts-node-dev": "2.0.0",
-    "twitter-openapi-typescript": "0.1.8",
+    "twitter-openapi-typescript": "0.1.9",
     "typescript": "6.0.3",
     "yarn-run-all": "3.1.1"
   },
