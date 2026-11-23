@@ -689,6 +689,7 @@ function generateList() {
       }
       const parser = new XMLParser({
         ignoreAttributes: false,
+        parseTagValue: false,
       })
 
       const feed: {
