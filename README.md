@@ -177,7 +177,7 @@ The repository includes three GitHub Actions workflows:
 
 ### `nodejs-ci.yml` — Continuous Integration
 
-Runs on every push to `main`/`master` and on pull requests targeting them. Executes build and lint checks using a [reusable workflow template](https://github.com/book000/templates).
+Runs on every push to `main`/`master` and on pull requests targeting them. Uses a [reusable workflow template](https://github.com/book000/templates) to compile and lint, while skipping `yarn build` because it generates RSS feeds and requires credentials. Feed generation runs in `update-rss.yml`.
 
 ### `update-rss.yml` — RSS Update and Deployment
 
@@ -249,7 +249,7 @@ twitter-rss/
 ├── .github/
 │   ├── apt-packages.txt        # apt dependencies for self-hosted runner
 │   └── workflows/
-│       ├── nodejs-ci.yml       # CI: build + lint check
+│       ├── nodejs-ci.yml       # CI: compile + lint check
 │       ├── setup-check.yml     # PR check: Node.js / Corepack / Yarn setup
 │       └── update-rss.yml      # RSS update + GitHub Pages deployment
 ├── Dockerfile                  # Docker image (zenika/alpine-chrome based)

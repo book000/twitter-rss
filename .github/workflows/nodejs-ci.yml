@@ -1,4 +1,4 @@
-# Runs build and lint with the reusable Node.js CI workflow. The Node.js version comes from .node-version
+# Runs compile and lint with the reusable Node.js CI workflow. The Node.js version comes from .node-version
 
 name: Node CI
 
@@ -16,3 +16,5 @@ jobs:
   node-ci:
     name: Node CI
     uses: book000/templates/.github/workflows/reusable-nodejs-ci.yml@master
+    with:
+      disabled-jobs: build
