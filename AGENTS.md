@@ -43,7 +43,7 @@ Run the focused Node.js test, `yarn lint`, and `yarn compile` before committing.
 - `data/searches.json`: search queries (tracked in Git); other files under `data/` are git-ignored.
 - `template.html`: template of `output/index.html`.
 - `Dockerfile`, `docker-compose.yml`, `entrypoint.sh`: container run on `zenika/alpine-chrome:with-puppeteer-xvfb` with Xvfb and x11vnc (VNC port 5910).
-- `.github/workflows/nodejs-ci.yml`: reusable Node.js CI from `book000/templates` (build and lint).
+- `.github/workflows/nodejs-ci.yml`: reusable Node.js CI from `book000/templates` (compile and lint); application `build` is disabled because it requires Twitter credentials.
 - `.github/workflows/update-rss.yml`: hourly RSS generation on a self-hosted runner, then GitHub Pages deployment; failures notify a Discord webhook. `data/twitter-cookies.json` is copied to and from the runner-local state directory (`${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss`, never the Actions cache) before and after the `Update RSS` step. Corepack is installed explicitly (`corepack@0.36.0`) because Node.js 25+ does not bundle it.
 - `.github/workflows/setup-check.yml`: on pull requests, checks the Node.js / Corepack / Yarn setup. Keep its setup steps in sync with `update-rss.yml` (including the Corepack version).
 

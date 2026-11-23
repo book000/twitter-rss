@@ -177,7 +177,7 @@ Docker イメージは [`zenika/alpine-chrome:with-puppeteer-xvfb`](https://gith
 
 ### `nodejs-ci.yml` — 継続的インテグレーション
 
-`main`/`master` へのプッシュおよびそれらを対象とするプルリクエスト時に実行されます。[再利用可能なワークフローテンプレート](https://github.com/book000/templates) を使用してビルドと Lint チェックを実施します。
+`main`/`master` へのプッシュおよびそれらを対象とするプルリクエスト時に実行されます。[再利用可能なワークフローテンプレート](https://github.com/book000/templates) を使用してコンパイルと Lint チェックを実施します。`yarn build` は RSS フィードを生成し認証情報を必要とするため実行しません。フィードの生成は `update-rss.yml` で行います。
 
 ### `update-rss.yml` — RSS 更新とデプロイ
 
@@ -251,7 +251,7 @@ twitter-rss/
 ├── .github/
 │   ├── apt-packages.txt        # セルフホストランナー用 apt 依存パッケージ
 │   └── workflows/
-│       ├── nodejs-ci.yml       # CI：ビルド・Lint チェック
+│       ├── nodejs-ci.yml       # CI：コンパイル・Lint チェック
 │       ├── setup-check.yml     # PR チェック：Node.js / Corepack / Yarn のセットアップ
 │       └── update-rss.yml      # RSS 更新・GitHub Pages デプロイ
 ├── Dockerfile                  # Docker イメージ（zenika/alpine-chrome ベース）
