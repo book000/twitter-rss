@@ -13,7 +13,7 @@ Guidance for AI coding agents and contributors. `CLAUDE.md` imports this file, a
 
 Generates RSS 2.0 feeds from Twitter (X.com) search results. For every entry of `data/searches.json` (key = output file name, value = Twitter advanced search query) it writes `output/<name>.xml` plus an `output/index.html` list, and GitHub Actions publishes `output/` to GitHub Pages every hour.
 
-- Login and search use `@the-convocation/twitter-scraper` and `twitter-openapi-typescript`; `cycletls` spoofs the TLS fingerprint. Authentication cookies are cached in `data/twitter-cookies.json`. In CI the file is persisted in a runner-local state directory (`${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss`), never in the GitHub Actions cache.
+- Login and search use `@the-convocation/twitter-scraper` and `twitter-openapi-typescript`; `cycletls` spoofs the TLS fingerprint. Authentication cookies are cached in `data/twitter-cookies.json` with mode `0600`. In CI the file is persisted in a runner-local state directory (`${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss`), never in the GitHub Actions cache.
 - SSO is not supported: only username and password (plus optional TOTP) authentication.
 
 ## Commands
@@ -42,7 +42,7 @@ There is no test framework. Run `yarn lint` and `yarn compile` before committing
 - `template.html`: template of `output/index.html`.
 - `Dockerfile`, `docker-compose.yml`, `entrypoint.sh`: container run on `zenika/alpine-chrome:with-puppeteer-xvfb` with Xvfb and x11vnc (VNC port 5910).
 - `.github/workflows/nodejs-ci.yml`: reusable Node.js CI from `book000/templates` (compile and lint); application `build` is disabled because it requires Twitter credentials.
-- `.github/workflows/update-rss.yml`: hourly RSS generation on a self-hosted runner, then GitHub Pages deployment; failures notify a Discord webhook. `data/twitter-cookies.json` is copied to and from the runner-local state directory (`${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss`, never the Actions cache) before and after the `Update RSS` step. Corepack is installed explicitly (`corepack@0.36.0`) because Node.js 25+ does not bundle it.
+- `.github/workflows/update-rss.yml`: hourly RSS generation on a self-hosted runner, then GitHub Pages deployment; failures notify a Discord webhook. `data/twitter-cookies.json` is copied to and from the runner-local state directory (`${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss`, never the Actions cache) before and after the `Update RSS` step. Restored and bootstrapped workspace cookie files are restricted to mode `0600`. Corepack is installed explicitly (`corepack@0.36.0`) because Node.js 25+ does not bundle it.
 - `.github/workflows/setup-check.yml`: on pull requests, checks the Node.js / Corepack / Yarn setup. Keep its setup steps in sync with `update-rss.yml` (including the Corepack version).
 
 ## Conventions

@@ -52,12 +52,19 @@ jobs:
           if [ -f "$STATE_DIR/twitter-cookies.json" ]; then
             umask 077
             mkdir -p data
+            if [ -f data/twitter-cookies.json ]; then
+              chmod 600 data/twitter-cookies.json
+            fi
             cp "$STATE_DIR/twitter-cookies.json" data/twitter-cookies.json
             echo "Cookies restored from runner state"
           fi
 
       - name: Bootstrap cookies from secret (if no saved session)
         run: |
+          umask 077
+          if [ -f data/twitter-cookies.json ]; then
+            chmod 600 data/twitter-cookies.json
+          fi
           if [ ! -f data/twitter-cookies.json ] && [ -n "$TWITTER_COOKIES_JSON" ]; then
             mkdir -p data
             # Write the file with savedAt set to the current time

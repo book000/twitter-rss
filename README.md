@@ -211,7 +211,7 @@ Runs on every push to `main`/`master` and on pull requests targeting them. Uses 
 
 **Cookie caching:**
 
-The session is not stored in the GitHub Actions cache: the cache of a public repository's default branch is readable from fork pull request workflows, so it must not hold credentials. Instead, the workflow copies `data/twitter-cookies.json` to a state directory on the self-hosted runner after each run (even when a later search fails) and restores it before the next one. The directory is `${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss` of the runner user, with mode `0700` and the file mode `0600`. This assumes a non-ephemeral runner whose home directory persists and that always runs this workflow. If no saved session exists, it falls back to the `TWITTER_COOKIES_JSON` secret to bootstrap the session, then to a fresh login. Cookies are valid for **90 days**, and the workflow refreshes `savedAt` on every run, so the effective expiry is 90 days after the last run that saved the session (successful or not). Saved cookies are also probed once per run with a search request: an HTTP 401 discards them and triggers a fresh login, while any other probe error fails the run.
+The session is not stored in the GitHub Actions cache: the cache of a public repository's default branch is readable from fork pull request workflows, so it must not hold credentials. Instead, the workflow copies `data/twitter-cookies.json` to a state directory on the self-hosted runner after each run (even when a later search fails) and restores it before the next one. The directory is `${XDG_STATE_HOME:-$HOME/.local/state}/twitter-rss` of the runner user, with mode `0700` and the file mode `0600`. The workflow also restricts the workspace cookie file to mode `0600` when restoring or bootstrapping it. This assumes a non-ephemeral runner whose home directory persists and that always runs this workflow. If no saved session exists, it falls back to the `TWITTER_COOKIES_JSON` secret to bootstrap the session, then to a fresh login. Cookies are valid for **90 days**, and the workflow refreshes `savedAt` on every run, so the effective expiry is 90 days after the last run that saved the session (successful or not). Saved cookies are also probed once per run with a search request: an HTTP 401 discards them and triggers a fresh login, while any other probe error fails the run.
 
 **Migrating from the Actions cache:**
 
@@ -311,7 +311,7 @@ yarn fix
 - **Credentials**: All secrets are managed via environment variables or `.env` files. Never commit `.env` or `data/twitter-cookies.json`.
 - **XSS prevention**: All tweet text and media URLs are HTML-escaped before being embedded in RSS output.
 - **Path traversal prevention**: RSS filenames derived from `data/searches.json` keys are sanitized (removes `..`, `/`, `\`, and other dangerous characters).
-- **Cookie safety**: Authentication cookies are stored only in `data/twitter-cookies.json` (excluded from Git) and, in CI, in a `0700` state directory on the self-hosted runner (bootstrapped from the `TWITTER_COOKIES_JSON` secret). They are never stored in GitHub Actions caches or artifacts.
+- **Cookie safety**: Authentication cookies are stored only in `data/twitter-cookies.json` (excluded from Git, mode `0600`) and, in CI, in a `0700` state directory on the self-hosted runner (bootstrapped from the `TWITTER_COOKIES_JSON` secret). They are never stored in GitHub Actions caches or artifacts.
 
 ## License
 
