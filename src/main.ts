@@ -701,8 +701,8 @@ function generateList() {
       } = parser.parse(fs.readFileSync('output/' + file, 'utf8'))
       const title = feed.rss.channel.title
       const description = feed.rss.channel.description
-      return `<li><a href='${encodeURIComponent(
-        file,
+      return `<li><a href='${escapeHtml(
+        encodeURIComponent(file),
       )}'>${escapeHtml(title)}</a>: <code>${escapeHtml(description)}</code></li>`
     })
     .filter((s) => s !== null)
