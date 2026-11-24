@@ -244,6 +244,8 @@ twitter-rss/
 │   ├── main.ts                 # Main application entry point
 │   └── model/
 │       └── collect-result.ts   # RSS Item interface definition
+├── test/
+│   └── generate-list.test.mjs  # Index-rendering regression test
 ├── data/
 │   └── searches.json           # Search query configuration (key: filename, value: query)
 ├── .github/
@@ -288,6 +290,9 @@ yarn compile
 
 # Type-check only (no emit)
 yarn compile:test
+
+# Run the index-rendering regression test
+node --test test/generate-list.test.mjs
 
 # Run compiled output from dist/
 yarn start

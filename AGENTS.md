@@ -27,9 +27,10 @@ yarn compile:test   # tsc --noEmit
 yarn start          # run the compiled dist/main.js
 yarn lint           # prettier --check src + eslint + tsc, in parallel
 yarn fix            # prettier --write src + eslint --fix
+node --test test/generate-list.test.mjs  # focused index-rendering regression test
 ```
 
-There is no test framework. Run `yarn lint` and `yarn compile` before committing. Running the tool needs Twitter credentials in environment variables or `.env`; see the README for the full list. Node.js is pinned in `.node-version` and Yarn in `package.json` (`packageManager`).
+Run the focused Node.js test, `yarn lint`, and `yarn compile` before committing. Running the tool needs Twitter credentials in environment variables or `.env`; see the README for the full list. Node.js is pinned in `.node-version` and Yarn in `package.json` (`packageManager`).
 
 ## Structure
 
@@ -38,6 +39,7 @@ There is no test framework. Run `yarn lint` and `yarn compile` before committing
   - Cookie cache expiry is `COOKIE_EXPIRY_DAYS` (90). CI refreshes `savedAt` on every run, so the effective expiry is 90 days after the last run that saved the session (successful or not). Cached cookies are probed once per run with a search request: an HTTP 401 discards the cache and triggers a fresh login, while any other probe error fails the run. Any failed search also makes the run exit 1, so the workflow notifies Discord and skips deployment.
   - The JA3 fingerprint and the User-Agent are hard-coded in `cycleTLSFetchWithProxy` and intentionally come from different Chrome versions.
 - `src/model/collect-result.ts`: RSS `Item` interface.
+- `test/generate-list.test.mjs`: focused index-rendering regression test using Node.js's built-in test runner.
 - `data/searches.json`: search queries (tracked in Git); other files under `data/` are git-ignored.
 - `template.html`: template of `output/index.html`.
 - `Dockerfile`, `docker-compose.yml`, `entrypoint.sh`: container run on `zenika/alpine-chrome:with-puppeteer-xvfb` with Xvfb and x11vnc (VNC port 5910).

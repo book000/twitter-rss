@@ -13,7 +13,7 @@ See `AGENTS.md` for the project overview, commands, structure and conventions. R
 
 ## Do not flag (intentional)
 
-- Missing tests: no test framework is used; quality relies on types, lint and CI.
+- Test coverage is focused: the index-rendering regression test uses the built-in Node.js test runner; types, lint and CI also provide checks.
 - `yarn build` not compiling: it runs `src/main.ts` with ts-node to generate the RSS; compiling is `yarn compile`.
 - The 90-day cookie cache (`COOKIE_EXPIRY_DAYS`), and the JA3 / User-Agent coming from different Chrome versions.
 - CI targeting both `main` and `master`.

@@ -244,6 +244,8 @@ twitter-rss/
 │   ├── main.ts                 # メインアプリケーションエントリポイント
 │   └── model/
 │       └── collect-result.ts   # RSS Item インターフェース定義
+├── test/
+│   └── generate-list.test.mjs  # インデックス生成の回帰テスト
 ├── data/
 │   └── searches.json           # 検索クエリ設定（キー：ファイル名、値：クエリ）
 ├── .github/
@@ -288,6 +290,9 @@ yarn compile
 
 # 型チェックのみ（出力なし）
 yarn compile:test
+
+# インデックス生成の回帰テストを実行
+node --test test/generate-list.test.mjs
 
 # dist/ のコンパイル済み出力を実行
 yarn start
