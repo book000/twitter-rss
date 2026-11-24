@@ -252,7 +252,14 @@ function saveCookies(authToken: string, ct0: string): void {
     ct0,
     savedAt: Date.now(),
   }
-  fs.writeFileSync(COOKIE_CACHE_FILE, JSON.stringify(data, null, 2))
+  const file = fs.openSync(COOKIE_CACHE_FILE, 'a', 0o600)
+  try {
+    fs.fchmodSync(file, 0o600)
+    fs.ftruncateSync(file, 0)
+    fs.writeFileSync(file, JSON.stringify(data, null, 2))
+  } finally {
+    fs.closeSync(file)
+  }
 }
 
 async function loginWithRetry(
