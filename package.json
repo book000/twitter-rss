@@ -25,7 +25,7 @@
     "@book000/eslint-config": "1.17.9",
     "@book000/node-utils": "1.26.44",
     "@the-convocation/twitter-scraper": "0.22.3",
-    "@types/node": "26.6.7",
+    "@types/node": "26.6.10",
     "@types/tough-cookie": "4.0.5",
     "cycletls": "2.0.5",
     "dotenv": "18.0.10",
